@@ -43,11 +43,10 @@ With over 5 years in the image industry and more than 400,000 followers across h
 } as const;
 
 export const SOCIALS = {
-  // TODO confirmar handles exactos con Sarahi
-  instagram: { url: "https://www.instagram.com/sarahiharo/", followers: 60000, label: "Instagram" },
-  tiktok: { url: "https://www.tiktok.com/@sarahiharo", followers: 200000, label: "TikTok" },
-  facebook: { url: "https://www.facebook.com/sarahiharo", followers: 100000, label: "Facebook" },
-  youtube: { url: "https://www.youtube.com/@sarahiharo", followers: 30000, label: "YouTube" },
+  instagram: { url: "https://www.instagram.com/sarahiharooficial", followers: 60000, label: "Instagram" },
+  tiktok: { url: "https://www.tiktok.com/@sarahiharo18", followers: 200000, label: "TikTok" },
+  facebook: { url: "https://www.facebook.com/people/sarahiharos/100070358270963/", followers: 100000, label: "Facebook" },
+  youtube: { url: "https://www.youtube.com/@sarahiharo.s1785", followers: 30000, label: "YouTube" },
 } as const;
 
 export const STATS = [
