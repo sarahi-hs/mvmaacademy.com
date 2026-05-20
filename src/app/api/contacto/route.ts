@@ -7,9 +7,10 @@ import { PERSON } from "@/lib/site";
  * Requiere env var RESEND_API_KEY en Vercel (verificar con `vercel env pull`).
  */
 
-const RESEND_FROM = "MVMA Academy <noreply@mvmaacademy.com>";
-// TODO: cuando el dominio esté verificado en Resend, cambiar a noreply@mvmaacademy.com.
-// Mientras tanto Resend te deja usar 'onboarding@resend.dev' para pruebas.
+// Mientras mvmaacademy.com no esté verificado en Resend, usamos su dominio de prueba.
+// Cuando se verifique el dominio (agregar SPF/DKIM/DMARC en GoDaddy), cambiar a:
+//   "MVMA Academy <noreply@mvmaacademy.com>"
+const RESEND_FROM = "MVMA Academy <onboarding@resend.dev>";
 
 export async function POST(req: NextRequest) {
   try {
