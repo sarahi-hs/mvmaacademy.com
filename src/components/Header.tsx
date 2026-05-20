@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const NAV = [
-  { href: "/sobre-mi", label: "Sobre mí" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/mi-historia", label: "Mi Historia" },
   { href: "/conferencias", label: "Conferencias" },
-  { href: "/libros", label: "Libros" },
   { href: "/comunidad", label: "MVMA Tribe" },
+  { href: "/libros", label: "Libro" },
   { href: "/blog", label: "Blog" },
   { href: "/contacto", label: "Contacto" },
 ];
@@ -16,11 +17,10 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-hueso/80 border-b border-rosita/40">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="font-display text-2xl tracking-tight text-tinto-deep">
-          Sarahi Haro
-          <span className="ml-2 text-xs uppercase tracking-[0.2em] text-tinto-soft align-middle">MVMA</span>
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-ivory/85 border-b border-beige/60">
+      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <Link href="/" className="font-display text-2xl md:text-3xl tracking-tight text-tinto-deep hover:text-tinto transition-colors">
+          <span className="italic">S</span>arahi <span className="italic">H</span>aro
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">

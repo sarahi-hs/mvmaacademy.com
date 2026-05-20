@@ -1,18 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* Paleta MVMA — tinto + blanco + rosita */
-  --color-tinto: #722F37;
-  --color-tinto-deep: #3D1A1F;
-  --color-tinto-soft: #9C4B54;
-  --color-rosita: #F4D4D4;
-  --color-rosita-deep: #E8B4B8;
-  --color-hueso: #FAF7F2;
-  --color-hueso-warm: #F2EDE5;
+  /* Paleta Sarahi Haro — editorial sofisticado */
+  --color-tinto: #6B1F2A;          /* Tinto fuerte — primario, autoridad */
+  --color-tinto-deep: #2A0B11;     /* Tinto profundo — texto sobre claros */
+  --color-tinto-soft: #9C4B54;     /* Tinto bajito — secundario */
+  --color-beige: #D6C7AE;          /* Beige cálido — acentos */
+  --color-beige-light: #E8DFCB;    /* Beige claro — fondos suaves */
+  --color-ivory: #F7F2E8;          /* Ivory — fondo principal */
+  --color-ivory-warm: #EFE7D5;     /* Ivory cálido — secciones alternas */
+  --color-rosita: #E8C5C0;         /* Rosita tenue — solo acentos puntuales */
+  --color-hueso: #F7F2E8;          /* Alias hueso = ivory (compatibilidad) */
+  --color-hueso-warm: #EFE7D5;     /* Alias compatibilidad */
+  --color-rosita-deep: #C99E98;    /* Alias compatibilidad */
 
   /* Tipografía */
-  --font-display: var(--font-cormorant), "Times New Roman", serif;
+  --font-display: var(--font-cormorant), "Playfair Display", "Times New Roman", serif;
   --font-body: var(--font-inter), -apple-system, system-ui, sans-serif;
+  --font-script: "Cormorant Garamond", serif;
 }
 
 @keyframes fade-in {
@@ -52,6 +57,124 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-fade-in { animation: fade-in 0.8s ease-out both; }
 .animate-slide-up { animation: slide-up 0.6s ease-out both; }
+
+/* ============================================================
+   EDITORIAL TYPOGRAPHY — Drop caps + flourishes estilo Vogue
+   ============================================================ */
+
+/* Drop cap: primera letra en cursiva grande tipo editorial */
+.editorial-dropcap::first-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 4em;
+  line-height: 0.85;
+  float: left;
+  margin: 0.05em 0.15em 0 -0.05em;
+  color: var(--color-tinto);
+  font-weight: 500;
+}
+
+/* Headline editorial: primera palabra cursiva */
+.headline-italic-first > *:first-child,
+.headline-italic-first::first-line {
+  font-style: italic;
+}
+
+/* Etiqueta editorial superior tipo Vogue */
+.editorial-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-tinto);
+  font-weight: 500;
+}
+
+/* Divisor decorativo editorial */
+.editorial-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-tinto);
+}
+.editorial-divider::before,
+.editorial-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+/* Subrayado decorativo dorado para palabras destacadas */
+.editorial-underline {
+  background-image: linear-gradient(transparent 70%, rgba(214, 199, 174, 0.5) 70%);
+  padding: 0 0.1em;
+}
+
+/* Scroll reveal — usado con IntersectionObserver en componentes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilos para contenido del blog generado desde markdown */
+.prose-mvma {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose-mvma h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-tinto-deep);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.prose-mvma h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-tinto);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+.prose-mvma p { margin-bottom: 1.25rem; }
+.prose-mvma ul, .prose-mvma ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+.prose-mvma li { margin-bottom: 0.5rem; }
+.prose-mvma ul li { list-style: none; position: relative; padding-left: 1rem; }
+.prose-mvma ul li::before {
+  content: "·";
+  color: var(--color-tinto);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+.prose-mvma ol { list-style: decimal; }
+.prose-mvma strong { color: var(--color-tinto); font-weight: 600; }
+.prose-mvma em { font-style: italic; color: var(--color-tinto-deep); }
+.prose-mvma blockquote {
+  border-left: 3px solid var(--color-tinto);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--color-tinto-soft);
+}
+.prose-mvma a {
+  color: var(--color-tinto);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.prose-mvma a:hover { color: var(--color-tinto-deep); }
 
 /* Estilos para contenido del blog generado desde markdown */
 .prose-mvma {

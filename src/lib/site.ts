@@ -53,8 +53,22 @@ export const STATS = [
   { value: "200+", label: "Mujeres asesoradas", labelEn: "Women coached" },
   { value: "400K+", label: "Comunidad en redes", labelEn: "Social media community" },
   { value: "5+", label: "Años de experiencia", labelEn: "Years of experience" },
-  { value: "2", label: "Países donde he hablado", labelEn: "Countries I've spoken in" },
+  { value: "3×", label: "Apariciones en TV", labelEn: "TV appearances" },
 ] as const;
+
+export const HERO = {
+  eyebrow: "Sarahi Haro · Asesora de Imagen · Coach · Speaker",
+  headline: "La mujer que serás en 5 años empieza por cómo te ves hoy en el espejo.",
+  subheadline:
+    "Acompaño a mujeres a construir su versión más auténtica desde adentro hacia afuera. Asesoría de imagen estratégica, coaching de marca personal y conferencias para emprendedoras, founders y líderes.",
+} as const;
+
+// TODO: completar con datos reales cuando Sarahi los pase
+export const TV_APPEARANCES = [
+  { network: "TV 1 — Pendiente", year: 2024, topic: "Pendiente confirmar", url: null },
+  { network: "TV 2 — Pendiente", year: 2024, topic: "Pendiente confirmar", url: null },
+  { network: "TV 3 — Pendiente", year: 2025, topic: "Pendiente confirmar", url: null },
+];
 
 export const CREDENTIALS = [
   "Máster en Asesoría de Imagen, Estilismo, Producción y Marketing de Moda",
