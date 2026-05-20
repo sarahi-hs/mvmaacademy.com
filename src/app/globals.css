@@ -52,3 +52,56 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-fade-in { animation: fade-in 0.8s ease-out both; }
 .animate-slide-up { animation: slide-up 0.6s ease-out both; }
+
+/* Estilos para contenido del blog generado desde markdown */
+.prose-mvma {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose-mvma h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-tinto-deep);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.prose-mvma h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-tinto);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+.prose-mvma p { margin-bottom: 1.25rem; }
+.prose-mvma ul, .prose-mvma ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+.prose-mvma li { margin-bottom: 0.5rem; }
+.prose-mvma ul li { list-style: none; position: relative; padding-left: 1rem; }
+.prose-mvma ul li::before {
+  content: "·";
+  color: var(--color-tinto);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+.prose-mvma ol { list-style: decimal; }
+.prose-mvma strong { color: var(--color-tinto); font-weight: 600; }
+.prose-mvma em { font-style: italic; color: var(--color-tinto-deep); }
+.prose-mvma blockquote {
+  border-left: 3px solid var(--color-tinto);
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--color-tinto-soft);
+}
+.prose-mvma a {
+  color: var(--color-tinto);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.prose-mvma a:hover { color: var(--color-tinto-deep); }

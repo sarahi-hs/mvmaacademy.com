@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE, BOOKS } from "@/lib/site";
+import { POSTS } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -27,5 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...main, ...books];
+  const posts: MetadataRoute.Sitemap = POSTS.map((p) => ({
+    url: `${SITE.url}/blog/${p.slug}`,
+    lastModified: new Date(p.publishedAt),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...main, ...books, ...posts];
 }
