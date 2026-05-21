@@ -50,18 +50,20 @@ export const SOCIALS = {
 } as const;
 
 export const STATS = [
-  { value: "200+", label: "Mujeres asesoradas", labelEn: "Women coached" },
+  { value: "200+", label: "Mujeres transformadas", labelEn: "Women transformed" },
   { value: "400K+", label: "Comunidad en redes", labelEn: "Social media community" },
-  { value: "5+", label: "Años de experiencia", labelEn: "Years of experience" },
+  { value: "5+", label: "Años de trayectoria", labelEn: "Years of experience" },
   { value: "3×", label: "Apariciones en TV", labelEn: "TV appearances" },
 ] as const;
 
 export const HERO = {
-  eyebrow: "Sarahi Haro · Asesora de Imagen · Coach · Speaker",
-  headline: "La mujer que serás en 5 años empieza por cómo te ves hoy en el espejo.",
+  eyebrow: "Sarahi Haro · Asesora de Imagen · Coach · Speaker · Autora",
+  headline: "¿Lista para ser la mujer que ya sabes que eres?",
   subheadline:
-    "Acompaño a mujeres a construir su versión más auténtica desde adentro hacia afuera. Asesoría de imagen estratégica, coaching de marca personal y conferencias para emprendedoras, founders y líderes.",
+    "Soy asesora de imagen, coach de marca personal y autora. Acompaño a mujeres a construir su versión más auténtica — trabajando imagen, mentalidad y marca personal como un solo proceso.",
 } as const;
+
+export const MARQUEE_TEXT = "TÚ TIENES EL PODER DE CREAR TU PROPIA REALIDAD";
 
 // TODO: completar con datos reales cuando Sarahi los pase
 export const TV_APPEARANCES = [
@@ -84,14 +86,13 @@ export const BOOKS = [
     slug: "volver-a-mi-y-no-irme-nunca-mas",
     title: "Volver a mí y no irme nunca más",
     titleEn: "Coming Back to Myself and Never Leaving Again",
-    year: 2024, // TODO confirmar año real
+    year: 2024,
     descriptionEs:
-      "Un viaje íntimo de regreso a la versión más auténtica de ti misma. A través de este libro, Sarahi acompaña a mujeres en el proceso de reencontrarse, soltar las versiones que ya no las representan y comprometerse con su verdad.",
+      "Este libro nació porque yo también me sentí perdida en algún punto de mi vida. En sus páginas plasmo mi propio proceso de reconciliación personal — con mi cuerpo, con quién soy y con la mujer que decidí ser. No es teoría: es el camino que recorrí y que hoy acompaño en otras mujeres.",
     descriptionEn:
-      "An intimate journey back to your most authentic self. Through this book, Sarahi guides women in the process of reconnecting with themselves, releasing the versions they have outgrown, and committing to their truth.",
-    cover: "/books/volver-a-mi.jpg", // TODO subir portada real
-    // TODO links Amazon, Goodreads, HarperCollins, etc.
-    amazonUrl: null,
+      "This book was born because I too felt lost at some point in my life. Within its pages I share my own process of personal reconciliation — with my body, with who I am, and with the woman I chose to become. It's not theory: it's the path I walked, and the one I now guide other women through.",
+    cover: "/books/volver-a-mi.jpg",
+    amazonUrl: "https://www.amazon.com/VOLVER-MI-irme-nunca-Spanish/dp/B0FSG53WTP",
     goodreadsUrl: null,
   },
 ] as const;

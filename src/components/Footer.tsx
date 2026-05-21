@@ -20,8 +20,8 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li><Link href="/mi-historia" className="hover:text-tinto">Mi Historia</Link></li>
             <li><Link href="/servicios" className="hover:text-tinto">Servicios 1:1</Link></li>
+            <li><Link href="/comunidad" className="hover:text-tinto">Mi Comunidad</Link></li>
             <li><Link href="/conferencias" className="hover:text-tinto">Conferencias</Link></li>
-            <li><Link href="/comunidad" className="hover:text-tinto">MVMA Tribe</Link></li>
             <li><Link href="/libros" className="hover:text-tinto">Libro</Link></li>
             <li><Link href="/blog" className="hover:text-tinto">Blog</Link></li>
             <li><Link href="/contacto" className="hover:text-tinto">Contacto</Link></li>

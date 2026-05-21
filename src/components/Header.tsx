@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const NAV = [
-  { href: "/servicios", label: "Servicios" },
   { href: "/mi-historia", label: "Mi Historia" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/comunidad", label: "Mi Comunidad" },
   { href: "/conferencias", label: "Conferencias" },
-  { href: "/comunidad", label: "MVMA Tribe" },
   { href: "/libros", label: "Libro" },
   { href: "/blog", label: "Blog" },
   { href: "/contacto", label: "Contacto" },
@@ -19,8 +20,17 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-ivory/85 border-b border-beige/60">
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-        <Link href="/" className="font-display text-2xl md:text-3xl tracking-tight text-tinto-deep hover:text-tinto transition-colors">
-          <span className="italic">S</span>arahi <span className="italic">H</span>aro
+        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <Image
+            src="/images/sarahi/mvma-logo.png"
+            alt="MVMA logo"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+          />
+          <span className="font-display text-2xl md:text-3xl tracking-tight text-tinto-deep">
+            <span className="italic">S</span>arahi <span className="italic">H</span>aro
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
