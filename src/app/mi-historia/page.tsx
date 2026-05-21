@@ -27,16 +27,17 @@ export default function MiHistoriaPage() {
       <section className="bg-ivory py-20 md:py-28 border-b border-beige">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <Reveal>
-            <p className="mono-label text-tinto mb-6">— MI HISTORIA —</p>
+            <p className="mono-label text-tinto mb-6">— LO QUE CASI NUNCA CUENTO —</p>
             <h1 className="font-display text-5xl md:text-7xl text-tinto-deep leading-[0.95] mb-10">
-              <span className="italic">No nací</span><br />
-              asesora de imagen.<br />
-              <span className="italic text-tinto">Me convertí</span><br />
-              en ella.
+              Hubo una mujer<br />
+              que <span className="italic">se sentía</span><br />
+              <span className="italic text-tinto">insuficiente.</span><br />
+              Hoy te cuento<br />
+              cómo <span className="italic">dejó de serlo.</span>
             </h1>
-            <p className="text-lg md:text-xl text-tinto-deep/80 leading-relaxed italic font-display">
-              "Porque yo sé lo que es sentirte insuficiente. Pero también sé lo que pasa
-              cuando una mujer decide volver a sí misma y no irse nunca más."
+            <p className="text-lg md:text-xl text-tinto-deep/80 leading-relaxed">
+              No es lo que cuento en las entrevistas. Es lo que cambió todo. Y es lo que te puede
+              cambiar a ti, si te das permiso de leer hasta el final.
             </p>
           </Reveal>
           <Reveal delay={200}>
@@ -61,28 +62,23 @@ export default function MiHistoriaPage() {
           <div className="flex items-center gap-4 mb-12">
             <p className="mono-label text-tinto">CAPÍTULO 01</p>
             <div className="flex-1 h-px bg-tinto/30" />
+            <p className="mono-label text-tinto-soft">LA HERIDA</p>
           </div>
           <h2 className="font-display text-4xl md:text-5xl text-tinto-deep leading-[1.05] mb-12">
-            <span className="italic">Por fuera</span> parecía segura.<br />
-            Por dentro, me sentía
-            <br />
-            <span className="italic text-tinto">profundamente insuficiente.</span>
+            Crecí sintiéndome <span className="italic text-tinto">juzgada</span><br />
+            por mi apariencia.
           </h2>
 
           <div className="prose-mvma text-tinto-deep/85 leading-relaxed text-lg space-y-6">
             <p className="editorial-dropcap">
-              Hubo una etapa de mi vida donde, aunque por fuera parecía una mujer segura, por dentro
-              me sentía profundamente insuficiente. Desde muy pequeña crecí sintiéndome juzgada por
-              mi apariencia, comparándome constantemente y creyendo que necesitaba cambiar para ser
-              aceptada, querida o suficiente.
+              Desde muy pequeña me comparaba constantemente y creía que necesitaba cambiar para ser
+              aceptada, querida o suficiente. Durante mucho tiempo pensé que mi valor dependía de
+              cómo me veía, de cómo me percibían los demás y de cuánto lograba encajar.
             </p>
             <p>
-              Durante mucho tiempo pensé que mi valor dependía de cómo me veía, de cómo me percibían
-              los demás y de cuánto lograba encajar. Esa herida me acompañó por años.
-            </p>
-            <p>
-              Y aunque siempre fui una mujer soñadora, emprendedora y con ganas de salir adelante,
-              también había una parte de mí que vivía desde el rechazo hacia sí misma.
+              Esa herida me acompañó por años. Aunque siempre fui una mujer soñadora, emprendedora
+              y con ganas de salir adelante, también había una parte de mí que vivía desde el
+              rechazo hacia sí misma.
             </p>
           </div>
         </Reveal>
@@ -112,22 +108,18 @@ export default function MiHistoriaPage() {
           <div className="flex items-center gap-4 mb-12">
             <p className="mono-label text-tinto">CAPÍTULO 02</p>
             <div className="flex-1 h-px bg-tinto/30" />
+            <p className="mono-label text-tinto-soft">EL QUIEBRE</p>
           </div>
           <h2 className="font-display text-4xl md:text-5xl text-tinto-deep leading-[1.05] mb-12">
-            El cuerpo cambió.<br />
-            <span className="italic text-tinto">Yo no.</span>
+            Y entonces algo<br />
+            <span className="italic text-tinto">salió mal.</span>
           </h2>
 
           <div className="prose-mvma text-tinto-deep/85 leading-relaxed text-lg space-y-6">
             <p>
-              A los 19 años tomé la decisión de hacerme una cirugía plástica pensando que eso me
-              haría sentir más segura, más feliz y más valiosa. Y sí, cambió mi físico. Pero no
-              cambió la manera en la que yo me veía por dentro.
-            </p>
-            <p>
-              De hecho, <strong className="text-tinto">algo salió mal durante ese proceso</strong>.
-              Después de mi cirugía estuve aproximadamente cuatro meses sin poder caminar bien,
-              bajé más de 10 kilos y entré en una tristeza muy profunda.
+              Después de la cirugía estuve aproximadamente <strong className="text-tinto">cuatro
+              meses sin poder caminar bien</strong>, bajé más de 10 kilos y entré en una tristeza
+              muy profunda.
             </p>
             <p>
               Fue un momento muy fuerte para mí, porque por primera vez entendí lo frágil que puede
@@ -149,19 +141,15 @@ export default function MiHistoriaPage() {
             <div className="flex items-center gap-4 mb-12">
               <p className="mono-label text-tinto">CAPÍTULO 03</p>
               <div className="flex-1 h-px bg-tinto/30" />
+              <p className="mono-label text-tinto-soft">LA RECONSTRUCCIÓN</p>
             </div>
             <h2 className="font-display text-4xl md:text-5xl text-tinto-deep leading-[1.05] mb-12">
-              <span className="italic">Dejé de buscar</span><br />
-              afuera lo que solo<br />
-              <span className="italic text-tinto">se encuentra adentro.</span>
+              Por primera vez<br />
+              dejé de buscar afuera<br />
+              lo que solo <span className="italic text-tinto">se encuentra adentro.</span>
             </h2>
 
             <div className="prose-mvma text-tinto-deep/85 leading-relaxed text-lg space-y-6">
-              <p>
-                Aunque fue uno de los momentos más dolorosos de mi vida, también fue uno de los más
-                transformadores. Porque en lugar de seguir buscando respuestas afuera, empecé un
-                proceso profundo de <strong className="text-tinto">reconstrucción personal</strong>.
-              </p>
               <p>
                 Fui a terapia. Empecé a cuestionar mis creencias. A sanar heridas. A perdonarme.
                 Y a entender que muchas veces las opiniones, rechazos o acciones de los demás no
@@ -187,26 +175,27 @@ export default function MiHistoriaPage() {
           <div className="flex items-center gap-4 mb-12">
             <p className="mono-label text-tinto">CAPÍTULO 04</p>
             <div className="flex-1 h-px bg-tinto/30" />
+            <p className="mono-label text-tinto-soft">LA TRANSFORMACIÓN</p>
           </div>
           <h2 className="font-display text-4xl md:text-5xl text-tinto-deep leading-[1.05] mb-12">
-            Cuando mi imagen interna cambió,<br />
-            mi vida externa <span className="italic text-tinto">también lo hizo.</span>
+            Empecé a hablarme<br />
+            desde el <span className="italic text-tinto">amor.</span>
           </h2>
 
           <div className="prose-mvma text-tinto-deep/85 leading-relaxed text-lg space-y-6">
             <p>
-              Con el tiempo empecé a transformar la relación conmigo misma. Dejé de hablarme desde
-              el rechazo y empecé a construirme desde el amor, la disciplina y el merecimiento.
+              Con el tiempo empecé a transformar la relación conmigo misma. Dejé de construirme
+              desde el rechazo y empecé a hacerlo desde el amor, la disciplina y el merecimiento.
             </p>
             <p>
-              Y algo muy interesante pasó: cuando mi imagen interna cambió, mi vida externa también
-              empezó a cambiar. Empecé a atraer mejores relaciones, más oportunidades, abundancia
-              y una relación mucho más sana conmigo misma y con los demás, incluyendo mi matrimonio.
+              Algo muy interesante pasó: cuando mi imagen interna cambió, mi vida externa también
+              empezó a cambiar. Empecé a atraer mejores relaciones, más oportunidades, abundancia y
+              una relación mucho más sana conmigo misma y con los demás, incluyendo mi matrimonio.
             </p>
             <blockquote>
-              Ahí entendí que la imagen personal va muchísimo más allá de la ropa o el maquillaje.
-              La imagen es cómo te percibes, cómo te hablas, cómo entras a un lugar, cómo te
-              permites ser vista y cómo decides presentarte ante el mundo.
+              La imagen personal va muchísimo más allá de la ropa o el maquillaje. Es cómo te
+              percibes, cómo te hablas, cómo entras a un lugar, cómo te permites ser vista y cómo
+              decides presentarte ante el mundo.
             </blockquote>
             <p className="font-display italic text-2xl text-tinto-deep pt-4">
               Existe una relación muy fuerte entre tu ser y tu parecer.
@@ -235,18 +224,17 @@ export default function MiHistoriaPage() {
           <div className="flex items-center gap-4 mb-12">
             <p className="mono-label text-tinto">CAPÍTULO 05</p>
             <div className="flex-1 h-px bg-tinto/30" />
+            <p className="mono-label text-tinto-soft">EL PROPÓSITO</p>
           </div>
           <h2 className="font-display text-4xl md:text-5xl text-tinto-deep leading-[1.05] mb-12">
-            <span className="italic">MVMA Academy</span> nació<br />
-            de mi propio camino.
+            Convertí mi historia<br />
+            en <span className="italic text-tinto">MVMA Academy.</span>
           </h2>
 
           <div className="prose-mvma text-tinto-deep/85 leading-relaxed text-lg space-y-6">
             <p>
-              A partir de mi propia transformación decidí convertir mi historia en propósito. Creé{" "}
-              <strong className="text-tinto">MVMA Academy</strong>, una comunidad y programa donde
-              ayudo a mujeres a fortalecer su autoestima, seguridad y proyección personal desde
-              adentro hacia afuera.
+              Creé una comunidad y programa donde ayudo a mujeres a fortalecer su autoestima,
+              seguridad y proyección personal desde adentro hacia afuera.
             </p>
             <p>
               Desde entonces he trabajado con cientos de mujeres, impartido talleres y conferencias,
@@ -287,7 +275,7 @@ export default function MiHistoriaPage() {
           <div className="text-center mb-12">
             <p className="mono-label text-tinto mb-4">— COMO ME VISTE EN TV —</p>
             <h2 className="font-display text-3xl md:text-5xl text-tinto-deep leading-[1.05]">
-              <span className="italic">Cuatro apariciones</span> en televisión.
+              <span className="italic">Tres entrevistas</span> en televisión.
             </h2>
           </div>
         </Reveal>

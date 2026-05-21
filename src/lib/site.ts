@@ -53,7 +53,7 @@ export const STATS = [
   { value: "200+", label: "Mujeres transformadas", labelEn: "Women transformed" },
   { value: "400K+", label: "Comunidad en redes", labelEn: "Social media community" },
   { value: "5+", label: "Años de trayectoria", labelEn: "Years of experience" },
-  { value: "4×", label: "Apariciones en TV", labelEn: "TV appearances" },
+  { value: "3×", label: "Apariciones en TV", labelEn: "TV appearances" },
 ] as const;
 
 export const HERO = {
@@ -66,10 +66,9 @@ export const HERO = {
 export const MARQUEE_TEXT = "TÚ TIENES EL PODER DE CREAR TU PROPIA REALIDAD";
 
 export const TV_APPEARANCES = [
-  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2026, topic: "Imagen personal y empoderamiento femenino", url: null },
-  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "Marca personal para mujeres", url: null },
-  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "MVMA: el método integral", url: null },
-  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "Asesoría de imagen como herramienta de transformación", url: null },
+  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "Compras inteligentes: cómo invertir en tu guardarropa sin desperdiciar", url: null },
+  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "Cómo vestir según tu tipo de cuerpo", url: null },
+  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "Entrevista por mi libro: 'Volver a mí y no irme nunca más'", url: null },
 ];
 
 export const CREDENTIALS = [

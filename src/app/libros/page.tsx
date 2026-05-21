@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { BOOKS, SITE } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -31,12 +32,14 @@ export default function LibrosPage() {
               href={`/libros/${book.slug}`}
               className="group block"
             >
-              <div className="aspect-[2/3] bg-gradient-to-br from-tinto-deep to-tinto flex items-center justify-center mb-6 group-hover:scale-[1.02] transition-transform">
-                <div className="text-center px-6">
-                  <p className="font-display text-3xl text-hueso italic">Volver a mí</p>
-                  <p className="font-display text-xl text-rosita mt-2">y no irme nunca más</p>
-                  <p className="mt-6 text-xs uppercase tracking-widest text-rosita">Sarahi Haro</p>
-                </div>
+              <div className="aspect-[2/3] relative overflow-hidden mb-6 group-hover:scale-[1.02] transition-transform">
+                <Image
+                  src="/books/volver-a-mi.jpg"
+                  alt={`Portada del libro ${book.title}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
               </div>
               <h2 className="font-display text-2xl text-tinto-deep group-hover:text-tinto">
                 {book.title}

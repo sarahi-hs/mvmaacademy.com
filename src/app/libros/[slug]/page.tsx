@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { BOOKS, SITE, FAQS_LIBRO } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { bookSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
@@ -69,13 +70,17 @@ export default async function BookPage({ params }: Props) {
           </div>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            {/* TODO: links reales cuando Sarahi los confirme */}
-            <button disabled className="px-6 py-3 bg-tinto/30 text-hueso text-sm cursor-not-allowed">
-              Próximamente en Amazon
-            </button>
-            <button disabled className="px-6 py-3 border border-tinto/30 text-tinto/50 text-sm cursor-not-allowed">
-              Próximamente en Goodreads
-            </button>
+            {book.amazonUrl && (
+              <a
+                href={book.amazonUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-tinto text-ivory hover:bg-tinto-deep transition-colors mono-label"
+                style={{ letterSpacing: "0.2em" }}
+              >
+                COMPRAR EN AMAZON →
+              </a>
+            )}
           </div>
 
           <div className="mt-16 pt-12 border-t border-rosita/60">

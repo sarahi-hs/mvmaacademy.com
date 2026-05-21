@@ -122,7 +122,7 @@ export default function HomePage() {
 
                 <div className="hidden lg:block absolute -bottom-10 -left-20 max-w-[140px]">
                   <p className="mono-label text-tinto-deep/80 text-center">
-                    4× EN TV<br />SPEAKER MX + USA
+                    3× EN TV<br />SPEAKER MX + USA
                   </p>
                 </div>
               </div>
@@ -410,14 +410,14 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-6 py-28 md:py-40">
         <div className="grid md:grid-cols-2 gap-20 items-center">
           <Reveal className="order-2 md:order-1">
-            <div className="aspect-[2/3] bg-gradient-to-br from-tinto-deep via-tinto to-tinto-soft flex items-center justify-center relative max-w-sm mx-auto">
-              <div className="absolute inset-3 border border-beige/30" />
-              <div className="text-center px-8 relative">
-                <p className="font-display text-4xl text-ivory italic">Volver a mí</p>
-                <div className="mt-3 mx-auto w-12 h-px bg-beige" />
-                <p className="font-display text-xl text-beige mt-3">y no irme nunca más</p>
-                <p className="mt-10 mono-label text-beige" style={{ color: "#E8DFCB" }}>SARAHI HARO</p>
-              </div>
+            <div className="aspect-[2/3] relative overflow-hidden max-w-sm mx-auto shadow-2xl">
+              <Image
+                src="/books/volver-a-mi.jpg"
+                alt="Portada del libro 'Volver a mí y no irme nunca más' de Sarahi Haro"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
             </div>
           </Reveal>
 

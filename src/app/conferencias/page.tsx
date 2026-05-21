@@ -31,9 +31,9 @@ const TOPICS = [
     desc: "Cómo construir una marca personal que no se base en aparentar sino en revelar quién eres. Talleres prácticos con ejercicios aplicables al día siguiente.",
   },
   {
-    titulo: "Comunidad Digital y Audiencia Femenina",
-    bajada: "Lecciones de construir 400K+ seguidoras.",
-    desc: "Estrategias reales (no fórmulas de Instagram) para crear comunidad genuina en redes sociales. Para creadoras de contenido, emprendedoras y founders digitales.",
+    titulo: "Imagen que Vende",
+    bajada: "Para profesionales que quieren convertir su imagen en activo de negocio.",
+    desc: "Cómo tu imagen exterior se traduce en autoridad, confianza y oportunidades. Estrategias prácticas para que tu presencia visual abra puertas — sin perder tu autenticidad en el camino.",
   },
 ];
 
