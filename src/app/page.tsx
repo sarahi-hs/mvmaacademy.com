@@ -1,24 +1,28 @@
 import Link from "next/link";
-import { PERSON, STATS, BOOKS, SOCIALS, HERO } from "@/lib/site";
+import { STATS, BOOKS, SOCIALS, HERO } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 
-const VALORES = [
+/**
+ * Cuatro pilares concretos de cómo trabaja Sarahi.
+ * Reemplaza los "valores" abstractos por un posicionamiento por contraste.
+ */
+const ENFOQUE = [
   {
-    titulo: "Autenticidad",
-    desc: "Tu marca personal no se construye performando. Se construye revelando quién sos cuando nadie te mira.",
+    titulo: "No vendo transformaciones milagrosas",
+    desc: "No te voy a prometer que en 30 días cambiás tu vida. Te voy a acompañar en un proceso real — porque las únicas transformaciones que se sostienen son las que llevan tiempo.",
   },
   {
-    titulo: "Proceso",
-    desc: "No vendo atajos ni fórmulas de 30 días. Vendo procesos sostenibles que se quedan con vos para siempre.",
+    titulo: "Trabajamos las 3 capas a la vez",
+    desc: "Imagen + mentalidad + marca personal. Si solo arreglás una, las otras dos la sabotean. Por eso MVMA es integral, no especializado.",
   },
   {
-    titulo: "Imagen Estratégica",
-    desc: "Tu imagen exterior es un vehículo de tu identidad, no un disfraz. Comunica antes de que abras la boca.",
+    titulo: "Tu closet no es el problema",
+    desc: "El problema casi nunca es la ropa. Es la mujer que la elige sin permiso para vestirse como es. Primero trabajamos la decisión interna. Después el guardarropa.",
   },
   {
-    titulo: "Comunidad",
-    desc: "Las mujeres crecemos en red. Por eso MVMA Tribe no es un curso — es un círculo que sostiene.",
+    titulo: "No sos un proyecto. Sos una persona",
+    desc: "Acá no hay 'antes y después' de Instagram. Hay procesos personales con tiempos únicos. Vos elegís cuándo, cómo y hasta dónde llevarlo.",
   },
 ];
 
@@ -26,19 +30,17 @@ export default function HomePage() {
   return (
     <>
       {/* ============================================================
-          HERO — Mega tipográfico estilo editorial
+          HERO — Mega tipográfico
           ============================================================ */}
       <section className="relative overflow-hidden bg-ivory min-h-[90vh] flex items-center">
         <div className="absolute inset-0 bg-gradient-to-br from-beige-light/40 via-ivory to-ivory-warm/60" aria-hidden />
 
-        {/* Decoración top */}
         <div className="absolute top-8 right-12 hidden md:block mono-label text-tinto-soft">
           N° 01 / MMXXVI
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-12 gap-8 items-center w-full">
 
-          {/* Columna izquierda — Texto mega */}
           <div className="md:col-span-7 relative z-10">
             <p className="mono-label text-tinto mb-8 animate-fade-in">
               ← SARAHI HARO STUDIO
@@ -56,69 +58,74 @@ export default function HomePage() {
                 <p className="mono-label text-tinto-deep/80 mb-6">
                   ASESORA DE IMAGEN · COACH DE MARCA PERSONAL · SPEAKER INTERNACIONAL · AUTORA
                 </p>
-                <p className="text-lg text-tinto-deep/85 leading-relaxed italic font-display">
+                <p className="text-xl md:text-2xl text-tinto-deep leading-[1.3] font-display italic">
                   {HERO.headline}
+                </p>
+                <p className="mt-6 text-tinto-deep/75 leading-relaxed">
+                  Llevo 5 años acompañando a mujeres que se cansaron de esperar el momento perfecto
+                  para verse como son. Trabajamos imagen, mentalidad y marca personal —
+                  los tres a la vez, porque ninguno funciona sin los otros.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Link
-                    href="/servicios"
+                    href="/contacto?tipo=Mentor%C3%ADa+%2F+Asesor%C3%ADa+1%3A1"
                     className="px-10 py-4 bg-tinto text-ivory font-medium hover:bg-tinto-deep transition-colors mono-label"
                     style={{ letterSpacing: "0.2em" }}
                   >
-                    TRABAJÁ CONMIGO
+                    AGENDAR LLAMADA GRATIS
                   </Link>
                   <Link
-                    href="/comunidad"
+                    href="/servicios"
                     className="px-10 py-4 border border-tinto text-tinto hover:bg-tinto hover:text-ivory transition-colors mono-label"
                     style={{ letterSpacing: "0.2em" }}
                   >
-                    MVMA TRIBE
+                    VER SERVICIOS
                   </Link>
                 </div>
               </div>
             </Reveal>
           </div>
 
-          {/* Columna derecha — Foto principal con decoraciones */}
+          {/* Foto principal con etiquetas decorativas */}
           <div className="md:col-span-5 relative">
             <Reveal delay={200}>
               <div className="relative aspect-[3/4] bg-gradient-to-br from-beige via-beige-light to-rosita/50 flex items-center justify-center">
                 <div className="absolute inset-4 border border-tinto/20" />
-                {/* TODO: reemplazar con foto profesional de Sarahi */}
                 <div className="text-center px-6">
                   <p className="font-display text-3xl italic text-tinto-deep/40">Tu foto aquí</p>
-                  <p className="mono-label text-tinto-deep/30 mt-3">FORMATO RECOMENDADO 3:4 · ALTA RES</p>
+                  <p className="mono-label text-tinto-deep/30 mt-3">FORMATO 3:4 · ALTA RES</p>
                 </div>
 
-                {/* Etiqueta decorativa con flecha — tipo Tiara */}
+                {/* Etiqueta 1: izquierda arriba */}
                 <div className="hidden md:flex absolute -left-32 top-12 items-end gap-2 max-w-[140px]">
                   <div>
                     <p className="mono-label text-tinto-deep/80 text-right">
-                      ASESORA DE<br />IMAGEN<br />CERTIFICADA
+                      MÁSTER EN<br />ASESORÍA DE<br />IMAGEN
                     </p>
                   </div>
                   <svg width="60" height="60" viewBox="0 0 60 60" className="text-tinto-soft -mb-3" fill="none">
-                    <path d="M5 10 Q 30 5, 55 50" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                    <path d="M50 45 L 55 50 L 50 55" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                    <path d="M5 10 Q 30 5, 55 50" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M50 45 L 55 50 L 50 55" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                 </div>
 
+                {/* Etiqueta 2: derecha abajo */}
                 <div className="hidden md:flex absolute -right-32 bottom-12 items-start gap-2 max-w-[140px]">
                   <svg width="60" height="60" viewBox="0 0 60 60" className="text-tinto-soft -mt-3" fill="none">
-                    <path d="M55 10 Q 30 5, 5 50" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                    <path d="M10 45 L 5 50 L 10 55" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                    <path d="M55 10 Q 30 5, 5 50" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M10 45 L 5 50 L 10 55" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                   <div>
                     <p className="mono-label text-tinto-deep/80">
-                      400K+<br />MUJERES EN<br />REDES
+                      400K+<br />MUJERES<br />EN REDES
                     </p>
                   </div>
                 </div>
 
-                {/* Etiqueta 3 abajo izquierda */}
+                {/* Etiqueta 3: abajo izquierda */}
                 <div className="hidden lg:block absolute -bottom-8 -left-24 max-w-[140px]">
                   <p className="mono-label text-tinto-deep/80 text-center">
-                    SPEAKER MX + USA<br />3× EN TV
+                    3× EN TV<br />SPEAKER MX + USA
                   </p>
                 </div>
               </div>
@@ -128,19 +135,19 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          MARQUEE — Mensaje declarativo estilo Tiara
+          MARQUEE 1 — Frase declarativa
           ============================================================ */}
       <section className="bg-ivory py-12 border-y border-beige overflow-hidden">
-        <Marquee text="TU AUTENTICIDAD" />
+        <Marquee text="VOLVER A TI" />
       </section>
 
       {/* ============================================================
-          STATS — Editorial números
+          STATS — Credibilidad
           ============================================================ */}
       <section className="bg-ivory-warm/40">
         <div className="max-w-7xl mx-auto px-6 py-20">
           <Reveal>
-            <p className="mono-label text-tinto text-center mb-12">— EN NÚMEROS —</p>
+            <p className="mono-label text-tinto text-center mb-12">— LO QUE HE CONSTRUIDO —</p>
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {STATS.map((s, i) => (
@@ -160,32 +167,38 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          ABOUT — Editorial 2 columnas + polaroid + texto monospace
+          ABOUT — Hablar a la mujer que llega
           ============================================================ */}
       <section className="max-w-7xl mx-auto px-6 py-28 md:py-40">
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <Reveal>
-            <p className="font-display italic text-2xl text-tinto-soft mb-4">Hola, soy Sarahi</p>
+            <p className="font-display italic text-2xl text-tinto-soft mb-4">Si llegaste hasta acá,</p>
             <h2 className="font-display text-3xl md:text-5xl text-tinto-deep leading-[1.05] tracking-tight">
-              ASESORA DE IMAGEN,<br />
-              COACH DE MARCA PERSONAL,<br />
-              <span className="italic text-tinto">Y TU CÓMPLICE</span><br />
-              EN ESTE CAMINO.
+              ES PROBABLE QUE SEPAS
+              <br />
+              EXACTAMENTE QUIÉN SOS<br />
+              <span className="italic text-tinto">por dentro.</span>
+              <br />
+              SOLO QUE NO SABÉS<br />
+              CÓMO MOSTRARLO <span className="italic">por fuera.</span>
             </h2>
           </Reveal>
 
           <Reveal delay={200}>
             <div className="space-y-6">
               <p className="mono-label text-tinto-deep/80 leading-loose">
-                RECUERDO EL MOMENTO EN QUE DECIDÍ DEJAR DE ESCONDERME DETRÁS DE LAS VERSIONES DE MÍ QUE YA NO ME REPRESENTABAN. ESA DECISIÓN ES LO QUE COMPARTO CONTIGO HOY.
+                LO VEO TODOS LOS DÍAS: MUJERES BRILLANTES, EXITOSAS, QUERIDAS — QUE SIENTEN
+                QUE SU IMAGEN NO LAS REPRESENTA. QUE SE VISTEN "COMO DEBEN" PERO NO COMO SON.
               </p>
-              <p className="text-tinto-deep/85 leading-relaxed">
-                Acompaño a mujeres a construir su versión más auténtica desde adentro hacia afuera.
-                A través de mis servicios 1:1, mi programa MVMA Tribe, conferencias y mi libro,
-                trabajamos imagen, mentalidad y marca personal como un sistema integrado.
+              <p className="text-tinto-deep/85 leading-relaxed text-lg">
+                Soy asesora de imagen certificada con un máster en estilismo, producción y marketing
+                de moda. Pero más que eso: soy una mujer que pasó por su propio proceso de regreso
+                a sí misma.
               </p>
-              <p className="text-tinto-deep/85 leading-relaxed">
-                Si sentís que tu imagen exterior no refleja a la mujer que sos por dentro, este es tu lugar.
+              <p className="text-tinto-deep/85 leading-relaxed text-lg">
+                Lo que aprendí en ese camino se convirtió en <strong className="text-tinto">MVMA</strong> —
+                un método que integra imagen, marca personal y trabajo de mentalidad. Porque ninguno
+                funciona si los otros dos te sabotean.
               </p>
               <Link
                 href="/mi-historia"
@@ -198,7 +211,6 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        {/* Polaroid decoration */}
         <Reveal delay={400}>
           <div className="mt-20 flex justify-center md:justify-end">
             <div className="polaroid relative max-w-[280px]">
@@ -213,7 +225,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          VALUES MARQUEE
+          MARQUEE 2 — "Mi enfoque"
           ============================================================ */}
       <section className="bg-tinto-deep py-12 overflow-hidden">
         <div className="overflow-hidden w-full">
@@ -223,7 +235,7 @@ export default function HomePage() {
                 key={i}
                 className="font-display text-[18vw] md:text-[12vw] leading-[0.85] text-ivory whitespace-nowrap px-8"
               >
-                MIS VALORES <span className="italic text-beige mx-4">·</span>
+                CÓMO TRABAJO <span className="italic text-beige mx-4">·</span>
               </span>
             ))}
           </div>
@@ -231,25 +243,33 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          VALORES — Grid 4 cards tinto
+          MI ENFOQUE — 4 pilares concretos
           ============================================================ */}
       <section className="bg-ivory-warm py-24 md:py-32 relative">
-        {/* Textura sutil de fondo */}
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
           backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(45,11,17,0.3) 35px, rgba(45,11,17,0.3) 36px)`,
         }} aria-hidden />
 
         <div className="relative max-w-6xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <p className="mono-label text-tinto mb-4">— LO QUE PODÉS ESPERAR DE TRABAJAR CONMIGO —</p>
+              <h2 className="font-display text-3xl md:text-5xl text-tinto-deep leading-[1.05]">
+                Cuatro cosas que <span className="italic text-tinto">no vas a encontrar</span> en cualquier otro lado.
+              </h2>
+            </div>
+          </Reveal>
+
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {VALORES.map((v, i) => (
+            {ENFOQUE.map((v, i) => (
               <Reveal key={v.titulo} delay={(i % 2) * 100}>
                 <article className="bg-tinto text-ivory p-10 md:p-12 h-full">
                   <p className="mono-label text-beige mb-4" style={{ color: "#D6C7AE" }}>0{i + 1}</p>
-                  <h3 className="font-display text-3xl md:text-4xl text-ivory mb-6 uppercase tracking-tight">
+                  <h3 className="font-display text-2xl md:text-3xl text-ivory mb-5 leading-tight">
                     {v.titulo}
                   </h3>
-                  <p className="mono-label text-ivory/85 leading-loose">
-                    {v.desc.toUpperCase()}
+                  <p className="text-ivory/85 leading-relaxed">
+                    {v.desc}
                   </p>
                 </article>
               </Reveal>
@@ -259,19 +279,19 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          SERVICIOS — preview con CTA
+          SERVICIOS preview
           ============================================================ */}
       <section className="bg-ivory py-28 md:py-36">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <Reveal>
-            <p className="mono-label text-tinto mb-8">— SERVICIOS PERSONALIZADOS —</p>
+            <p className="mono-label text-tinto mb-8">— TRABAJEMOS 1:1 —</p>
             <h2 className="font-display text-4xl md:text-7xl text-tinto-deep mb-10 leading-[0.95]">
-              CINCO CAMINOS<br />
-              <span className="italic text-tinto">para volver a ti.</span>
+              CINCO FORMAS<br />
+              <span className="italic text-tinto">de acompañarte.</span>
             </h2>
             <p className="text-lg md:text-xl text-tinto-deep/80 leading-relaxed max-w-2xl mx-auto mb-12">
-              Desde el estudio de color básico hasta mentoría 1:1 integral.
-              Cada servicio diseñado para una etapa distinta de tu proceso.
+              Desde una sesión de 40 minutos para descubrir tu paleta personal,
+              hasta 4 meses de trabajo integral. Cada servicio responde a un momento distinto.
             </p>
             <Link
               href="/servicios"
@@ -304,16 +324,17 @@ export default function HomePage() {
 
           <Reveal delay={150} className="md:col-span-3">
             <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>
-              — MI COMUNIDAD —
+              — SI NECESITÁS UN PROCESO COMPLETO —
             </p>
             <h2 className="font-display text-4xl md:text-6xl text-ivory mb-6 leading-[1.0]">
               MVMA <span className="italic">Tribe.</span><br />
-              <span className="italic text-beige">Mi versión</span><br />
-              más auténtica.
+              <span className="italic text-beige">Seis meses</span><br />
+              de trabajo real.
             </h2>
             <p className="text-ivory/85 leading-relaxed text-lg mb-6">
-              Mi programa digital de 6 meses con 7 módulos de transformación,
-              clases quincenales en vivo y una comunidad cerrada de mujeres en proceso.
+              Mi programa digital para mujeres que no quieren una sesión aislada — quieren
+              un proceso completo. 7 módulos de transformación, clases quincenales en vivo,
+              y una comunidad cerrada de mujeres haciendo el mismo trabajo que vos.
             </p>
             <div className="flex items-baseline gap-3 mb-8">
               <p className="font-display text-5xl text-beige">$5,997</p>
@@ -324,7 +345,7 @@ export default function HomePage() {
               className="inline-block px-10 py-4 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label"
               style={{ letterSpacing: "0.2em" }}
             >
-              QUIERO UNIRME
+              CONOCER MVMA TRIBE
             </Link>
           </Reveal>
         </div>
@@ -348,20 +369,25 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={200} className="order-1 md:order-2">
-            <p className="mono-label text-tinto mb-6">— EL LIBRO —</p>
+            <p className="mono-label text-tinto mb-6">— MI PRIMER LIBRO —</p>
             <h2 className="font-display text-4xl md:text-6xl text-tinto-deep mb-8 leading-[1.0]">
               <span className="italic">Volver a mí.</span><br />
               Y no irme nunca más.
             </h2>
+            <p className="text-tinto-deep/80 leading-relaxed text-lg mb-4">
+              Nació de una frase que escribí en mi diario después de una sesión con una clienta.
+              La frase: <em>"vuelvo a sentir que esto que tengo, ya no soy yo"</em>.
+            </p>
             <p className="text-tinto-deep/80 leading-relaxed text-lg mb-8">
-              {BOOKS[0].descriptionEs}
+              Este libro es la respuesta que llevaba años intentando armar. Si te sentís perdida
+              en alguna versión tuya que ya no te representa — empezá por acá.
             </p>
             <Link
               href={`/libros/${BOOKS[0].slug}`}
               className="inline-block px-10 py-4 border border-tinto text-tinto hover:bg-tinto hover:text-ivory transition-colors mono-label"
               style={{ letterSpacing: "0.2em" }}
             >
-              MÁS SOBRE EL LIBRO →
+              CONOCER EL LIBRO →
             </Link>
           </Reveal>
         </div>
@@ -373,12 +399,16 @@ export default function HomePage() {
       <section className="bg-ivory-warm/40 py-28 md:py-36 border-y border-beige">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <Reveal>
-            <p className="mono-label text-tinto mb-6">— COMUNIDAD —</p>
+            <p className="mono-label text-tinto mb-6">— LA COMUNIDAD —</p>
             <h2 className="font-display text-4xl md:text-7xl text-tinto-deep mb-4 leading-[0.95]">
               <span className="italic">400,000+</span> MUJERES
             </h2>
-            <p className="font-display text-2xl md:text-3xl text-tinto italic mb-16">
-              que ya empezaron el camino.
+            <p className="font-display text-2xl md:text-3xl text-tinto italic mb-6">
+              ya empezaron el camino.
+            </p>
+            <p className="text-tinto-deep/70 max-w-2xl mx-auto mb-16">
+              Pero los números importan menos que las historias detrás. Cada mujer que llega a MVMA
+              llega con la misma sensación. Y se va con un mapa de regreso a sí misma.
             </p>
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
@@ -404,26 +434,38 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          CTA FINAL
+          CTA FINAL — Oferta específica, no genérica
           ============================================================ */}
       <section className="bg-tinto-deep text-ivory py-32 md:py-40">
-        <Reveal className="max-w-4xl mx-auto px-6 text-center">
-          <p className="mono-label text-beige mb-8" style={{ color: "#D6C7AE" }}>
-            — EMPEZÁ HOY —
-          </p>
-          <h2 className="font-display text-4xl md:text-8xl text-ivory mb-12 leading-[0.95]">
-            <span className="italic">¿LISTA</span> PARA VOLVER<br />
-            A TU VERSIÓN<br />
-            <span className="italic text-beige">MÁS AUTÉNTICA?</span>
-          </h2>
-          <Link
-            href="/contacto"
-            className="inline-block px-14 py-5 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-lg"
-            style={{ letterSpacing: "0.2em" }}
-          >
-            HABLEMOS
-          </Link>
-        </Reveal>
+        <div className="max-w-5xl mx-auto px-6">
+          <Reveal>
+            <p className="mono-label text-beige mb-8 text-center" style={{ color: "#D6C7AE" }}>
+              — TU PRIMERA LLAMADA, GRATIS —
+            </p>
+            <h2 className="font-display text-4xl md:text-7xl text-ivory mb-10 leading-[0.95] text-center">
+              <span className="italic">15 minutos.</span><br />
+              Tu situación. Mi mirada profesional.
+            </h2>
+            <p className="text-lg md:text-xl text-ivory/85 max-w-3xl mx-auto leading-relaxed text-center mb-12">
+              No es una venta. No es un pitch. Es una conversación honesta donde te digo
+              si puedo acompañarte y cómo — o si necesitás algo distinto.
+              Si después querés trabajar juntas, te muestro cuál de mis servicios
+              o programas es el indicado para tu momento.
+            </p>
+            <div className="text-center">
+              <Link
+                href="/contacto?tipo=Mentor%C3%ADa+%2F+Asesor%C3%ADa+1%3A1"
+                className="inline-block px-14 py-5 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-lg"
+                style={{ letterSpacing: "0.2em" }}
+              >
+                AGENDAR MI LLAMADA
+              </Link>
+              <p className="mt-6 mono-label text-beige/60" style={{ color: "rgba(214,199,174,0.6)" }}>
+                * SIN COMPROMISO · SIN VENTAS · SOLO UNA CONVERSACIÓN
+              </p>
+            </div>
+          </Reveal>
+        </div>
       </section>
     </>
   );
