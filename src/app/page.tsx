@@ -63,11 +63,11 @@ export default function HomePage() {
                 </p>
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Link
-                    href="/servicios"
+                    href="/comunidad"
                     className="px-10 py-4 bg-tinto text-ivory font-medium hover:bg-tinto-deep transition-colors mono-label"
                     style={{ letterSpacing: "0.2em" }}
                   >
-                    QUIERO MI TRANSFORMACIÓN
+                    QUIERO SER PARTE DE TU COMUNIDAD
                   </Link>
                   <Link
                     href="/mi-historia"
