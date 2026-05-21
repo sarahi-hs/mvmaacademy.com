@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { STATS, BOOKS, SOCIALS, HERO } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
@@ -89,12 +90,16 @@ export default function HomePage() {
           {/* Foto principal con etiquetas decorativas */}
           <div className="md:col-span-5 relative">
             <Reveal delay={200}>
-              <div className="relative aspect-[3/4] bg-gradient-to-br from-beige via-beige-light to-rosita/50 flex items-center justify-center">
-                <div className="absolute inset-4 border border-tinto/20" />
-                <div className="text-center px-6">
-                  <p className="font-display text-3xl italic text-tinto-deep/40">Tu foto aquí</p>
-                  <p className="mono-label text-tinto-deep/30 mt-3">FORMATO 3:4 · ALTA RES</p>
-                </div>
+              <div className="relative aspect-[3/4] bg-ivory-warm overflow-hidden">
+                <Image
+                  src="/images/sarahi/sarahi-hero.jpg"
+                  alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+                <div className="absolute inset-4 border border-tinto/10 pointer-events-none" />
 
                 {/* Etiqueta 1: izquierda arriba */}
                 <div className="hidden md:flex absolute -left-32 top-12 items-end gap-2 max-w-[140px]">
@@ -215,8 +220,14 @@ export default function HomePage() {
           <div className="mt-20 flex justify-center md:justify-end">
             <div className="polaroid relative max-w-[280px]">
               <div className="polaroid-tape" />
-              <div className="aspect-square bg-gradient-to-br from-tinto via-tinto-soft to-beige-light flex items-center justify-center">
-                <p className="font-display italic text-ivory/60 text-sm">Foto en proceso</p>
+              <div className="aspect-square relative overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-about.jpg"
+                  alt="Sarahi Haro — momento informal"
+                  fill
+                  className="object-cover"
+                  sizes="280px"
+                />
               </div>
               <p className="font-display italic text-center text-tinto-deep mt-3 text-sm">Sarahi · 2026</p>
             </div>
@@ -310,15 +321,15 @@ export default function HomePage() {
       <section className="bg-tinto text-ivory py-28 md:py-40">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-16 items-center">
           <Reveal className="md:col-span-2">
-            <div className="aspect-[4/5] bg-gradient-to-br from-tinto-deep to-tinto-soft border border-beige/20 flex items-center justify-center">
-              <div className="text-center px-8">
-                <p className="font-display text-5xl text-ivory italic">MVMA</p>
-                <p className="font-display text-2xl text-beige mt-2">Tribe</p>
-                <div className="mt-6 mx-auto w-16 h-px bg-beige" />
-                <p className="mt-6 mono-label text-beige/80" style={{ color: "rgba(214,199,174,0.8)" }}>
-                  COMUNIDAD · 6 MESES
-                </p>
-              </div>
+            <div className="aspect-[4/5] relative overflow-hidden bg-ivory">
+              <Image
+                src="/images/sarahi/sarahi-mvma.jpg"
+                alt="Sarahi Haro — MVMA Tribe"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 35vw"
+              />
+              <div className="absolute inset-3 border border-beige/30 pointer-events-none" />
             </div>
           </Reveal>
 

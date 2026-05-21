@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { SITE, PERSON, CREDENTIALS } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -22,16 +23,31 @@ export default function MiHistoriaPage() {
         ])}
       />
 
-      {/* HERO */}
-      <section className="bg-ivory py-24 md:py-32">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      {/* HERO con foto */}
+      <section className="bg-ivory py-20 md:py-24 border-b border-beige">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <Reveal>
-            <p className="editorial-eyebrow mb-6">Mi Historia</p>
-            <h1 className="font-display text-5xl md:text-7xl text-tinto-deep leading-[1.05] mb-8">
-              <span className="italic">No nací</span> asesora de imagen.
+            <p className="mono-label text-tinto mb-6">— MI HISTORIA —</p>
+            <h1 className="font-display text-5xl md:text-7xl text-tinto-deep leading-[1.0] mb-8">
+              <span className="italic">No nací</span><br />
+              asesora de imagen.
               <br />
-              <span className="italic text-tinto">Me convertí en ella.</span>
+              <span className="italic text-tinto">Me convertí</span><br />
+              en ella.
             </h1>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className="relative aspect-[3/4] overflow-hidden bg-ivory-warm">
+              <Image
+                src="/images/sarahi/sarahi-historia.jpg"
+                alt="Sarahi Haro — Mi historia"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-3 border border-tinto/10 pointer-events-none" />
+            </div>
           </Reveal>
         </div>
       </section>

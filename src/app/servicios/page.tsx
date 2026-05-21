@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { SITE } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -139,26 +140,36 @@ export default function ServiciosPage() {
         ]}
       />
 
-      {/* HERO */}
-      <section className="bg-ivory py-24 md:py-32 border-b border-beige">
-        <div className="max-w-5xl mx-auto px-6 text-center">
+      {/* HERO con foto */}
+      <section className="bg-ivory py-20 md:py-24 border-b border-beige">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <Reveal>
-            <p className="editorial-eyebrow mb-6">Servicios Personalizados 1:1</p>
-            <h1 className="font-display text-5xl md:text-7xl text-tinto-deep leading-[1.05] mb-8">
-              <span className="italic">Cinco caminos.</span>
-              <br />
-              Un destino: <span className="italic text-tinto">tu autenticidad.</span>
+            <p className="mono-label text-tinto mb-6">— SERVICIOS PERSONALIZADOS 1:1 —</p>
+            <h1 className="font-display text-5xl md:text-7xl text-tinto-deep leading-[1.0] mb-8">
+              <span className="italic">Cinco caminos.</span><br />
+              Un destino:<br />
+              <span className="italic text-tinto">tu autenticidad.</span>
             </h1>
-            <p className="text-lg md:text-xl text-tinto-deep/80 max-w-2xl mx-auto leading-relaxed">
-              Cada servicio está diseñado para un momento específico de tu proceso.
-              Si no estás segura cuál es el tuyo, escribime y lo definimos juntas.
+            <p className="text-lg text-tinto-deep/80 leading-relaxed mb-6">
+              Cada servicio diseñado para un momento específico de tu proceso.
+              Si no sabés cuál es el tuyo, escribime y lo definimos juntas.
             </p>
-            <div className="editorial-divider my-10 max-w-xs mx-auto">
-              <span className="font-display italic text-tinto">·</span>
+            <p className="mono-label text-tinto-deep/60">
+              MODALIDAD PRESENCIAL O VIRTUAL · PRECIOS EN PESOS MEXICANOS
+            </p>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className="relative aspect-[3/4] overflow-hidden bg-ivory-warm">
+              <Image
+                src="/images/sarahi/sarahi-servicios.jpg"
+                alt="Sarahi Haro — Estudio de imagen y color"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-3 border border-tinto/10 pointer-events-none" />
             </div>
-            <p className="text-sm text-tinto-deep/60">
-              Modalidad presencial o virtual · Precios en pesos mexicanos
-            </p>
           </Reveal>
         </div>
       </section>
