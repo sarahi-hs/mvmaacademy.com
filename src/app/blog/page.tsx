@@ -6,9 +6,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Blog — Marca Personal, Imagen y MVMA",
+  title: "Diario MVMA — Reflexiones sobre imagen, identidad y marca personal",
   description:
-    "Artículos de Sarahi Haro sobre asesoría de imagen, marca personal femenina, mentalidad y el método MVMA. Para mujeres emprendedoras, profesionales y en busca de su versión más auténtica.",
+    "El Diario MVMA: reflexiones de Sarahi Haro sobre identidad femenina, mentalidad, imagen estratégica y marca personal auténtica. Para mujeres listas para construir su versión más auténtica.",
   alternates: { canonical: "/blog" },
 };
 
@@ -27,13 +27,15 @@ export default function BlogPage() {
       />
 
       <section className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-        <p className="text-xs uppercase tracking-[0.3em] text-tinto-soft mb-6">Blog</p>
-        <h1 className="font-display text-5xl md:text-7xl text-tinto-deep mb-8 leading-[1.05]">
-          Ideas <span className="italic text-tinto">para volver a ti.</span>
+        <p className="mono-label text-tinto mb-6">— DIARIO MVMA —</p>
+        <h1 className="font-display text-5xl md:text-7xl text-tinto-deep mb-8 leading-[1.0]">
+          Lo que <span className="italic text-tinto">pienso</span><br />
+          en voz alta.
         </h1>
         <p className="text-lg text-tinto-deep/75 max-w-2xl leading-relaxed mb-16">
-          Reflexiones, métodos y herramientas sobre asesoría de imagen, marca personal,
-          mentalidad y el camino a tu versión más auténtica.
+          Reflexiones sobre identidad, mentalidad e imagen estratégica para mujeres
+          que están listas para construir su versión más auténtica. Sin recetas, sin
+          fórmulas. Solo conversaciones honestas.
         </p>
 
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">

@@ -101,52 +101,53 @@ En mi programa Mi Versión Más Auténtica integro ambas disciplinas + trabajo d
     `.trim(),
   },
   {
-    slug: "colores-que-te-favorecen-segun-tu-piel",
-    title: "Cómo descubrir los colores que te favorecen (sin tests random de internet)",
-    description: "La teoría del color aplicada a tu imagen personal. Te explico cómo identificar tu paleta sin caer en tests genéricos de las 4 estaciones.",
+    slug: "lo-que-tu-color-personal-dice-de-ti",
+    title: "Lo que tu color personal dice de ti (y por qué pocas mujeres lo saben)",
+    description: "El color que usas comunica algo de ti antes de que abras la boca. Te explico por qué importa tanto y por qué los tests de internet no son suficientes.",
     category: "Asesoría de Imagen",
-    keywords: ["colorimetría", "colores piel", "paleta personal", "qué color me favorece"],
+    keywords: ["colorimetría personal", "paleta de color mujer", "estudio de color", "imagen personal"],
     publishedAt: "2026-04-18",
-    readMinutes: 7,
+    readMinutes: 5,
     body: `
-"Soy invierno", "soy otoño" — escuchaste estas categorías mil veces. La verdad es que **el sistema de 4 estaciones se quedó corto** hace décadas. Hoy trabajamos con 12 a 16 subtipos, y aun así, lo más importante no son las etiquetas sino entender los 3 factores que determinan tu paleta personal.
+Cuando elijes un color para vestirte, no estás eligiendo solo una tela. Estás eligiendo **un mensaje**. Y la mayoría de las mujeres lo hacen sin saberlo.
 
-## Los 3 factores del color personal
+## El color es comunicación silenciosa
 
-### 1. Subtono de tu piel (warm / cool / neutral)
+Antes de que abras la boca, tu paleta de colores le cuenta al mundo algo sobre ti:
+- Tu energía (vibrante o serena)
+- Tu nivel de presencia (contenida o expansiva)
+- Tu coherencia (alineada o dispersa)
 
-Tu piel tiene un subtono cálido (amarillento, dorado, melocotón), frío (rosado, azulado) o neutro. **Esto se ve mejor en la cara interna de tu muñeca con luz natural**, no con luz amarilla de tu casa.
+El problema es que casi nadie piensa en sus colores con esta consciencia. Compramos lo que vemos en la tienda, lo que estaba en oferta, lo que copiamos de alguien.
 
-### 2. Profundidad (light / medium / deep)
+## Por qué los tests gratis no te van a salvar
 
-¿Tu coloración natural total (piel + cabello + ojos) es clara, media o profunda? Si te pintaras una foto en blanco y negro, ¿qué tan oscura saldrías?
+Hiciste el test de "qué estación eres", te salió "verano" y te lanzaste a comprar lavandas y rosas. Después te das cuenta de que no te ves como esperabas. ¿Qué pasó?
 
-### 3. Intensidad (bright / soft)
+Que **un test escrito no puede ver tu cara**. No puede medir tu subtono real, no puede percibir cómo reacciona tu piel a la luz, no puede notar cuándo te apagas o cuándo te iluminas con un tono específico.
 
-¿Tu coloración es contrastante (ojos oscuros, piel clara, ej: Lupita Nyong'o, Penélope Cruz) o tonal (todo en la misma intensidad, ej: Cate Blanchett)?
+La colorimetría profesional requiere ver tu rostro bajo luz controlada, no contestar preguntas de internet.
 
-## Por qué los tests gratis fallan
+## Lo que cambia cuando descubres tus colores reales
 
-Los tests online te hacen contestar preguntas tipo "¿qué joya te queda mejor, oro o plata?" — pero si nunca trabajaste tu colorimetría, **respondés con tu preferencia, no con lo que realmente te favorece**. Resultado: el test te confirma lo que ya creías.
+Las mujeres que han trabajado su paleta personal conmigo me dicen lo mismo:
 
-## Lo que sí funciona
+> "Por primera vez, mi clóset entero combina entre sí."
 
-Una asesora de imagen capacitada usa **drapeados** (telas de colores específicos sobre tu cara, con luz natural blanca) para ver objetivamente qué tonos:
-- Te iluminan el rostro
-- Suavizan ojeras y rojeces
-- Te dan vitalidad
-- Y cuáles te apagan o te envejecen
+> "Me veo descansada aunque haya dormido poco."
 
-Esto se hace en persona o por videollamada con luz controlada.
+> "La gente empezó a notar mis ojos, no mi maquillaje."
 
-## Tu paleta personal en la vida real
+Eso no es magia. Es lo que pasa cuando dejas de pelearte con colores que no son tuyos.
 
-Una vez identificada tu paleta, no necesitás 50 colores. Trabajamos con **una paleta personal de 12-18 tonos** que se combinan entre sí. Esto:
-- Simplifica tu closet (todo combina)
-- Reduce el gasto (compras solo lo que entra en tu paleta)
-- Genera identidad visual (la gente empieza a asociarte con "tus colores")
+## ¿Lista para conocer los tuyos?
 
-Si querés trabajar tu colorimetría como parte de tu marca personal, en MVMA lo abordamos en la segunda fase del programa.
+Si te interesa descubrir cuál es tu paleta personal real — la que te ilumina, te rejuvenece y te ayuda a comunicar quién eres — tengo dos formas de acompañarte:
+
+- **Estudio de Color Básico** ($888 MXN en promoción) — Tu paleta dentro de las 12 estaciones en una sesión de 40 minutos.
+- **Asesoría de Imagen Básica** ($2,500 MXN) — Estudio de color completo + biotipo + visagismo + book personalizado.
+
+[Conoce todos mis servicios →](/servicios)
     `.trim(),
   },
   {
@@ -390,53 +391,54 @@ En MVMA trabajamos las 3 capas a la vez: imagen, mentalidad, marca personal. Por
     `.trim(),
   },
   {
-    slug: "como-saber-mi-estilo-personal",
-    title: "Cómo descubrir tu estilo personal (sin volverte loca probándote ropa)",
-    description: "Tu estilo personal no se descubre comprando, se descubre entendiendo qué te hace sentir vos. Te explico el método.",
+    slug: "por-que-no-tienes-estilo-personal",
+    title: "Por qué sientes que no tienes estilo personal (y no es lo que crees)",
+    description: "Si llevas años sintiéndote disfrazada con tu ropa, el problema casi nunca es la ropa. Es algo más profundo. Te lo explico.",
     category: "Asesoría de Imagen",
-    keywords: ["estilo personal", "descubrir estilo", "cómo es mi estilo", "estilo propio"],
+    keywords: ["estilo personal", "no tengo estilo", "identidad visual mujer", "ropa que me representa"],
     publishedAt: "2026-03-07",
-    readMinutes: 6,
+    readMinutes: 5,
     body: `
-"Yo no tengo estilo" — me dicen muchas mujeres en la primera sesión. **Falso. Todas tenemos estilo**. Lo que pasa es que no lo identificamos, o lo confundimos con tendencias del momento.
+"Yo no tengo estilo." Esta es probablemente la frase que más escucho en mi consultorio. Y casi siempre es mentira.
 
-## La diferencia entre estilo y moda
+## La verdad sobre tu estilo
 
-- **Moda** es lo que la industria propone esta temporada. Cambia cada 3 meses.
-- **Estilo personal** es tu manera única de combinar elementos para comunicar quién sos. **Es atemporal**.
+**Todas las mujeres tenemos estilo.** Lo que no tenemos, muchas veces, es:
+- Permiso interno para vestirnos como somos
+- Claridad sobre quiénes somos en este momento de nuestra vida
+- Coherencia entre lo que sentimos y lo que mostramos
 
-Coco Chanel: "La moda pasa, el estilo permanece".
+El estilo personal no se "descubre" probándote ropa. Se revela cuando te das permiso de ser tú.
 
-## El método del archivo visual
+## Por qué te sientes disfrazada con tu propia ropa
 
-Esta es la herramienta más subestimada para descubrir tu estilo. Hacé un Pinterest privado (o carpeta en tu celular) y empezá a guardar:
-- Outfits que te encantan (no que "te quedarían bien", que **te emocionan**)
-- Mujeres cuyo estilo admirás
-- Combinaciones de colores que te hipnotizan
-- Espacios, arte, paisajes que te resuenan
+Si llevas años abriendo tu clóset y sintiendo que "nada te queda bien" aunque hayas comprado mucho — el problema no es tu cuerpo, ni la ropa, ni la tienda. El problema es que estás comprando para una versión de ti que ya no eres.
 
-**Hacelo durante 3 semanas sin pensar.** Después, miralo todo junto. Vas a ver patrones que no sabías que tenías.
+Tal vez te vestías para la mujer que tu madre quería que fueras. Para la imagen que tu pareja esperaba. Para encajar en el trabajo. Para no llamar la atención. Para llamar la atención de quien no debía.
 
-## Las 4 preguntas que revelan tu estilo
+**Antes del estilo va la identidad.** Cuando tu identidad está clara, la ropa empieza a tener sentido.
 
-1. **Tres palabras que me describen sin hablar de mi profesión.**
-2. **Si tuviera un día perfecto, ¿qué llevaría puesto?**
-3. **¿Qué prenda actual de mi closet me hace sentir más yo?**
-4. **¿Qué prenda no uso pero no me animo a regalar? ¿Qué dice eso de mí?**
+## La trampa de copiar referentes
 
-## Los arquetipos como punto de partida
+Otra cosa que veo todos los días: mujeres que admiran a una referente y empiezan a vestirse como ella. Resultado: se sienten disfrazadas.
 
-Hay arquetipos clásicos de estilo (clásico, romántico, dramático, natural, creativo, etc.). Funcionan como **mapa de orientación**, no como destino. Casi nadie cae 100% en uno. Lo común es ser una mezcla de 2-3, en proporciones únicas.
+Si tu referente es Sofía Vergara y tú eres minimalista por dentro, copiar sus outfits te va a hacer sentir actuando. Lo que te inspira no es lo mismo que lo que te representa.
 
-## El error de copiar a tu referente
+## Lo que sí funciona
 
-Si tu referente es Sofía Vergara y vos sos minimalista nórdica, copiar sus outfits te va a hacer sentir disfrazada. **Lo que te inspira no es necesariamente lo que te queda**. Hay que filtrar el referente a través de tu identidad.
+Trabajar tu estilo personal **requiere primero trabajar tu identidad presente**. Quién eres hoy, qué quieres comunicar, en qué etapa de tu vida estás.
 
-## Tu estilo evoluciona
+Después de eso vienen las herramientas: paleta, biotipo, siluetas, arquetipos. Pero antes va el trabajo interno.
 
-Tu estilo a los 25 NO es tu estilo a los 35. Eso está bien. La pregunta no es "¿cuál es mi estilo definitivo?" sino **"¿cuál es mi estilo HOY, en esta versión de mí?"**
+## Cómo lo abordamos en mis asesorías
 
-En MVMA hacemos este descubrimiento como parte de la fase 2 del programa, integrado con tu trabajo de marca personal.
+En mi **Asesoría de Imagen Intermedia** ($5,000 MXN) integro las dos cosas:
+- 1 sesión de coaching de mentalidad para trabajar tu identidad presente
+- Sesiones de imagen para revelar tu estilo desde esa identidad
+
+No vendo "encontrar tu estilo" como si fuera un test. Vendo el proceso completo de regresar a ti.
+
+[Conoce mis servicios personalizados →](/servicios)
     `.trim(),
   },
   {
@@ -674,64 +676,61 @@ Si no estás cómoda con tu outfit, tu cuerpo lo proyecta. Si estás cómoda y v
     `.trim(),
   },
   {
-    slug: "como-recomprar-closet-sustentable",
-    title: "Cómo reorganizar y editar tu closet (método de 5 pasos, sin comprar nada)",
-    description: "Antes de comprar, editá. Te muestro mi método para que tu closet trabaje para vos: solo lo que te queda, te representa y te encanta.",
-    category: "Asesoría de Imagen",
-    keywords: ["editar closet", "ordenar closet", "reorganizar guardarropa", "depuración closet"],
+    slug: "tu-closet-y-tu-relacion-contigo-misma",
+    title: "Tu closet refleja tu relación contigo misma (lo veo todos los días)",
+    description: "Mostrame tu closet y te digo cómo te tratas. La forma en que organizas y eliges tu ropa es un espejo emocional. Te lo explico.",
+    category: "Mentalidad",
+    keywords: ["closet emocional", "imagen y autoestima", "relación con la ropa", "psicología del vestir"],
     publishedAt: "2026-01-31",
-    readMinutes: 6,
+    readMinutes: 5,
     body: `
-Antes de comprar UNA prenda más, hacé esto. **La mayoría de las mujeres ya tienen el 70% de lo que necesitan en su closet**, solo que está mezclado con otro 30% que les genera ruido. La edición es la herramienta más subestimada.
+Llevo años entrando a clósets de mujeres muy distintas — emprendedoras exitosas, mamás profesionales, líderes corporativas. Y descubrí algo que casi nunca se habla: **tu clóset es una radiografía emocional**.
 
-## El método de los 5 pasos
+## Lo que tu clóset cuenta de ti
 
-### Paso 1: Sacar TODO
-Sí. Literalmente todo afuera. Cama, sillón, suelo. Esto es no negociable. Solo viendo el volumen real entendés cuánto tenés (siempre es más de lo que pensabas).
+### Si está lleno pero "no tienes nada que ponerte"
+Probablemente estás comprando para llenar un vacío. Cada prenda nueva es una promesa de "esta vez sí me voy a sentir bien" — y nunca llega.
 
-### Paso 2: Las 4 cajas
-Necesitás 4 zonas/cajas:
-- ✅ **SÍ**: me queda, me representa, me encanta. Usa el filtro estricto.
-- 🤔 **TAL VEZ**: necesito probármelo y decidir
-- 🎁 **DAR**: bueno, pero no es para mí (otra mujer va a aprovecharlo)
-- 🗑️ **TIRAR/RECICLAR**: dañado, manchado, no apto para regalar
+### Si guardas ropa que ya no te queda "por si bajas de peso"
+Estás castigándote con tu cuerpo presente. Le estás diciendo a tu mente: "no mereces vestirte bien hasta que cambies".
 
-### Paso 3: Probar cada "TAL VEZ"
-Acá es donde la mayoría falla. Si no te lo probás, va a volver al closet por culpa o nostalgia. Probate cada prenda con luz natural y respondé:
+### Si tienes muchas prendas con etiqueta
+No te has dado permiso de usar lo bonito. Estás esperando "una ocasión especial" que nunca llega.
 
-- ¿Me veo y me siento yo con esto?
-- ¿Me lo pondría mañana sin dudarlo?
-- ¿Lo usé en los últimos 12 meses?
-- ¿Combina con al menos 3 cosas más de mi SÍ?
+### Si tu clóset es caótico y desordenado
+Tu vida interna probablemente también lo es. El orden externo refleja claridad interna.
 
-Si la respuesta a 3+ es NO → va a DAR o TIRAR.
+### Si solo usas el 20% de lo que tienes
+El 80% restante es ruido. Y ese ruido te agota cada mañana cuando abres el clóset y no encuentras "nada".
 
-### Paso 4: Reorganizar lo que vuelve
-Solo el SÍ vuelve al closet. Reorganizalo:
-- **Por categoría** (blusas / pantalones / vestidos / abrigos)
-- **Dentro de cada categoría, por color** (de claro a oscuro o por temperatura)
-- **Prendas que más usás al frente**, las de eventos al fondo
+## La verdad incómoda
 
-### Paso 5: Lista de huecos
-Ahora identificás QUÉ te falta para que tu closet funcione. **NO**: "necesito un vestido nuevo". **SÍ**: "me falta un pantalón sastre en tono camel para combinar con las blusas verdes y blancas que ya tengo".
+Editar un clóset no es una tarea de organización. **Es un acto de reconciliación contigo misma.**
 
-Esa lista es tu guía de compra para los próximos 6 meses.
+Cada prenda que sueltas es una versión de ti que ya no eres. Cada prenda que conservas es una declaración: "esto sí soy yo."
 
-## Las preguntas clave para la edición
+## Por qué pocas mujeres lo logran solas
 
-- ¿Esta prenda me la podría comprar HOY otra vez?
-- ¿Esta prenda comunica quién soy hoy o quién era hace 5 años?
-- ¿Esta prenda me hace sentir poderosa o me hace sentir disfraz?
+Porque editar el clóset solitario es emocional. Te encuentras con:
+- La culpa de "haberte gastado dinero en eso"
+- La nostalgia de la mujer que fuiste
+- El miedo de "y si después me arrepiento"
+- Las opiniones de tu mamá, hermana o pareja en tu cabeza
 
-## La regla del año
+Necesitas a alguien que te acompañe sin juicio. Que te ayude a tomar decisiones desde tu hoy, no desde tu ayer ni desde lo que opinan los demás.
 
-Si una prenda no se usó en los últimos 12 meses (sin razón puntual como embarazo, lesión, etc.), **se va**. Vos no vas a "volver a usarla" — y si volvés, ya estará desactualizada o ya no te quedará igual.
+## Cómo lo abordo conmigo
 
-## Edición + Asesoría = match perfecto
+El **detox de clóset** es parte de mi **Asesoría de Imagen Avanzada** ($10,000 MXN). No es solo "tirar ropa vieja". Es:
 
-Una edición sola te deja con menos cosas. **Una edición + asesoría de imagen** te deja con un closet curado, donde todo combina con todo, todo te queda, y todo te representa.
+- Acompañamiento emocional durante la edición
+- Decisión consciente prenda por prenda
+- Reorganización funcional según tu estilo personal
+- Plan de compras priorizado para llenar los huecos reales
 
-Es uno de los entregables clave de la fase 1 de MVMA.
+Las mujeres que han pasado por este proceso me dicen lo mismo: **"siento que abrí mi clóset por primera vez."**
+
+[Conoce el proceso completo →](/servicios)
     `.trim(),
   },
   {
