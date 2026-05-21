@@ -122,7 +122,7 @@ export default function HomePage() {
 
                 <div className="hidden lg:block absolute -bottom-10 -left-20 max-w-[140px]">
                   <p className="mono-label text-tinto-deep/80 text-center">
-                    3× EN TV<br />SPEAKER MX + USA
+                    4× EN TV<br />SPEAKER MX + USA
                   </p>
                 </div>
               </div>

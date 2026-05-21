@@ -53,7 +53,7 @@ export const STATS = [
   { value: "200+", label: "Mujeres transformadas", labelEn: "Women transformed" },
   { value: "400K+", label: "Comunidad en redes", labelEn: "Social media community" },
   { value: "5+", label: "Años de trayectoria", labelEn: "Years of experience" },
-  { value: "3×", label: "Apariciones en TV", labelEn: "TV appearances" },
+  { value: "4×", label: "Apariciones en TV", labelEn: "TV appearances" },
 ] as const;
 
 export const HERO = {
@@ -65,11 +65,11 @@ export const HERO = {
 
 export const MARQUEE_TEXT = "TÚ TIENES EL PODER DE CREAR TU PROPIA REALIDAD";
 
-// TODO: completar con datos reales cuando Sarahi los pase
 export const TV_APPEARANCES = [
-  { network: "TV 1 — Pendiente", year: 2024, topic: "Pendiente confirmar", url: null },
-  { network: "TV 2 — Pendiente", year: 2024, topic: "Pendiente confirmar", url: null },
-  { network: "TV 3 — Pendiente", year: 2025, topic: "Pendiente confirmar", url: null },
+  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2026, topic: "Imagen personal y empoderamiento femenino", url: null },
+  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "Marca personal para mujeres", url: null },
+  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "MVMA: el método integral", url: null },
+  { network: "Canal 13 Guadalajara", program: "Giros Guadalajara", year: 2025, topic: "Asesoría de imagen como herramienta de transformación", url: null },
 ];
 
 export const CREDENTIALS = [
