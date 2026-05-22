@@ -24,19 +24,33 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    const reveal = () => setTimeout(() => setVisible(true), delay);
+
+    if (typeof IntersectionObserver === "undefined") {
+      reveal();
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => setVisible(true), delay);
+            reveal();
             observer.unobserve(el);
           }
         });
       },
-      { threshold: 0.15, rootMargin: "-50px" }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+
+    const fallback = window.setTimeout(reveal, 1500 + delay);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, [delay]);
 
   return (
