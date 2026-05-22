@@ -339,10 +339,13 @@ export default function ComunidadPage() {
       {/* PRECIO + CTA FINAL */}
       <section id="inversion" className="bg-tinto-deep text-ivory py-32 md:py-40 scroll-mt-20">
         <Reveal className="max-w-4xl mx-auto px-6 text-center">
-          <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>— RECUERDA —</p>
-          <h2 className="font-display text-4xl md:text-7xl text-ivory mb-12 leading-[1.0]">
+          <p className="mono-label mb-6" style={{ color: "#D6C7AE" }}>— RECUERDA —</p>
+          <h2
+            className="text-4xl md:text-7xl mb-12 leading-[1.0] italic"
+            style={{ fontFamily: "var(--font-script)", color: "#D6C7AE" }}
+          >
             Tu negocio crece,<br />
-            cuando <span className="italic text-beige">tú creces.</span>
+            cuando tú creces.
           </h2>
 
           {/* Precio y opciones */}

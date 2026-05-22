@@ -164,9 +164,23 @@ export default function ConferenciasPage() {
             </div>
           </Reveal>
 
-          {/* Grid asimétrico de fotos */}
+          {/* Grid asimétrico — fotos asignadas según orientación real */}
           <div className="grid grid-cols-12 gap-4 md:gap-6">
-            <Reveal className="col-span-12 md:col-span-8">
+            {/* Banner ancho: Imagen que Vende (horizontal 2:1) */}
+            <Reveal className="col-span-12">
+              <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
+                <Image
+                  src="/images/sarahi/sarahi-imagen-que-vende.jpg"
+                  alt="Sarahi Haro dando la conferencia Imagen que Vende"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              </div>
+            </Reveal>
+
+            {/* Big horizontal: grupo Werkshop */}
+            <Reveal delay={100} className="col-span-12 md:col-span-8">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/images/sarahi/sarahi-werkshop-grupo.jpg"
@@ -177,7 +191,9 @@ export default function ConferenciasPage() {
                 />
               </div>
             </Reveal>
-            <Reveal delay={100} className="col-span-12 md:col-span-4">
+
+            {/* Vertical: taller en sala empresa */}
+            <Reveal delay={150} className="col-span-12 md:col-span-4">
               <div className="relative aspect-[3/4] md:aspect-auto md:h-full overflow-hidden">
                 <Image
                   src="/images/sarahi/sarahi-taller-empresa.jpg"
@@ -188,19 +204,36 @@ export default function ConferenciasPage() {
                 />
               </div>
             </Reveal>
-            <Reveal delay={150} className="col-span-12 md:col-span-6">
+
+            {/* Vertical: taller werkshop escenario */}
+            <Reveal delay={200} className="col-span-12 md:col-span-4">
+              <div className="relative aspect-[3/4] md:aspect-auto md:h-full overflow-hidden">
+                <Image
+                  src="/images/sarahi/sarahi-taller-werkshop.jpg"
+                  alt="Sarahi Haro en el escenario de Werkshop"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 30vw"
+                />
+              </div>
+            </Reveal>
+
+            {/* Horizontal: alumnas certificadas mejor versión */}
+            <Reveal delay={250} className="col-span-12 md:col-span-8">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/images/sarahi/sarahi-alumnas-mejor-version.jpg"
                   alt="Sarahi con alumnas certificadas del programa Mi Mejor Versión"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 45vw"
+                  sizes="(max-width: 768px) 100vw, 60vw"
                 />
               </div>
             </Reveal>
-            <Reveal delay={200} className="col-span-12 md:col-span-6">
-              <div className="relative aspect-[4/3] overflow-hidden">
+
+            {/* Horizontal: alumnas grupo general */}
+            <Reveal delay={300} className="col-span-12 md:col-span-6">
+              <div className="relative aspect-[3/2] overflow-hidden">
                 <Image
                   src="/images/sarahi/sarahi-alumnas.jpg"
                   alt="Grupo de alumnas de Sarahi Haro tras certificación"
@@ -210,13 +243,28 @@ export default function ConferenciasPage() {
                 />
               </div>
             </Reveal>
-            <Reveal delay={250} className="col-span-12 md:col-span-12">
-              <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
+
+            {/* Horizontal: evento extra */}
+            <Reveal delay={350} className="col-span-12 md:col-span-6">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/images/sarahi/sarahi-presentando.jpg"
-                  alt="Sarahi Haro presentando en evento"
+                  src="/images/sarahi/sarahi-evento-extra.jpg"
+                  alt="Sarahi Haro en evento de conferencia"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                />
+              </div>
+            </Reveal>
+
+            {/* Vertical: Sarahi presentando */}
+            <Reveal delay={400} className="col-span-12 md:col-span-12">
+              <div className="relative aspect-[16/9] overflow-hidden">
+                <Image
+                  src="/images/sarahi/sarahi-presentando.jpg"
+                  alt="Sarahi Haro presentando con pantalla MVMA"
+                  fill
+                  className="object-cover object-top"
                   sizes="100vw"
                 />
               </div>
@@ -282,12 +330,15 @@ export default function ConferenciasPage() {
       {/* CTA */}
       <section className="bg-tinto text-ivory py-24 md:py-32">
         <Reveal className="max-w-4xl mx-auto px-6 text-center">
-          <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>
+          <p className="mono-label mb-6" style={{ color: "#D6C7AE" }}>
             — RESERVAR FECHA —
           </p>
-          <h2 className="font-display text-4xl md:text-6xl text-ivory mb-10 leading-[1.05]">
-            ¿Tu evento <span className="italic">necesita</span> una voz<br />
-            que les hable <span className="italic text-beige">de mujer a mujer</span>?
+          <h2
+            className="text-4xl md:text-6xl mb-10 leading-[1.05] italic"
+            style={{ fontFamily: "var(--font-script)", color: "#D6C7AE" }}
+          >
+            ¿Tu evento necesita una voz<br />
+            que les hable de mujer a mujer?
           </h2>
           <p className="text-lg text-ivory/85 max-w-2xl mx-auto mb-10">
             Mi asistente coordina disponibilidad, propuesta económica y briefing.

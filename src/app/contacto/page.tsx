@@ -27,7 +27,7 @@ export default function ContactoPage() {
             Hablemos.
           </h1>
           <p className="text-tinto-deep/75 leading-relaxed">
-            Mi asistente Sarahi Equipo revisa cada mensaje personalmente y te responde en menos de 48 horas hábiles.
+            Mi equipo revisa cada mensaje personalmente y te responde en menos de 48 horas hábiles.
           </p>
 
           <div className="mt-12 space-y-6 text-sm">
