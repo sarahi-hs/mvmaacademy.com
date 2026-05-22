@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { STATS, BOOKS, SOCIALS, HERO, MARQUEE_TEXT } from "@/lib/site";
+import { STATS, BOOKS, SOCIALS, MARQUEE_TEXT } from "@/lib/site";
 import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 
@@ -19,60 +19,69 @@ const PILARES = [
   },
   {
     titulo: "Tú eres tu proyecto más importante",
-    desc: "Antes que tu negocio, antes que tu pareja, antes que tu familia. Cuando tú estás en tu mejor versión, todo lo demás florece a tu alrededor.",
+    desc: "Antes que tu negocio, antes que tu pareja. Cuando tú estás en tu mejor versión, todo lo demás florece a tu alrededor.",
   },
+];
+
+const POSTITS_COLORS = [
+  { bg: "bg-beige-light", rotate: "rotate-[-2deg]" },
+  { bg: "bg-rosita/50", rotate: "rotate-[1.5deg]" },
+  { bg: "bg-ivory-warm", rotate: "rotate-[-1.5deg]" },
+  { bg: "bg-beige/40", rotate: "rotate-[2deg]" },
 ];
 
 export default function HomePage() {
   return (
     <>
       {/* ============================================================
-          HERO — Pregunta poderosa + foto grande
+          HERO — Foto horizontal + Sarahi Haro mega tipográfico
           ============================================================ */}
-      <section className="relative overflow-hidden bg-ivory min-h-[92vh] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-beige-light/40 via-ivory to-ivory-warm/60" aria-hidden />
+      <section className="relative min-h-[85vh] md:min-h-[90vh] overflow-hidden bg-ivory">
+        <Image
+          src="/images/sarahi/sarahi-hero-horizontal.jpg"
+          alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
+          fill
+          priority
+          className="object-cover object-right"
+          sizes="100vw"
+        />
 
-        <div className="absolute top-8 right-12 hidden md:block mono-label text-tinto-soft">
-          N° 01 / MMXXVI
-        </div>
+        {/* Overlay sutil para legibilidad del texto sobre la izquierda */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ivory/95 via-ivory/40 to-transparent md:from-ivory/70 md:via-ivory/10" />
 
-        <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-12 gap-6 lg:gap-10 items-center w-full">
-
-          {/* Texto */}
-          <div className="md:col-span-6 lg:col-span-7 relative z-10">
-            <p className="mono-label text-tinto mb-6 animate-fade-in">
-              ← {HERO.eyebrow.toUpperCase()}
+        <div className="relative max-w-7xl mx-auto px-6 min-h-[85vh] md:min-h-[90vh] flex flex-col justify-between py-10 md:py-14">
+          {/* Top: Eyebrow phrase */}
+          <Reveal>
+            <p className="font-display text-lg md:text-2xl text-tinto leading-tight max-w-md">
+              Tu próxima <span className="italic text-tinto-deep">versión</span> empieza contigo
             </p>
+          </Reveal>
 
-            <h1 className="font-display text-[14vw] md:text-[7vw] lg:text-[6.5rem] xl:text-[7.5rem] leading-[0.88] text-tinto-deep animate-slide-up">
-              ¿<span className="italic font-light text-tinto">Lista</span>
-              <br />
-              para ser
-              <br />
-              la <span className="italic text-tinto">mujer</span>
-              <br />
-              que ya sabes
-              <br />
-              que eres?
-            </h1>
+          {/* Center-bottom: Mega name */}
+          <div>
+            <Reveal delay={150}>
+              <h1 className="font-display text-[18vw] md:text-[14vw] lg:text-[12vw] xl:text-[11rem] leading-[0.85] text-tinto-deep tracking-tight">
+                SARAHI <br className="md:hidden" /><span className="italic font-light text-tinto">HARO</span>
+              </h1>
+            </Reveal>
 
             <Reveal delay={300}>
-              <div className="mt-10 max-w-xl">
-                <p className="text-base md:text-lg text-tinto-deep/85 leading-relaxed">
-                  {HERO.subheadline}
+              <div className="mt-8 md:mt-12 max-w-lg">
+                <p className="mono-label text-tinto-deep/80 mb-6">
+                  ASESORA DE IMAGEN · COACH · SPEAKER · AUTORA
                 </p>
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4">
                   <Link
                     href="/comunidad"
-                    className="px-10 py-4 bg-tinto text-ivory font-medium hover:bg-tinto-deep transition-colors mono-label"
-                    style={{ letterSpacing: "0.2em" }}
+                    className="px-8 md:px-10 py-4 bg-tinto text-ivory font-medium hover:bg-tinto-deep transition-colors mono-label text-xs md:text-sm"
+                    style={{ letterSpacing: "0.18em" }}
                   >
                     QUIERO SER PARTE DE TU COMUNIDAD
                   </Link>
                   <Link
                     href="/mi-historia"
-                    className="px-10 py-4 border border-tinto text-tinto hover:bg-tinto hover:text-ivory transition-colors mono-label"
-                    style={{ letterSpacing: "0.2em" }}
+                    className="px-8 md:px-10 py-4 bg-ivory border border-tinto text-tinto hover:bg-tinto hover:text-ivory transition-colors mono-label text-xs md:text-sm"
+                    style={{ letterSpacing: "0.18em" }}
                   >
                     CONOCER A SARAHI
                   </Link>
@@ -80,68 +89,49 @@ export default function HomePage() {
               </div>
             </Reveal>
           </div>
-
-          {/* Foto principal grande con etiquetas */}
-          <div className="md:col-span-6 lg:col-span-5 relative">
-            <Reveal delay={200}>
-              <div className="relative aspect-[4/5] overflow-hidden bg-ivory-warm">
-                <Image
-                  src="/images/sarahi/sarahi-hero.jpg"
-                  alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div className="absolute inset-4 border border-tinto/15 pointer-events-none" />
-
-                {/* Etiquetas con flechas */}
-                <div className="hidden lg:flex absolute -left-32 top-16 items-end gap-2 max-w-[140px]">
-                  <div>
-                    <p className="mono-label text-tinto-deep/80 text-right">
-                      MÁSTER EN<br />ASESORÍA DE<br />IMAGEN
-                    </p>
-                  </div>
-                  <svg width="60" height="60" viewBox="0 0 60 60" className="text-tinto-soft -mb-3" fill="none">
-                    <path d="M5 10 Q 30 5, 55 50" stroke="currentColor" strokeWidth="1.5" />
-                    <path d="M50 45 L 55 50 L 50 55" stroke="currentColor" strokeWidth="1.5" />
-                  </svg>
-                </div>
-
-                <div className="hidden lg:flex absolute -right-32 bottom-16 items-start gap-2 max-w-[140px]">
-                  <svg width="60" height="60" viewBox="0 0 60 60" className="text-tinto-soft -mt-3" fill="none">
-                    <path d="M55 10 Q 30 5, 5 50" stroke="currentColor" strokeWidth="1.5" />
-                    <path d="M10 45 L 5 50 L 10 55" stroke="currentColor" strokeWidth="1.5" />
-                  </svg>
-                  <div>
-                    <p className="mono-label text-tinto-deep/80">
-                      400K+<br />MUJERES<br />EN REDES
-                    </p>
-                  </div>
-                </div>
-
-                <div className="hidden lg:block absolute -bottom-10 -left-20 max-w-[140px]">
-                  <p className="mono-label text-tinto-deep/80 text-center">
-                    3× EN TV<br />SPEAKER MX + USA
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
         </div>
       </section>
 
       {/* ============================================================
-          MARQUEE 1 — Manifiesto declarativo
+          MARQUEE — Manifiesto declarativo
           ============================================================ */}
       <section className="bg-ivory py-12 border-y border-beige overflow-hidden">
         <Marquee text={MARQUEE_TEXT} />
       </section>
 
       {/* ============================================================
-          MI HISTORIA + STATS — Autoridad antes de vender
+          PARA LAS MUJERES — Declaración estilo editorial
           ============================================================ */}
-      <section className="bg-ivory-warm/40 py-24 md:py-32 border-b border-beige">
+      <section className="bg-ivory py-24 md:py-32">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <Reveal>
+            <h2 className="font-display leading-[1.0] mb-10">
+              <span className="block text-4xl md:text-7xl lg:text-8xl italic text-tinto" style={{ fontFamily: "var(--font-script)" }}>
+                Para las mujeres
+              </span>
+              <span className="block text-4xl md:text-6xl text-tinto-deep mt-2 font-medium">
+                que están construyendo
+              </span>
+              <span className="block text-4xl md:text-6xl text-tinto-deep font-medium">
+                algo{" "}
+                <span className="italic relative inline-block">
+                  real.
+                  <span className="absolute left-0 right-0 -bottom-1 h-1 bg-tinto" />
+                </span>
+              </span>
+            </h2>
+            <p className="text-lg md:text-xl text-tinto-deep/80 max-w-2xl mx-auto leading-relaxed">
+              Las que se <strong className="text-tinto">eligieron a sí mismas</strong> aún cuando
+              <em> no le hizo sentido a nadie más</em>.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============================================================
+          MI HISTORIA + STATS POST-IT
+          ============================================================ */}
+      <section className="bg-ivory-warm/40 py-24 md:py-32 border-y border-beige">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12 md:gap-16 items-center">
           <Reveal className="md:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden">
@@ -165,104 +155,103 @@ export default function HomePage() {
               el camino de regreso.
             </h2>
             <p className="text-tinto-deep/85 leading-relaxed text-lg mb-4">
-              Soy <strong className="text-tinto">Sarahi Haro</strong>. Asesora de imagen certificada con
-              máster en estilismo, producción y marketing de moda. Pero antes de los títulos,
+              Soy <strong className="text-tinto">Sarahi Haro</strong>. Asesora de imagen certificada
+              con máster en estilismo, producción y marketing de moda. Pero antes de los títulos,
               fui una mujer que se sintió perdida en versiones que ya no la representaban.
             </p>
-            <p className="text-tinto-deep/85 leading-relaxed text-lg mb-8">
+            <p className="text-tinto-deep/85 leading-relaxed text-lg mb-10">
               De ese proceso de regreso a mí nació <strong className="text-tinto">MVMA</strong> —
               el método que hoy comparto con cientos de mujeres en México, Estados Unidos y mi comunidad digital.
             </p>
 
-            {/* Stats inline */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-beige">
-              {STATS.map((s) => (
-                <div key={s.label}>
-                  <div className="font-display text-4xl md:text-5xl text-tinto leading-none">
-                    {s.value}
-                  </div>
-                  <div className="mt-2 mono-label text-tinto-deep/60 text-[0.65rem]">
-                    {s.label.toUpperCase()}
-                  </div>
-                </div>
-              ))}
-            </div>
-
             <Link
               href="/mi-historia"
-              className="inline-block mt-10 mono-label text-tinto hover:text-tinto-deep editorial-underline"
+              className="inline-block mb-12 mono-label text-tinto hover:text-tinto-deep editorial-underline"
               style={{ letterSpacing: "0.2em" }}
             >
               LEE MI HISTORIA COMPLETA →
             </Link>
+
+            {/* Stats como post-its */}
+            <div className="pt-10 border-t border-beige">
+              <p className="mono-label text-tinto mb-8">— EN NÚMEROS —</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 px-2 md:px-0">
+                {STATS.map((s, i) => (
+                  <Reveal key={s.label} delay={i * 80}>
+                    <div className={`relative ${POSTITS_COLORS[i].bg} ${POSTITS_COLORS[i].rotate} p-5 shadow-[0_3px_12px_rgba(45,11,17,0.10)] hover:rotate-0 transition-all duration-500`}>
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-tinto/20 border-l border-r border-dashed border-tinto/40" />
+                      <div className="font-display text-4xl md:text-5xl text-tinto leading-none text-center">
+                        {s.value}
+                      </div>
+                      <div className="mt-3 mono-label text-tinto-deep/70 text-[0.6rem] text-center leading-tight">
+                        {s.label.toUpperCase()}
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* ============================================================
-          ABOUT — "Si llegaste hasta aquí" rediseñado
+          SI LLEGASTE HASTA AQUÍ — Reescrito (mentalidad + imagen)
           ============================================================ */}
       <section className="bg-ivory py-28 md:py-36 relative overflow-hidden">
-        {/* Decoración tipográfica de fondo */}
         <div aria-hidden className="absolute inset-x-0 top-1/2 -translate-y-1/2 pointer-events-none opacity-[0.04] overflow-hidden whitespace-nowrap">
           <p className="font-display italic text-[30vw] leading-none text-tinto">volver</p>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12 md:gap-20 items-start">
 
-          {/* Lado izquierdo: cita editorial grande */}
           <Reveal className="md:col-span-7">
             <p className="font-display italic text-3xl md:text-4xl text-tinto-soft mb-8 leading-tight">
               Si llegaste hasta aquí,
             </p>
 
             <h2 className="font-display text-4xl md:text-6xl text-tinto-deep leading-[1.0] mb-12">
-              es probable que sepas
-              <br />
-              exactamente <span className="italic text-tinto">quién eres</span>
-              <br />
-              por dentro.
+              sabes que esto no es<br />
+              sobre verte <span className="italic text-tinto">distinta.</span><br />
+              Es sobre <span className="italic text-tinto">sentirte</span> distinta.
             </h2>
 
-            {/* Línea decorativa */}
             <div className="flex items-center gap-6 mb-12 max-w-md">
               <div className="flex-1 h-px bg-tinto/30" />
-              <p className="mono-label text-tinto-soft">SOLO QUE</p>
+              <p className="mono-label text-tinto-soft">PORQUE TRABAJAMOS</p>
               <div className="flex-1 h-px bg-tinto/30" />
             </div>
 
-            <h3 className="font-display text-3xl md:text-5xl text-tinto-deep leading-[1.05] mb-12">
-              no sabes cómo
-              <br />
-              mostrarlo <span className="italic text-tinto">por fuera.</span>
-            </h3>
-
-            <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-beige">
+            <div className="grid md:grid-cols-2 gap-10 mb-12">
               <div>
-                <p className="mono-label text-tinto mb-3">LO QUE VEO TODOS LOS DÍAS</p>
-                <p className="text-tinto-deep/80 leading-relaxed">
-                  Mujeres brillantes, exitosas, queridas. Que sienten que su imagen no las
-                  representa. Que se visten <em>"como deben"</em> pero no como son.
+                <p className="mono-label text-tinto mb-3">LO QUE VES EN EL ESPEJO</p>
+                <p className="text-tinto-deep/85 leading-relaxed">
+                  Tu imagen exterior. Lo que la gente percibe antes de conocerte. Lo que comunica
+                  algo de ti antes de que abras la boca. Tu paleta, tu silueta, tu estilo personal.
                 </p>
               </div>
               <div>
-                <p className="mono-label text-tinto mb-3">LO QUE HAGO CON ELLAS</p>
-                <p className="text-tinto-deep/80 leading-relaxed">
-                  Las acompaño a alinear quién son por dentro con quién muestran por fuera.
-                  En un proceso real, sin atajos, sin fórmulas mágicas.
+                <p className="mono-label text-tinto mb-3">LO QUE ESCUCHAS POR DENTRO</p>
+                <p className="text-tinto-deep/85 leading-relaxed">
+                  Tu voz interna. Las creencias limitantes que te dicen <em>"esto no es para ti"</em>.
+                  Las heridas que te frenan más años de los que querrías admitir. La identidad.
                 </p>
               </div>
             </div>
+
+            <p className="font-display italic text-2xl md:text-3xl text-tinto-deep leading-tight pt-6 border-t border-beige">
+              Yo trabajo <span className="text-tinto">las dos cosas.</span><br />
+              Porque ninguna funciona sin la otra.
+            </p>
           </Reveal>
 
-          {/* Lado derecho: Polaroid GRANDE */}
           <Reveal delay={300} className="md:col-span-5">
             <div className="polaroid relative max-w-[440px] mx-auto">
               <div className="polaroid-tape" />
               <div className="aspect-[3/4] relative overflow-hidden bg-ivory-warm">
                 <Image
                   src="/images/sarahi/sarahi-about.jpg"
-                  alt="Sarahi Haro — momento informal"
+                  alt="Sarahi Haro"
                   fill
                   className="object-cover"
                   sizes="440px"
@@ -295,7 +284,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          PILARES — 4 cajas con buen contraste
+          PILARES — Títulos en dorado/cursiva (contraste arreglado)
           ============================================================ */}
       <section className="bg-ivory-warm py-24 md:py-32 relative">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
@@ -315,9 +304,12 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {PILARES.map((v, i) => (
               <Reveal key={v.titulo} delay={(i % 2) * 100}>
-                <article className="bg-tinto text-ivory p-10 md:p-12 h-full border-2 border-tinto">
-                  <p className="font-display text-7xl italic text-beige mb-4 leading-none">0{i + 1}</p>
-                  <h3 className="font-display text-2xl md:text-3xl text-ivory mb-5 leading-tight font-medium">
+                <article className="bg-tinto text-ivory p-10 md:p-12 h-full">
+                  <p className="font-display text-7xl italic text-beige mb-6 leading-none">0{i + 1}</p>
+                  <h3
+                    className="text-3xl md:text-4xl mb-6 leading-tight italic"
+                    style={{ fontFamily: "var(--font-script)", color: "#D6C7AE" }}
+                  >
                     {v.titulo}
                   </h3>
                   <p className="text-ivory leading-relaxed text-base md:text-lg">
@@ -357,7 +349,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          MI COMUNIDAD (antes MVMA Tribe)
+          MI COMUNIDAD — Sin precio + bonus de inscripción
           ============================================================ */}
       <section className="bg-tinto text-ivory py-28 md:py-40">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-16 items-center">
@@ -378,21 +370,32 @@ export default function HomePage() {
             <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>
               — MI COMUNIDAD —
             </p>
-            <h2 className="font-display text-4xl md:text-6xl text-ivory mb-6 leading-[1.0]">
-              <span className="italic">Seis meses.</span><br />
+            <h2
+              className="text-4xl md:text-6xl mb-8 leading-[1.0] italic"
+              style={{ fontFamily: "var(--font-script)", color: "#D6C7AE" }}
+            >
+              Seis meses.<br />
               Siete módulos.<br />
-              <span className="italic text-beige">Una comunidad</span><br />
-              de mujeres reales.
+              Una comunidad real.
             </h2>
-            <p className="text-ivory/85 leading-relaxed text-lg mb-6">
-              Mi programa digital para mujeres que no quieren una sesión aislada — quieren
-              un proceso completo. Clases quincenales en vivo, comunidad cerrada, y todo el método MVMA
+            <p className="text-ivory/90 leading-relaxed text-lg mb-8">
+              Mi programa digital para mujeres que no quieren una sesión aislada — quieren un proceso
+              completo. Clases quincenales en vivo, comunidad cerrada, y todo el método MVMA
               estructurado en 7 módulos de transformación.
             </p>
-            <div className="flex items-baseline gap-3 mb-8">
-              <p className="font-display text-5xl text-beige">$5,997</p>
-              <span className="mono-label text-beige/80" style={{ color: "rgba(214,199,174,0.8)" }}>MXN · 6 MESES</span>
+
+            {/* Bonus de inscripción */}
+            <div className="bg-beige text-tinto-deep p-6 md:p-8 mb-8">
+              <p className="mono-label text-tinto mb-2">⚡ REGALO DE ACCIÓN RÁPIDA</p>
+              <p className="font-display text-xl md:text-2xl italic text-tinto-deep leading-tight">
+                Si decides inscribirte hoy,<br />
+                tengo un regalo exclusivo para ti.
+              </p>
+              <p className="text-sm text-tinto-deep/75 mt-3">
+                Te lo cuento en la página de Mi Comunidad.
+              </p>
             </div>
+
             <Link
               href="/comunidad"
               className="inline-block px-10 py-4 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label"
@@ -405,7 +408,7 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          LIBRO — Historia REAL corregida + Amazon
+          LIBRO
           ============================================================ */}
       <section className="max-w-7xl mx-auto px-6 py-28 md:py-40">
         <div className="grid md:grid-cols-2 gap-20 items-center">
@@ -470,12 +473,8 @@ export default function HomePage() {
             <p className="font-display text-2xl md:text-3xl text-tinto italic mb-6">
               ya empezaron el camino.
             </p>
-            <p className="text-tinto-deep/70 max-w-2xl mx-auto mb-16">
-              Los números importan menos que las historias detrás. Cada mujer que llega a MVMA
-              llega con la misma sensación. Y se va con un mapa de regreso a sí misma.
-            </p>
           </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12">
             {Object.values(SOCIALS).map((s, i) => (
               <Reveal key={s.label} delay={i * 100}>
                 <a
@@ -498,23 +497,22 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
-          CTA FINAL — Llamada gratis
+          CTA FINAL — Reescrito
           ============================================================ */}
       <section className="bg-tinto-deep text-ivory py-32 md:py-40">
         <div className="max-w-5xl mx-auto px-6">
           <Reveal>
             <p className="mono-label text-beige mb-8 text-center" style={{ color: "#D6C7AE" }}>
-              — TU PRIMERA LLAMADA, GRATIS —
+              — UNA CONVERSACIÓN, GRATIS —
             </p>
             <h2 className="font-display text-4xl md:text-7xl text-ivory mb-10 leading-[0.95] text-center">
-              <span className="italic">15 minutos.</span><br />
-              Tu situación. Mi mirada profesional.
+              ¿No estás segura<br />
+              <span className="italic text-beige">si es para ti?</span>
             </h2>
             <p className="text-lg md:text-xl text-ivory/85 max-w-3xl mx-auto leading-relaxed text-center mb-12">
-              No es una venta. No es un <em>pitch</em>. Es una conversación honesta donde te digo
-              si puedo acompañarte y cómo — o si necesitas algo distinto.
-              Si después quieres trabajar juntas, te muestro cuál de mis servicios
-              o mi comunidad es el indicado para tu momento.
+              Agenda una llamada gratis de 15 minutos. Mi equipo está listo para escucharte
+              y honestamente decirte si esto es lo que estás buscando — o si lo que necesitas
+              es algo distinto.
             </p>
             <div className="text-center">
               <Link
@@ -525,7 +523,7 @@ export default function HomePage() {
                 AGENDAR MI LLAMADA
               </Link>
               <p className="mt-6 mono-label text-beige/60" style={{ color: "rgba(214,199,174,0.6)" }}>
-                * SIN COMPROMISO · SIN VENTAS · SOLO UNA CONVERSACIÓN
+                * SIN COMPROMISO · SOLO UNA CONVERSACIÓN
               </p>
             </div>
           </Reveal>
