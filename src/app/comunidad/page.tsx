@@ -140,11 +140,14 @@ export default function ComunidadPage() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-16">
-              <p className="mono-label text-beige mb-4" style={{ color: "#D6C7AE" }}>
+              <p className="mono-label mb-4" style={{ color: "#D6C7AE" }}>
                 — TODO LO QUE INCLUYE TU MEMBRESÍA —
               </p>
-              <h2 className="font-display text-4xl md:text-6xl text-ivory leading-[1.05]">
-                <span className="italic">Todo</span> lo que necesitas<br />
+              <h2
+                className="text-4xl md:text-6xl leading-[1.05] italic"
+                style={{ fontFamily: "var(--font-script)", color: "#D6C7AE" }}
+              >
+                Todo lo que necesitas<br />
                 para tu proceso.
               </h2>
             </div>
@@ -157,10 +160,13 @@ export default function ComunidadPage() {
                   {item.bonus && (
                     <p className="mono-label mb-3 text-tinto">⚡ BONUS DE ACCIÓN RÁPIDA</p>
                   )}
-                  <h3 className={`font-display text-2xl mb-3 ${item.bonus ? "text-tinto-deep" : "text-ivory"}`}>
+                  <h3
+                    className={`text-2xl mb-3 italic ${item.bonus ? "text-tinto-deep" : ""}`}
+                    style={item.bonus ? { fontFamily: "var(--font-script)" } : { fontFamily: "var(--font-script)", color: "#D6C7AE" }}
+                  >
                     {item.titulo}
                   </h3>
-                  <p className={item.bonus ? "text-tinto-deep/80" : "text-ivory/85"}>
+                  <p className={item.bonus ? "text-tinto-deep/80" : "text-ivory"}>
                     {item.desc}
                   </p>
                 </div>
@@ -242,6 +248,19 @@ export default function ComunidadPage() {
               </Reveal>
             ))}
           </div>
+
+          {/* CTA anclado al precio */}
+          <Reveal delay={300}>
+            <div className="mt-16 text-center">
+              <a
+                href="#inversion"
+                className="inline-block px-12 py-5 bg-tinto text-ivory hover:bg-tinto-deep transition-colors mono-label text-base"
+                style={{ letterSpacing: "0.2em" }}
+              >
+                QUIERO INSCRIBIRME
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -318,13 +337,12 @@ export default function ComunidadPage() {
       </section>
 
       {/* PRECIO + CTA FINAL */}
-      <section className="bg-tinto-deep text-ivory py-32 md:py-40">
+      <section id="inversion" className="bg-tinto-deep text-ivory py-32 md:py-40 scroll-mt-20">
         <Reveal className="max-w-4xl mx-auto px-6 text-center">
-          <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>— TU DECIDES —</p>
-          <h2 className="font-display text-4xl md:text-6xl text-ivory mb-12 leading-[1.05]">
-            <span className="italic">Tú decides hasta cuándo</span><br />
-            dejar de posponer<br />
-            <span className="italic text-beige">tu crecimiento.</span>
+          <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>— RECUERDA —</p>
+          <h2 className="font-display text-4xl md:text-7xl text-ivory mb-12 leading-[1.0]">
+            Tu negocio crece,<br />
+            cuando <span className="italic text-beige">tú creces.</span>
           </h2>
 
           {/* Precio y opciones */}

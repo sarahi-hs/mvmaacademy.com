@@ -34,9 +34,64 @@ export default function HomePage() {
   return (
     <>
       {/* ============================================================
-          HERO — Foto horizontal + Sarahi Haro mega tipográfico
+          HERO — Mobile: stack vertical · Desktop: foto background + texto overlay
           ============================================================ */}
-      <section className="relative min-h-[85vh] md:min-h-[90vh] overflow-hidden bg-ivory">
+
+      {/* MOBILE: estructura vertical (texto arriba, foto abajo) */}
+      <section className="md:hidden bg-ivory">
+        <div className="px-6 pt-12 pb-8">
+          <Reveal>
+            <p className="font-display text-lg text-tinto leading-tight mb-6">
+              Tu próxima <span className="italic text-tinto-deep">versión</span> empieza contigo
+            </p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h1 className="font-display text-[18vw] leading-[0.88] text-tinto-deep tracking-tight">
+              SARAHI<br />
+              <span className="italic font-light text-tinto">HARO</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="mono-label text-tinto-deep/80 mt-6">
+              ASESORA DE IMAGEN · COACH · SPEAKER · AUTORA
+            </p>
+          </Reveal>
+        </div>
+        {/* Foto full-width */}
+        <Reveal delay={150}>
+          <div className="relative aspect-[16/9] overflow-hidden">
+            <Image
+              src="/images/sarahi/sarahi-hero-horizontal.jpg"
+              alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+          </div>
+        </Reveal>
+        <Reveal delay={300}>
+          <div className="px-6 py-8 flex flex-col gap-3">
+            <Link
+              href="/comunidad"
+              className="text-center px-6 py-4 bg-tinto text-ivory font-medium hover:bg-tinto-deep transition-colors mono-label text-xs"
+              style={{ letterSpacing: "0.18em" }}
+            >
+              QUIERO SER PARTE DE TU COMUNIDAD
+            </Link>
+            <Link
+              href="/mi-historia"
+              className="text-center px-6 py-4 bg-ivory border border-tinto text-tinto hover:bg-tinto hover:text-ivory transition-colors mono-label text-xs"
+              style={{ letterSpacing: "0.18em" }}
+            >
+              CONOCER A SARAHI
+            </Link>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* DESKTOP: foto background con texto overlay */}
+      <section className="hidden md:block relative min-h-[90vh] overflow-hidden bg-ivory">
         <Image
           src="/images/sarahi/sarahi-hero-horizontal.jpg"
           alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
@@ -45,42 +100,38 @@ export default function HomePage() {
           className="object-cover object-right"
           sizes="100vw"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-ivory/70 via-ivory/10 to-transparent" />
 
-        {/* Overlay sutil para legibilidad del texto sobre la izquierda */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ivory/95 via-ivory/40 to-transparent md:from-ivory/70 md:via-ivory/10" />
-
-        <div className="relative max-w-7xl mx-auto px-6 min-h-[85vh] md:min-h-[90vh] flex flex-col justify-between py-10 md:py-14">
-          {/* Top: Eyebrow phrase */}
+        <div className="relative max-w-7xl mx-auto px-6 min-h-[90vh] flex flex-col justify-between py-14">
           <Reveal>
-            <p className="font-display text-lg md:text-2xl text-tinto leading-tight max-w-md">
+            <p className="font-display text-2xl text-tinto leading-tight max-w-md">
               Tu próxima <span className="italic text-tinto-deep">versión</span> empieza contigo
             </p>
           </Reveal>
 
-          {/* Center-bottom: Mega name */}
           <div>
             <Reveal delay={150}>
-              <h1 className="font-display text-[18vw] md:text-[14vw] lg:text-[12vw] xl:text-[11rem] leading-[0.85] text-tinto-deep tracking-tight">
-                SARAHI <br className="md:hidden" /><span className="italic font-light text-tinto">HARO</span>
+              <h1 className="font-display text-[14vw] lg:text-[12vw] xl:text-[11rem] leading-[0.85] text-tinto-deep tracking-tight">
+                SARAHI <span className="italic font-light text-tinto">HARO</span>
               </h1>
             </Reveal>
 
             <Reveal delay={300}>
-              <div className="mt-8 md:mt-12 max-w-lg">
+              <div className="mt-12 max-w-lg">
                 <p className="mono-label text-tinto-deep/80 mb-6">
                   ASESORA DE IMAGEN · COACH · SPEAKER · AUTORA
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link
                     href="/comunidad"
-                    className="px-8 md:px-10 py-4 bg-tinto text-ivory font-medium hover:bg-tinto-deep transition-colors mono-label text-xs md:text-sm"
+                    className="px-10 py-4 bg-tinto text-ivory font-medium hover:bg-tinto-deep transition-colors mono-label text-sm"
                     style={{ letterSpacing: "0.18em" }}
                   >
                     QUIERO SER PARTE DE TU COMUNIDAD
                   </Link>
                   <Link
                     href="/mi-historia"
-                    className="px-8 md:px-10 py-4 bg-ivory border border-tinto text-tinto hover:bg-tinto hover:text-ivory transition-colors mono-label text-xs md:text-sm"
+                    className="px-10 py-4 bg-ivory border border-tinto text-tinto hover:bg-tinto hover:text-ivory transition-colors mono-label text-sm"
                     style={{ letterSpacing: "0.18em" }}
                   >
                     CONOCER A SARAHI

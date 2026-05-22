@@ -254,7 +254,7 @@ export default function MiHistoriaPage() {
             a las mujeres a verse perfectas.
           </h2>
 
-          <div className="space-y-6 text-lg md:text-xl text-tinto-deep/85 leading-relaxed">
+          <div className="space-y-6 text-lg md:text-xl text-tinto-deep/85 leading-relaxed mb-12">
             <p>
               Mi misión es enseñarles a <strong className="text-tinto">dejar de abandonarse</strong> a
               sí mismas. A reconocerse como valiosas. Y a construir una versión auténtica, segura y
@@ -265,6 +265,21 @@ export default function MiHistoriaPage() {
               Pero también sé lo que pasa cuando una mujer decide<br />
               volver a sí misma y no irse nunca más.
             </p>
+          </div>
+
+          {/* CTA inline para conferencias (movido aquí para no estar tan abajo) */}
+          <div className="pt-8 border-t border-beige">
+            <p className="mono-label text-tinto-soft mb-4">— ¿LEÍSTE MI HISTORIA Y TE RESONÓ? —</p>
+            <p className="text-tinto-deep/80 mb-6">
+              Si organizas eventos, podemos llevar esta charla a tu comunidad.
+            </p>
+            <Link
+              href="/contacto?tipo=Conferencia+%2F+Keynote"
+              className="inline-block px-10 py-4 border border-tinto text-tinto hover:bg-tinto hover:text-ivory transition-colors mono-label"
+              style={{ letterSpacing: "0.2em" }}
+            >
+              CONTRATAR UNA CONFERENCIA
+            </Link>
           </div>
         </Reveal>
       </section>
@@ -334,27 +349,19 @@ export default function MiHistoriaPage() {
       {/* CTA */}
       <section className="bg-tinto-deep text-ivory py-24 md:py-32">
         <Reveal className="max-w-4xl mx-auto px-6 text-center">
-          <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>— EMPEZÁ TU PROPIO CAPÍTULO —</p>
+          <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>— TU TURNO —</p>
           <h2 className="font-display text-4xl md:text-6xl text-ivory mb-10 leading-[1.05]">
-            ¿Y si tu historia <span className="italic text-beige">también</span><br />
-            pudiera convertirse en propósito?
+            Tú <span className="italic text-beige">también puedes</span><br />
+            iniciar tu transformación<br />
+            <span className="italic">hoy.</span>
           </h2>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/comunidad"
-              className="inline-block px-12 py-5 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-lg"
-              style={{ letterSpacing: "0.2em" }}
-            >
-              UNIRME A MI COMUNIDAD
-            </Link>
-            <Link
-              href="/contacto?tipo=Conferencia+%2F+Keynote"
-              className="inline-block px-12 py-5 border border-ivory text-ivory hover:bg-ivory hover:text-tinto-deep transition-colors mono-label text-lg"
-              style={{ letterSpacing: "0.2em" }}
-            >
-              CONTRATAR CONFERENCIA
-            </Link>
-          </div>
+          <Link
+            href="/comunidad"
+            className="inline-block px-14 py-5 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-lg"
+            style={{ letterSpacing: "0.2em" }}
+          >
+            INICIAR MI TRANSFORMACIÓN
+          </Link>
         </Reveal>
       </section>
     </>
