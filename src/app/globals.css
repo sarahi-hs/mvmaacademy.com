@@ -155,15 +155,23 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 0.1em;
 }
 
-/* Scroll reveal — usado con IntersectionObserver en componentes */
+/* Reveal — fade-in animado por CSS. Content is always visible by default
+   so a JS failure can never leave anything hidden. */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+  animation: reveal-in 0.9s ease-out both;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; }
 }
 
 /* Estilos para contenido del blog generado desde markdown */
