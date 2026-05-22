@@ -41,16 +41,21 @@ export default function MiHistoriaPage() {
             </p>
           </Reveal>
           <Reveal delay={200}>
-            <div className="relative aspect-[3/4] overflow-hidden bg-ivory-warm">
-              <Image
-                src="/images/sarahi/sarahi-historia.jpg"
-                alt="Sarahi Haro — Mi historia"
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-3 border border-tinto/15 pointer-events-none" />
+            <div className="polaroid relative max-w-[460px] mx-auto" style={{ transform: "rotate(-2deg)" }}>
+              <div className="polaroid-tape" />
+              <div className="aspect-[2/3] relative overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-historia.jpg"
+                  alt="Sarahi Haro — Mi historia"
+                  fill
+                  priority
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 460px"
+                />
+              </div>
+              <p className="font-display italic text-center text-tinto-deep mt-4 text-base">
+                Sarahi · Guadalajara, MX · 2026
+              </p>
             </div>
           </Reveal>
         </div>
