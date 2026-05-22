@@ -256,19 +256,6 @@ export default function ConferenciasPage() {
                 />
               </div>
             </Reveal>
-
-            {/* Vertical: Sarahi presentando */}
-            <Reveal delay={400} className="col-span-12 md:col-span-12">
-              <div className="relative aspect-[16/9] overflow-hidden">
-                <Image
-                  src="/images/sarahi/sarahi-presentando.jpg"
-                  alt="Sarahi Haro presentando con pantalla MVMA"
-                  fill
-                  className="object-cover object-top"
-                  sizes="100vw"
-                />
-              </div>
-            </Reveal>
           </div>
 
           <Reveal delay={300}>
