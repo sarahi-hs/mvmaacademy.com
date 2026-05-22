@@ -185,15 +185,20 @@ export default function HomePage() {
       <section className="bg-ivory-warm/40 py-24 md:py-32 border-y border-beige">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12 md:gap-16 items-center">
           <Reveal className="md:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <Image
-                src="/images/sarahi/sarahi-historia.jpg"
-                alt="Sarahi Haro — Mi historia"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 40vw"
-              />
-              <div className="absolute inset-3 border border-tinto/20 pointer-events-none" />
+            <div className="polaroid relative max-w-[420px] mx-auto" style={{ transform: "rotate(-2deg)" }}>
+              <div className="polaroid-tape" />
+              <div className="aspect-[2/3] relative overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-historia.jpg"
+                  alt="Sarahi Haro — Mi historia"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 420px"
+                />
+              </div>
+              <p className="font-display italic text-center text-tinto-deep mt-4 text-base">
+                Sarahi · 2026
+              </p>
             </div>
           </Reveal>
 
