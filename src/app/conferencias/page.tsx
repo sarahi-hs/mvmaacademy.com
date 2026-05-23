@@ -185,6 +185,17 @@ export default function ConferenciasPage() {
                 />
               </div>
             </Reveal>
+            <Reveal delay={300}>
+              <div className="relative aspect-square overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-conferencia-imagen-vende.jpg"
+                  alt="Sarahi Haro dando la conferencia Imagen que Vende"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
