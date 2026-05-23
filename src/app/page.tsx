@@ -58,18 +58,16 @@ export default function HomePage() {
           </Reveal>
         </div>
         {/* Foto full-width */}
-        <Reveal delay={150}>
-          <div className="relative aspect-[4/5] overflow-hidden">
-            <Image
-              src="/images/sarahi/sarahi-hero-horizontal.jpg"
-              alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
-              fill
-              priority
-              className="object-cover object-right"
-              sizes="100vw"
-            />
-          </div>
-        </Reveal>
+        <div className="relative aspect-[4/5] overflow-hidden hero-image-in">
+          <Image
+            src="/images/sarahi/sarahi-hero-horizontal.jpg"
+            alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
+            fill
+            priority
+            className="object-cover object-right"
+            sizes="100vw"
+          />
+        </div>
         <Reveal delay={300}>
           <div className="px-6 py-8 flex flex-col gap-3">
             <Link
@@ -92,14 +90,16 @@ export default function HomePage() {
 
       {/* DESKTOP: foto background con texto overlay */}
       <section className="hidden md:block relative min-h-[90vh] overflow-hidden bg-ivory">
-        <Image
-          src="/images/sarahi/sarahi-hero-horizontal.jpg"
-          alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
-          fill
-          priority
-          className="object-cover object-right"
-          sizes="100vw"
-        />
+        <div className="absolute inset-0 hero-image-in">
+          <Image
+            src="/images/sarahi/sarahi-hero-horizontal.jpg"
+            alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
+            fill
+            priority
+            className="object-cover object-right"
+            sizes="100vw"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-ivory/70 via-ivory/10 to-transparent" />
 
         <div className="relative max-w-7xl mx-auto px-6 min-h-[90vh] flex flex-col justify-between py-14">
