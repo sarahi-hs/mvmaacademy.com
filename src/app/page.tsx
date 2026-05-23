@@ -59,13 +59,13 @@ export default function HomePage() {
         </div>
         {/* Foto full-width */}
         <Reveal delay={150}>
-          <div className="relative aspect-[16/9] overflow-hidden">
+          <div className="relative aspect-[4/5] overflow-hidden">
             <Image
               src="/images/sarahi/sarahi-hero-horizontal.jpg"
               alt="Sarahi Haro — Asesora de imagen y coach de marca personal"
               fill
               priority
-              className="object-cover object-center"
+              className="object-cover object-right"
               sizes="100vw"
             />
           </div>
