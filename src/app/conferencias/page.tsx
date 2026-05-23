@@ -117,6 +117,78 @@ export default function ConferenciasPage() {
         <Marquee text="MI VERSIÓN MÁS AUTÉNTICA" />
       </section>
 
+      {/* GALERÍA — Momentos en el escenario */}
+      <section className="bg-ivory py-24 md:py-32 border-b border-beige">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <p className="mono-label text-tinto mb-4">— MOMENTOS EN EL ESCENARIO —</p>
+              <h2 className="font-display text-4xl md:text-6xl text-tinto-deep leading-[1.05]">
+                Más de 200 mujeres <span className="italic text-tinto">formadas</span> en mis talleres.
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            <Reveal className="col-span-2 md:col-span-2 md:row-span-2">
+              <div className="relative aspect-[4/3] md:aspect-auto md:h-full overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-alumnas.jpg"
+                  alt="Grupo de alumnas con certificados del taller MVMA"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 66vw"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="relative aspect-square overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-alumnas-mejor-version.jpg"
+                  alt="Alumnas del taller Mi Mejor Versión con certificados"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={200}>
+              <div className="relative aspect-square overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-presentando.jpg"
+                  alt="Sarahi Haro presentando conferencia corporativa"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <div className="relative aspect-square overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-werkshop-grupo.jpg"
+                  alt="Grupo de alumnas del taller Mi Versión Más Auténtica en Werkshop"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={250}>
+              <div className="relative aspect-square overflow-hidden bg-ivory-warm">
+                <Image
+                  src="/images/sarahi/sarahi-taller-empresa.jpg"
+                  alt="Sarahi Haro impartiendo taller corporativo"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* TEMAS / TOPICS */}
       <section className="max-w-7xl mx-auto px-6 py-24 md:py-32">
         <Reveal>
