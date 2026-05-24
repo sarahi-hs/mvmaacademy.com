@@ -358,17 +358,27 @@ export default function ComunidadPage() {
               <span className="mono-label text-ivory/80">MXN</span>
             </div>
             <p className="text-ivory/70 italic">
-              o 6 pagos de <strong className="text-beige">$999 MXN</strong> al mes
+              o paga a <strong className="text-beige">12 meses sin intereses</strong> con tarjeta mexicana
             </p>
           </div>
 
-          <Link
-            href="/contacto?tipo=MVMA+Tribe+%28comunidad%29"
+          <a
+            href="https://buy.stripe.com/eVqcN66qY0367ZoakH4wM0a"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-14 py-5 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-lg"
             style={{ letterSpacing: "0.2em" }}
           >
-            ESTOY LISTA PARA INVERTIR EN MÍ
-          </Link>
+            COMPRAR AHORA
+          </a>
+          <div className="mt-6">
+            <Link
+              href="/contacto?tipo=MVMA+Tribe+%28comunidad%29"
+              className="text-sm italic text-ivory/60 hover:text-beige underline-offset-4 hover:underline"
+            >
+              ¿Tienes preguntas antes de comprar? Escríbeme
+            </Link>
+          </div>
           <p className="mt-8 mono-label text-ivory/50">
             * PLAZAS LIMITADAS PARA GARANTIZAR ACOMPAÑAMIENTO PERSONALIZADO
           </p>
