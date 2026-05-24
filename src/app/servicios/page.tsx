@@ -29,7 +29,8 @@ const SERVICIOS = [
     precioRegular: "$1,999",
     moneda: "MXN",
     promo: true,
-    cta: "Reservar mi estudio",
+    cta: "Comprar y reservar",
+    stripeUrl: "https://buy.stripe.com/7sY28scPm9DGenMakH4wM05",
   },
   {
     nivel: "02",
@@ -46,7 +47,8 @@ const SERVICIOS = [
     ],
     precio: "$2,500",
     moneda: "MXN",
-    cta: "Agendar mi asesoría",
+    cta: "Comprar y reservar",
+    stripeUrl: "https://buy.stripe.com/6oU7sMcPm17adjIcsP4wM06",
   },
   {
     nivel: "03",
@@ -61,7 +63,8 @@ const SERVICIOS = [
     ],
     precio: "$5,000",
     moneda: "MXN",
-    cta: "Agendar mi asesoría",
+    cta: "Comprar y reservar",
+    stripeUrl: "https://buy.stripe.com/8x214o02AcPS5RgfF14wM07",
     destacado: true,
   },
   {
@@ -78,7 +81,8 @@ const SERVICIOS = [
     ],
     precio: "$10,000",
     moneda: "MXN",
-    cta: "Agendar mi asesoría",
+    cta: "Comprar y reservar",
+    stripeUrl: "https://buy.stripe.com/28EaEY5mU8zCdjIgJ54wM08",
   },
   {
     nivel: "05",
@@ -94,7 +98,8 @@ const SERVICIOS = [
     ],
     precio: "$5,000",
     moneda: "MXN",
-    cta: "Reservar mi mentoría",
+    cta: "Comprar y reservar",
+    stripeUrl: "https://buy.stripe.com/fZu14o2aI7vy5Rg2Sf4wM09",
   },
 ];
 
@@ -230,15 +235,26 @@ export default function ServiciosPage() {
                       </span>
                     )}
                   </div>
-                  <Link
-                    href={`/contacto?servicio=${encodeURIComponent(s.titulo)}`}
-                    className={`text-center px-6 py-3 transition-colors ${
+                  <a
+                    href={s.stripeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`text-center px-6 py-3 transition-colors mono-label text-sm ${
                       s.destacado
                         ? "bg-ivory text-tinto hover:bg-beige"
                         : "bg-tinto text-ivory hover:bg-tinto-deep"
                     }`}
+                    style={{ letterSpacing: "0.15em" }}
                   >
-                    {s.cta}
+                    {s.cta.toUpperCase()}
+                  </a>
+                  <Link
+                    href={`/contacto?servicio=${encodeURIComponent(s.titulo)}`}
+                    className={`text-center text-xs italic underline-offset-4 hover:underline ${
+                      s.destacado ? "text-beige/80" : "text-tinto/70"
+                    }`}
+                  >
+                    ¿Tienes preguntas? Escríbeme primero
                   </Link>
                 </div>
               </article>
