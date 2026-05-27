@@ -153,8 +153,8 @@ export default function ComunidadPage() {
         ]}
       />
 
-      {/* HERO */}
-      <section className="bg-ivory pt-24 pb-12 md:pt-32 md:pb-16 border-b border-beige">
+      {/* HERO — Título primero */}
+      <section className="bg-ivory pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <Reveal>
             <p className="mono-label text-tinto mb-6">— MVMA ACADEMY —</p>
@@ -165,7 +165,7 @@ export default function ComunidadPage() {
             </h1>
             <p className="text-lg md:text-2xl text-tinto-deep/80 max-w-3xl mx-auto leading-relaxed">
               Conviértete en una mujer segura y exitosa, aprendiendo a vender con tu
-              imagen y tu presencia. Mi programa digital con duración de{" "}
+              imagen y tu presencia por medio de mi programa digital con duración de{" "}
               <span className="text-tinto font-medium">6 meses.</span>
             </p>
           </Reveal>
@@ -173,7 +173,7 @@ export default function ComunidadPage() {
       </section>
 
       {/* VIDEO VSL */}
-      <section className="bg-ivory py-12 md:py-16">
+      <section className="bg-ivory pb-24 md:pb-32 border-b border-beige">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
             <div className="relative w-full overflow-hidden shadow-[0_20px_60px_rgba(45,11,17,0.25)] bg-tinto-deep" style={{ aspectRatio: "16 / 9" }}>
@@ -187,16 +187,6 @@ export default function ComunidadPage() {
             </div>
           </Reveal>
         </div>
-      </section>
-
-      {/* GANCHO POST-VIDEO */}
-      <section className="bg-ivory pb-24 md:pb-32">
-        <Reveal className="max-w-3xl mx-auto px-6 text-center">
-          <p className="font-display text-2xl md:text-4xl text-tinto-deep leading-snug">
-            Tu solución para dejar de sentir que algo te falta y por fin{" "}
-            <span className="italic text-tinto">conectar con tu versión más auténtica y poderosa.</span>
-          </p>
-        </Reveal>
       </section>
 
       {/* DATO CIENTÍFICO — Autoridad */}
@@ -473,7 +463,7 @@ export default function ComunidadPage() {
             <div className="text-center mb-12">
               <p className="mono-label text-tinto mb-4">— SI TOMAS ACCIÓN HOY —</p>
               <h2 className="font-display text-3xl md:text-5xl text-tinto-deep leading-[1.05]">
-                Además, me llevo estos <span className="italic text-tinto">bonos de regalo.</span>
+                Tengo un <span className="italic text-tinto">regalo para ti.</span>
               </h2>
             </div>
           </Reveal>
