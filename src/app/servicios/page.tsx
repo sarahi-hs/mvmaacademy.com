@@ -26,7 +26,7 @@ const SERVICIOS = [
       "Guía visual para tus próximas compras",
     ],
     precio: "$555",
-    precioRegular: "$888",
+    precioRegular: "$1,999",
     moneda: "MXN",
     promo: true,
     cta: "Comprar y reservar",
