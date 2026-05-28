@@ -25,12 +25,12 @@ const SERVICIOS = [
       "Paleta de colores digital personalizada",
       "Guía visual para tus próximas compras",
     ],
-    precio: "$888",
-    precioRegular: "$1,999",
+    precio: "$555",
+    precioRegular: "$888",
     moneda: "MXN",
     promo: true,
     cta: "Comprar y reservar",
-    stripeUrl: "https://buy.stripe.com/7sY28scPm9DGenMakH4wM05",
+    stripeUrl: "https://buy.stripe.com/6oUeVe16E8zC3J8fF14wM0b",
   },
   {
     nivel: "02",
@@ -199,7 +199,7 @@ export default function ServiciosPage() {
                 )}
                 {s.promo && (
                   <span className="absolute -top-3 right-6 px-4 py-1 bg-tinto text-ivory text-xs uppercase tracking-widest">
-                    Oferta vigente
+                    Solo esta semana
                   </span>
                 )}
                 <p className={`font-display text-6xl italic mb-6 ${s.destacado ? "text-beige" : "text-tinto/40"}`}>
