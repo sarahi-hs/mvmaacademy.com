@@ -19,11 +19,10 @@ const SERVICIOS = [
     titulo: "Estudio de Color Básico",
     bajada: "Tu paleta personal dentro de las 12 estaciones.",
     duracion: "1 sesión · 40 min",
-    modalidad: "Presencial o virtual",
+    modalidad: "Virtual",
     incluye: [
       "Análisis de color dentro de las 12 estaciones",
       "Paleta de colores digital personalizada",
-      "Guía visual para tus próximas compras",
     ],
     precio: "$555",
     precioRegular: "$1,999",
