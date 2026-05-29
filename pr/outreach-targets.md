@@ -1,220 +1,304 @@
-# LISTA DE OBJETIVOS — Outreach de Sarahi Haro
+# PLAN DE OUTREACH — Sarahi Haro (100% en español)
 
 > Plan de batalla para pitch directo a medios, eventos y podcasts.
-> Todos los enlaces son a páginas OFICIALES de aplicación/contacto.
-> Ningún correo está inventado — los datos exactos los verificas en cada
-> sitio antes de mandar tu pitch.
+> Filtrado a contenido en español/LATAM. Sarahi puede viajar a donde sea.
+> Todos los enlaces son a páginas OFICIALES — ningún correo está inventado.
 
 ---
 
-## 🎤 1. CONFERENCIAS, TEDx Y EVENTOS
+## 🎤 1. TEDx EN MÉXICO
 
-### TEDx (los más realistas para empezar)
+### Cómo funcionan las convocatorias TEDx
 
-Las charlas TEDx son organizadas por equipos locales independientes. **Cada una
-tiene su propio formulario de aplicación de speaker.**
+⚠️ **Importante:** No hay un calendario global único. Cada TEDx es organizado
+por un equipo local independiente y abre su propia convocatoria de speakers
+("Call for Speakers" o "Aplica como speaker") en distintos meses.
 
-**Estrategia:** Aplica primero a los TEDx más cercanos a ti (geografía local
-ayuda a tu chance), luego a los grandes.
+**Patrón típico:**
+- Eventos en **primavera** (marzo-mayo) → convocatoria abre **oct-dic** del año anterior
+- Eventos en **otoño** (sep-nov) → convocatoria abre **abr-jun** del mismo año
+- Algunos eventos universitarios siguen el calendario escolar
 
-**Cercanos a ti:**
+**Cómo enterarte de cada convocatoria:**
+1. Sigue la cuenta de **Instagram y Facebook** de cada TEDx que te interese
+2. En su web busca **"Speakers" / "Aplica" / "Apply"**
+3. Suscríbete a su newsletter si la ofrecen
+4. **Truco:** Activa "notificaciones" en Instagram para esas cuentas — te aviso cuando publican CFP
 
-| Evento | Aplicación |
-|---|---|
-| TEDxRGV (Rio Grande Valley — McAllen / Edinburg) | tedxrgv.com (sección "Speakers") |
-| TEDxGuadalajara | tedxguadalajara.com |
-| TEDxLagunamar (Cancún) | tedxlagunamar.com |
-| TEDxMonterrey | tedxmonterrey.com |
-| TEDxUDLAP | tedxudlap.com |
-| TEDxUNAM | tedxunam.mx |
-| TEDxITAM | tedxitam.com |
+### Lista de TEDx en México (puedes viajar a todos)
 
-**En EE.UU. (en inglés):**
+**Por ciudad — independientes (los más prestigiosos por trayectoria):**
 
-| Evento | Aplicación |
-|---|---|
-| TEDxSanAntonio | tedxsanantonio.com |
-| TEDxAustin | tedxaustin.com |
-| TEDxUTAustin | tedxutaustin.com |
-| TEDxHouston | tedxhouston.com |
-
-**Tip TEDx:** Tu idea de charla tiene que ser **una sola idea poderosa**,
-no tu currículum. Ejemplo: *"La imagen no es vanidad, es la primera frase de tu
-historia"* — eso suena TEDx. *"Conoce mi método MVMA"* — eso NO suena TEDx.
-
----
-
-### Conferencias de negocios / mujeres / marca personal (LATAM)
-
-**Estrategia:** En cada evento busca la sección "Speakers" o "Conferencistas"
-o "Contacto". Muchos tienen formularios; otros publican email de organización.
-
-| Evento | Tipo | Dónde aplicar |
+| TEDx | Web | IG (para alertas de CFP) |
 |---|---|---|
-| **EXMA Marketing** | Negocios/Marketing internacional | exma.com → "Habla con nosotros" |
-| **WOBI / World Business Forum CDMX** | Negocios global | wobi.com → contacto general |
-| **INCMTY (Tec de Monterrey)** | Emprendimiento | incmty.com → speakers |
-| **Forbes Women Summit México** | Mujeres líderes | forbes.com.mx → eventos |
-| **Forbes Female Forum** | Mujeres en negocios | (busca por edición anual) |
-| **Mujer Empresaria Magazine — eventos** | Mujeres empresarias | mujerempresaria.com |
-| **Expo MujerEs Poder** | Empoderamiento femenino | (busca edición vigente en redes) |
-| **Expo Empresaria CDMX/GDL** | Emprendimiento femenino | (anual, revisa redes) |
-| **Mujeres a la Vanguardia (Glamour MX)** | Liderazgo femenino | glamour.mx → contacto editorial |
+| **TEDxGuadalajara** | tedxguadalajara.com | @tedxguadalajara |
+| **TEDxCDMX** | tedxcdmx.com | @tedxcdmx |
+| **TEDxMonterrey** | tedxmonterrey.com | @tedxmonterrey |
+| **TEDxQuerétaro** | tedxqueretaro.com | @tedxqueretaro |
+| **TEDxColima** ⭐ (la que mencionaste) | tedxcolima.com | @tedxcolima |
+| **TEDxSanMigueldeAllende** | tedxsanmigueldeallende.org | @tedxsma |
+| **TEDxMérida** | tedxmerida.com | @tedxmerida |
+| **TEDxPuebla** | tedxpuebla.com | @tedxpuebla |
+| **TEDxOaxaca** | tedxoaxaca.com | @tedxoaxaca |
+| **TEDxLeón** | tedxleon.com | @tedxleon |
+| **TEDxAguascalientes** | tedxaguascalientes.com | @tedxags |
+| **TEDxLagunamar (Cancún)** | tedxlagunamar.com | @tedxlagunamar |
+| **TEDxTijuana** | tedxtijuana.com | @tedxtijuana |
+| **TEDxSanLuisPotosí** | tedxslp.com | @tedxslp |
+| **TEDxXalapa** | tedxxalapa.com | @tedxxalapa |
+| **TEDxCabosSur** | tedxcabossur.com | @tedxcabossur |
+| **TEDxTorreón** | tedxtorreon.com | @tedxtorreon |
+| **TEDxChihuahua** | tedxchihuahua.com | @tedxchihuahua |
 
-### Universidades con programas de speakers / paneles
+**Universitarios (excelentes para empezar):**
 
-**Estrategia ganadora:** escríbele directamente al **Centro de Emprendimiento**
-o a la **Coordinación de Eventos** de cada escuela de negocios. Las facultades
-de Mercadotecnia y Diseño suelen necesitar speakers para conferencias semestrales.
-
-| Universidad | A quién buscar |
+| TEDx Universidad | Notas |
 |---|---|
-| **Tec de Monterrey (cualquier campus)** | Centro de Reconocimiento de la Dignidad Humana / Centro de Emprendimiento |
-| **UDG (Universidad de Guadalajara)** | CUCEA, Coordinación de Eventos |
-| **Universidad Panamericana (UP)** | IPADE — eventos / Comunicación |
+| **TEDxUDLAP** (Puebla) | Uno de los TEDx universitarios más fuertes |
+| **TEDxUNAM** | El más grande de México |
+| **TEDxITAM** | Negocios + emprendimiento |
+| **TEDxIberoamericana** | Comunicación + medios |
+| **TEDxIPN** | Tecnología + emprendimiento |
+| **TEDxTec** (Tecnológico de Monterrey, varias sedes) | Múltiples campus, varias convocatorias por año |
+| **TEDxUniversidadAnáhuac** | Diseño / Comunicación |
+| **TEDxUVM** | Estudiantes/jóvenes |
+| **TEDxUAG** (Univ. Autónoma de Guadalajara) | Cercano a ti |
+
+**Tip de oro TEDx 🎯:**
+
+Tu idea de charla debe ser **UNA sola idea poderosa**, no tu currículum.
+- ❌ "Conoce mi método MVMA"
+- ✅ *"La imagen no es vanidad: es la primera frase que dice tu cuerpo antes que tu voz"*
+- ✅ *"Por qué dejé de vestirme para encajar y aprendí a vestirme para liderar"*
+
+---
+
+## 🎤 2. CONFERENCIAS DE NEGOCIOS / MUJERES — LATAM
+
+| Evento | Tipo | Web |
+|---|---|---|
+| **EXMA Marketing** | Marketing/Negocios LATAM | exma.com |
+| **WOBI / World Business Forum CDMX** | Negocios global | wobi.com |
+| **INCMTY (Tec de Monterrey)** | Emprendimiento, anual nov | incmty.com |
+| **Forbes Women Summit México** | Mujeres líderes | forbes.com.mx/eventos |
+| **Forbes Female Forum** | Mujeres en negocios | (por edición anual) |
+| **Expo MujerEs Poder** | Empoderamiento femenino | revisa redes |
+| **Mujer Empresaria Magazine — eventos** | Empresarias | mujerempresaria.com |
+| **Expo Empresaria (CDMX/GDL)** | Emprendimiento femenino | revisa redes vigentes |
+| **Mujeres a la Vanguardia (Glamour MX)** | Liderazgo femenino | glamour.mx |
+| **Latinas in Tech / Latinas Poderosas** | Mujeres líderes | redes |
+| **Congreso Mujeres y Poder** | Liderazgo femenino | revisa edición |
+| **Conferencia Anual de la Asoc. Mexicana de Asesores de Imagen** | Tu nicho directo | asociacioncolorimagen.com (verificar) |
+
+**Cómo aplicar a cualquiera:**
+- Busca en su web "Speakers" / "Conferencistas" / "Aplica" / "Postula tu charla"
+- Si no hay formulario, escribe a "contacto" o "info@" con tu media kit
+- **Tip clave:** Aplica con **TIEMPO**. La mayoría cierra CFP 3-4 meses antes.
+
+---
+
+## 🏫 3. UNIVERSIDADES — Charlas, paneles, semanas culturales
+
+**Estrategia ganadora:** No esperes a que te inviten. Escribe directo a la
+**Coordinación de Eventos** de cada Facultad/Escuela. Las facultades de
+Mercadotecnia, Comunicación, Diseño y Negocios necesitan speakers cada
+semestre y casi no tienen presupuesto pero sí abren la puerta.
+
+| Universidad | Facultades a quien escribir |
+|---|---|
+| **Tec de Monterrey** (cualquier campus) | Centro de Emprendimiento / Centro Dignidad Humana / Diseño / Mercadotecnia |
+| **UDG / CUCEA** (Guadalajara) | Coordinación de Eventos, Carrera de Mercadotecnia |
+| **Universidad Panamericana / IPADE** | Comunicación / Negocios |
 | **Universidad Anáhuac** | Facultad de Diseño / Marketing |
 | **ITAM** | Centro de Emprendimiento |
-| **UTRGV (Texas — la más cercana a McAllen)** | College of Business → speakers series |
-| **UVM** | Coordinación de Diseño de Modas |
+| **Universidad Iberoamericana** | Comunicación / Diseño |
+| **UVM** | Diseño de Modas / Comunicación |
+| **CENTRO** (Diseño/Cine/TV) | Diseño y Comunicación visual |
+| **EBC (Escuela Bancaria y Comercial)** | Marketing |
+| **Universidad Cuauhtémoc, UAG** | Marketing / Diseño |
 
-**Cómo encontrarles correo:** entra a la página de la facultad → "Personal
-docente" o "Coordinación" → ahí publican emails institucionales.
-
----
-
-## 🎙 2. PODCASTS — Los que SÍ valen la pena
-
-### En español 🇲🇽 🇪🇸
-
-| Podcast | Host | Tema | Cómo contactar |
-|---|---|---|---|
-| **Aprendamos Marketing** | Vilma Núñez | Marketing/Negocios | vilmanunez.com → contacto |
-| **Cracks Podcast** | Oso Trava | Negocios/Liderazgo | crackspodcast.com → contacto |
-| **La Femineta** | Marie Andrée | Mujeres/Empoderamiento | IG @lafemineta |
-| **Chingonas Podcast** | varias | Mujeres latinas líderes | IG @chingonaspodcast |
-| **Cuéntame de Marketing** | Anna Olivella | Marketing/PYME | IG @cuentamedemarketing |
-| **Trazos** | Renata Roa | Comunicación no verbal e imagen 💎 | IG @renataroa |
-| **Hot Mess Podcast** | varias | Lifestyle/Mujeres | IG @hotmesspodcast |
-| **Inversión Femenina** | Sofía Macias | Finanzas para mujeres | pequenocerdocapitalista.com |
-| **Mujer Empoderada** | Diana Gómez | Coaching/Liderazgo femenino | IG @dianagomezt |
-| **Estrategia Inteligente** | Daniel Aprende | Negocios/Estrategia | IG @aprendepodcast |
-
-### En inglés 🇺🇸
-
-| Podcast | Host | Tema | Cómo contactar |
-|---|---|---|---|
-| **The Goal Digger Podcast** | Jenna Kutcher | Mujeres emprendedoras | jennakutcher.com/podcast → submission |
-| **MarieTV** | Marie Forleo | Negocios/Marca personal | marieforleo.com → contact |
-| **The Style Coach Podcast** | Anita Clifford | Estilo/imagen | (busca su web/IG) |
-| **The Confidence Chronicles** | varios | Autoconfianza | IG |
-| **Female Startup Club** | Doone Roisin | Mujeres founders | femalestartupclub.com |
-| **Earn Your Happy** | Lori Harder | Mindset/femenino | loriharder.com → contact |
-| **She Did It Her Way** | Amanda Boleyn | Mujeres emprendedoras | shediditherway.com |
-| **The Influence Network** | varios | Marca personal | spotify search |
-| **Glow w/ Mel Robbins** (audiencia masiva) | Mel Robbins | Mindset/desarrollo | melrobbins.com → contact |
-
-**Tip 🎯:** Para los podcasts grandes (Marie Forleo, Mel Robbins), la
-chance es baja PERO si por uno entras, vale 100 podcasts pequeños. Manda pitch
-de todas formas. **No pidas permiso, pide oportunidad.**
-
-**Cómo encontrar el email/contacto de un podcast:**
-1. Ve a su web (la mayoría tiene)
-2. Sección "Be a guest" / "Contact" / "Pitch"
-3. Si no hay web: busca en Spotify/Apple Podcasts → "About" del show
-4. Como último recurso: DM en Instagram al host
+**Cómo encontrar el correo institucional:**
+1. Web de la universidad → Facultad → "Personal docente" o "Directorio"
+2. Busca al **coordinador/coordinadora** o al jefe de carrera
+3. Su email institucional suele estar publicado
 
 ---
 
-## 📺 3. TELEVISIÓN
+## 🎙 4. PODCASTS EN ESPAÑOL — Top para tu nicho
 
-### México — Programas matutinos (los que MÁS contratan expertas en imagen)
+### Tier 1 — Los grandes (vale la pena el pitch aunque la chance sea menor)
+
+| Podcast | Host | Tema | Contacto |
+|---|---|---|---|
+| **Cracks Podcast** | Oso Trava | Negocios/Liderazgo (audiencia masiva) | crackspodcast.com |
+| **Aprendamos Marketing** | Vilma Núñez | Marketing y emprendimiento | vilmanunez.com → contacto |
+| **El Podcast de Daniel Habif** | Daniel Habif | Desarrollo personal masivo | IG @danielhabif |
+| **Yo Sí Pude** | David Ruiz | Historias de emprendedores | IG @yosipudepodcast |
+| **MarKetin' Up** | Diego Camargo | Marketing | IG @diegocamargo.tv |
+
+### Tier 2 — Excelente match para ti (alta probabilidad de aceptarte) ⭐
+
+| Podcast | Host | Tema | Por qué te conviene |
+|---|---|---|---|
+| **Trazos** ⭐ | Renata Roa | **Imagen y comunicación no verbal** | Es **literalmente tu nicho** — pitcha YA |
+| **La Femineta** | Marie Andrée | Mujeres / Empoderamiento | Match perfecto de audiencia |
+| **Chingonas Podcast** | varias | Mujeres latinas líderes | Tu audiencia objetivo |
+| **Cuéntame de Marketing** | Anna Olivella | Marketing/PYME | Tu lado mercadóloga |
+| **Mujer Empoderada** | Diana Gómez | Coaching femenino | Match natural |
+| **Inversión Femenina / Pequeño Cerdo Capitalista** | Sofía Macias | Finanzas mujeres | Cruce con autoridad/imagen profesional |
+| **Hot Mess Podcast** | varias | Lifestyle/mujeres | Audiencia joven femenina |
+| **Las Mujeres de Marketing** | varias | Marketing femenino | Match doble |
+| **Soy un Sirenita** | Pamela Cortés | Mujeres / negocios | Audiencia objetivo |
+
+### Tier 3 — Nichos específicos (alta tasa de aceptación)
+
+| Podcast | Tema |
+|---|---|
+| **Estilo y Espacio** | Diseño / lifestyle |
+| **Estrategia Inteligente** | Negocios/estrategia |
+| **Sales con Café** | Ventas |
+| **Charlas para Marcas** | Branding |
+| **Asuntos Internos** | Coaching / desarrollo |
+| **Naked Truth** | Mujeres y crecimiento |
+
+**Cómo encontrar contacto de un podcast:**
+1. Web del podcast → "Be a guest" / "Sé invitada" / "Contacto"
+2. Spotify/Apple Podcasts → perfil del show → "About"
+3. **Instagram del host** → DM personalizado (funciona MUY bien si pitch es cálido)
+4. LinkedIn del host
+
+---
+
+## 📺 5. TELEVISIÓN — México y Univisión/Telemundo en español
+
+### Programas matutinos México (los que MÁS contratan expertas en imagen)
 
 | Programa | Canal | Cómo contactar |
 |---|---|---|
-| **Hoy** | Televisa | hoy.televisa.com → contacto / "Quiero participar" |
-| **Hoy Mismo** | Televisa | contacta vía producción Televisa |
-| **Venga la Alegría** | TV Azteca | tvazteca.com → contacto / IG @vengalaalegria |
+| **Hoy** ⭐ | Televisa | hoy.televisa.com → "Participa" / "Contacto" |
+| **Hoy Mismo** | Televisa | producción Televisa |
+| **Venga la Alegría** ⭐ | TV Azteca | tvazteca.com → contacto / IG @vengalaalegria |
 | **Sale el Sol** | Imagen TV | imagentv.com → contacto |
-| **Netas Divinas** | Unicable / Las Estrellas | Productora: televisa.com → contacto programas |
-| **Despierta con Loret** | Latinus | latinus.us → contacto |
-| **Al Aire con Paola Rojas** | radio + TV | IG @paolarojas |
+| **Despierta con Loret** | Latinus | latinus.us |
+| **Al Aire con Paola Rojas** | Imagen TV / radio | IG @paolarojas |
+| **Faisy Nights** | TV (segmentos de mujeres) | redes oficiales |
 
-**Cómo hacerlo:** Mándale al productor del programa tu **media kit** con la
-nota: *"Soy asesora de imagen, propongo segmento sobre [TEMA SUPER CONCRETO Y
-ÉPICO PARA SU AUDIENCIA]"*. NO digas "quiero salir en tu programa" — propón
-contenido específico que les sirva.
+### Programas de mujeres / lifestyle
 
-### EE.UU. — Local (McAllen / Rio Grande Valley)
-
-| Programa | Cadena | Cómo contactar |
+| Programa | Canal | Notas |
 |---|---|---|
-| **KGBT-TV (Channel 4)** | NBC RGV | krgv.com / kgbt.com → contacto |
-| **KRGV ABC 5** | ABC | krgv.com → contacto |
-| **Univisión 48 Valle** | Univisión | univision.com afiliado local |
-| **Telemundo 40 Valle** | Telemundo | telemundo.com afiliado local |
+| **Netas Divinas** ⭐ | Unicable / Las Estrellas | Panel de mujeres, expertas son bienvenidas |
+| **Mujer Casos de la Vida Real** (reboots) | Televisa | historia personal |
+| **De Primera Mano** | Imagen TV | espectáculos + lifestyle |
 
-### EE.UU. — Nacional en español
+### Univisión / Telemundo (en español, audiencia EE.UU. + LATAM)
 
-| Programa | Cadena | Cómo contactar |
+| Programa | Cadena | Notas |
 |---|---|---|
-| **Despierta América** | Univisión | univision.com → contacto producción |
-| **Un Nuevo Día / Hoy Día** | Telemundo | telemundo.com → producción |
-| **Al Rojo Vivo** | Telemundo | telemundo.com |
+| **Despierta América** ⭐ | Univisión | El matutino más visto en español de USA |
+| **Hoy Día / Un Nuevo Día** | Telemundo | Matutino — usan expertas en imagen |
+| **Al Rojo Vivo** | Telemundo | Lifestyle/entretenimiento |
+| **El Gordo y la Flaca** | Univisión | Lifestyle |
+| **La Mesa Caliente** | Telemundo | Panel mujeres latinas |
+
+**Cómo escribir a TV — fórmula que sí abre puerta:**
+
+> Asunto: Propuesta de segmento: [TEMA SUPER ESPECÍFICO Y ATRACTIVO]
+>
+> "[Nombre productor/a]:
+> Soy Sarahi Haro, asesora de imagen mexicana. Vi tu segmento de [referencia
+> específica]. Quiero proponerte un segmento sobre [TEMA — ej. '3 errores
+> de imagen que están saboteando las entrevistas de trabajo de las mujeres
+> mexicanas']. Llevo material visual, ejemplos en vivo y tips accionables
+> para tu audiencia.
+> ¿Te sirve si te mando mi media kit?
+> Un abrazo, Sarahi"
+
+**No digas "quiero salir en tu programa". PROPONLES contenido.**
 
 ---
 
-## 📻 4. RADIO
+## 📻 6. RADIO EN ESPAÑOL
 
-### México
+### México (las grandes — alta audiencia)
 
-| Emisora | Cómo contactar |
+| Emisora | Web / Cómo contactar |
 |---|---|
-| **W Radio (89.1 GDL / 96.9 CDMX)** | wradio.com.mx → contacto |
-| **Radio Fórmula** | radioformula.com.mx → contacto programación |
+| **W Radio (89.1 GDL / 96.9 CDMX)** | wradio.com.mx |
+| **Radio Fórmula** ⭐ | radioformula.com.mx → programación |
 | **Imagen Radio (90.5)** | imagenradio.com.mx |
-| **Grupo Radio Centro (Stereo Cien, La Z)** | radiocentro.com |
-| **MVS Radio (102.5)** | mvsradio.com → producción |
+| **Grupo Radio Centro (Stereo Cien, La Z, El Fonógrafo)** | radiocentro.com |
+| **MVS Radio (102.5)** | mvsradio.com |
+| **ABC Radio (760 AM)** | abcradio.com.mx |
+| **NRM Comunicaciones** | nrm.mx |
 
-### EE.UU. — McAllen / RGV
+### Radio universitaria / cultural (más fácil entrar)
 
-| Emisora | Tipo | Cómo contactar |
-|---|---|---|
-| **KVNS 1700 AM** | News-talk | iheart.com afiliado |
-| **Que Buena 92.7** | Música regional, programas de lifestyle | univisionradio.com |
-| **La Mexicana / Mega 96.1** | Música/cultura | uforia.com |
+| Emisora | Notas |
+|---|---|
+| **Radio UdeG** (104.3 GDL) | Universitaria, perfil cultural |
+| **Radio UNAM** | Universitaria nacional |
+| **IBERO 90.9** | Universitaria, audiencia educada |
+| **Reactor 105.7 IMER** | Cultural / lifestyle |
 
 ---
 
-## 📋 CÓMO USAR ESTA LISTA — PROCESO PASO A PASO
+## 📋 PROCESO PASO A PASO (todos los canales)
 
-### Para cada objetivo:
+### Tu rutina semanal recomendada:
 
-1. **Identifica al destinatario** (productor, editor, host, coordinador de eventos)
-2. **Entra a su web oficial** o redes y consigue el correo real
-3. **Manda el pitch correspondiente** del archivo `/pr/pitch-emails.md`
-4. **Adjunta tu media kit** (archivo `/pr/press-kit.md` — más adelante te lo
-   entregamos en PDF bonito para mandar)
-5. **Personaliza el pitch:** menciona algo específico de SU programa/podcast/evento
-   (que demuestre que lo conoces). Eso multiplica tu chance de respuesta x3.
-6. **Lleva un tracking simple:**
-   - A quién le escribiste
-   - Cuándo
-   - Si respondieron (sí / no / pendiente)
-   - Resultado
+**Lunes — Investigación (30 min):**
+- Elige 3-5 objetivos de la lista
+- Verifica en su sitio los datos actualizados (correo, formulario, deadline)
+- Investiga 1 cosa específica de su programa/podcast/evento para personalizar
 
-### Cadencia recomendada:
+**Martes - Miércoles — Pitching (1 hr):**
+- Manda los 3-5 pitches personalizados
+- Usa la plantilla correspondiente de `/pr/pitch-emails.md`
+- Adjunta tu media kit
+- Lleva tu tracking en una hoja simple (Excel/Notion/Google Sheets)
 
-- **Semana 1-2:** Manda 5-10 pitches a las mejores oportunidades de cada
-  categoría
-- **Semana 3:** Sigue al que no contestó (follow-up cortito 1 sola vez)
-- **Semana 4:** Mide cuántos respondieron, qué funcionó
+**Jueves — Networking (30 min):**
+- Sigue en Instagram a los hosts/productores/organizadores a quienes pitcheaste
+- Comenta auténticamente en su contenido (NO promociones aún, solo aporta)
 
-### Reglas de oro:
+**Viernes — Follow-up (15 min):**
+- A quienes no respondieron de la semana pasada → 1 follow-up cortito
 
-✅ **Personaliza** cada pitch (NO copies-pegues genérico)
+### Tracking simple — lleva una hoja con:
+
+| Fecha | A quién | Plataforma | Pitch usado | Estado | Notas |
+|---|---|---|---|---|---|
+| 30 may | TEDxColima | TEDx | Pitch TEDx | Pendiente | Cierra CFP 15 jul |
+| 30 may | Trazos podcast | Podcast | Pitch podcast | Respondió ✅ | Grabamos 12 jun |
+
+---
+
+## 🎯 REGLAS DE ORO (PARA NO QUEMARTE)
+
+✅ **Personaliza** cada pitch (NUNCA copies-pegues genérico — los productores lo huelen)
 ✅ **Sé breve** (<150 palabras)
-✅ **Propón valor para SU audiencia**, no hables solo de ti
+✅ **Propón VALOR para SU audiencia**, no hables solo de ti
 ✅ **Adjunta media kit** desde la primera vez
-❌ **NUNCA pagues** por aparecer en un podcast o conferencia
-❌ **NUNCA insistas más de 1 follow-up** si no responden
-❌ **NO inventes credenciales** que no tengas
+✅ **Investiga 1 dato real** de la persona/programa antes de escribir
+✅ **Follow-up: máximo 1 vez** si no responden
+❌ **NUNCA pagues** por aparecer en un podcast/conferencia (excepto patrocinios honestos)
+❌ **NUNCA insistas más de 1 follow-up**
+❌ **NO inventes credenciales**
+❌ **NO mandes pitches en bloque** (cantidad sin personalización = nada de respuestas)
+
+---
+
+## 🚀 SUGERENCIA DE PRIMEROS 5 PITCHES PARA ESTA SEMANA
+
+Para arrancar con impacto:
+
+1. **Trazos podcast (Renata Roa)** — es literalmente tu nicho, debe ser tu PRIMER pitch
+2. **TEDxColima** — revisa si están en CFP, si sí, aplica
+3. **Venga la Alegría (TV Azteca)** — propón segmento concreto sobre imagen profesional
+4. **Cracks Podcast (Oso Trava)** — audiencia masiva, pitch sobre marca personal/mujeres
+5. **Tec de Monterrey (campus más cercano)** — Coordinación de Emprendimiento, ofrécete a charla gratis para semestre
+
+Si esos 5 te entran (aunque sea 1 o 2), construyes tu primer ronda de credenciales en español.
+
+¡Vamos! 💛
