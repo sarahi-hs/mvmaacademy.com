@@ -64,6 +64,62 @@ por un equipo local independiente y abre su propia convocatoria de speakers
 | **TEDxUVM** | Estudiantes/jóvenes |
 | **TEDxUAG** (Univ. Autónoma de Guadalajara) | Cercano a ti |
 
+### TEDx EN ESPAÑOL fuera de México
+
+**En EE.UU. (con población hispana y aceptación de español):**
+
+| TEDx | Notas |
+|---|---|
+| **TEDxRGV** (Rio Grande Valley, McAllen) ⭐ | TU ZONA — bilingüe, aceptan charlas en español |
+| **TEDxSanAntonio** | Audiencia hispana grande, han tenido charlas en español |
+| **TEDxMiami** | Mucho contenido en español (audiencia cubana/latina) |
+| **TEDxHouston** | Comunidad hispana enorme |
+| **TEDxFortLauderdale** | Latino-friendly |
+| **TEDxEastLA** | 100% Latino-focused, aceptan español |
+| **TEDxPhoenix** | Audiencia hispana fuerte |
+
+⚠️ **Importante:** Antes de aplicar, **escríbeles primero** preguntando si
+aceptan charlas en español ese año. Cada edición decide su línea editorial.
+
+**En España (idioma 100% español):**
+
+| TEDx | Ciudad |
+|---|---|
+| **TEDxMadrid** ⭐ | Madrid (uno de los más prestigiosos del mundo en español) |
+| **TEDxBarcelona** ⭐ | Barcelona |
+| **TEDxValencia** | Valencia |
+| **TEDxSevilla** | Sevilla |
+| **TEDxBilbao** | Bilbao |
+| **TEDxMálaga** | Málaga |
+| **TEDxAlcoy / TEDxGranada / TEDxZaragoza** | Otros |
+
+**En Latinoamérica (todos en español):**
+
+| TEDx | País |
+|---|---|
+| **TEDxBuenosAires** ⭐ | Argentina (de los más grandes de LATAM) |
+| **TEDxRíodelaPlata** | Argentina/Uruguay |
+| **TEDxBogotá** ⭐ | Colombia (enorme audiencia) |
+| **TEDxMedellín** | Colombia |
+| **TEDxCali** | Colombia |
+| **TEDxSantiago** | Chile |
+| **TEDxLima** | Perú |
+| **TEDxQuito** / **TEDxGuayaquil** | Ecuador |
+| **TEDxMontevideo** | Uruguay |
+| **TEDxLaPaz** | Bolivia |
+| **TEDxSanJuan** | Puerto Rico |
+| **TEDxSantoDomingo** | República Dominicana |
+| **TEDxPanamáCity** | Panamá |
+| **TEDxSanJosé** | Costa Rica |
+| **TEDxGuatemala** | Guatemala |
+
+**Tip 🌎:** Los TEDx en LATAM (especialmente Bogotá, Buenos Aires, Madrid)
+tienen MUY buena producción y excelente alcance regional. **Y la cultura
+LATAM se conecta con tu mensaje de empoderamiento femenino más fuerte que
+la audiencia USA.**
+
+---
+
 **Tip de oro TEDx 🎯:**
 
 Tu idea de charla debe ser **UNA sola idea poderosa**, no tu currículum.
