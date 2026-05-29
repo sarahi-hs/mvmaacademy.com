@@ -81,18 +81,6 @@ por un equipo local independiente y abre su propia convocatoria de speakers
 ⚠️ **Importante:** Antes de aplicar, **escríbeles primero** preguntando si
 aceptan charlas en español ese año. Cada edición decide su línea editorial.
 
-**En España (idioma 100% español):**
-
-| TEDx | Ciudad |
-|---|---|
-| **TEDxMadrid** ⭐ | Madrid (uno de los más prestigiosos del mundo en español) |
-| **TEDxBarcelona** ⭐ | Barcelona |
-| **TEDxValencia** | Valencia |
-| **TEDxSevilla** | Sevilla |
-| **TEDxBilbao** | Bilbao |
-| **TEDxMálaga** | Málaga |
-| **TEDxAlcoy / TEDxGranada / TEDxZaragoza** | Otros |
-
 **En Latinoamérica (todos en español):**
 
 | TEDx | País |
@@ -113,7 +101,7 @@ aceptan charlas en español ese año. Cada edición decide su línea editorial.
 | **TEDxSanJosé** | Costa Rica |
 | **TEDxGuatemala** | Guatemala |
 
-**Tip 🌎:** Los TEDx en LATAM (especialmente Bogotá, Buenos Aires, Madrid)
+**Tip 🌎:** Los TEDx en LATAM (especialmente Bogotá y Buenos Aires)
 tienen MUY buena producción y excelente alcance regional. **Y la cultura
 LATAM se conecta con tu mensaje de empoderamiento femenino más fuerte que
 la audiencia USA.**
