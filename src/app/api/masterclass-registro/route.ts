@@ -1,19 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PERSON } from "@/lib/site";
+import { MASTERCLASS } from "@/app/masterclass/config";
 
 /**
  * POST /api/masterclass-registro
  *
  * Guarda un registro (nombre/email/telefono) para la masterclass:
- *   1. Manda los datos al webhook de Google Apps Script (GOOGLE_SHEETS_WEBHOOK_URL)
- *      que los escribe en una Google Sheet.
- *   2. Notifica por email al equipo vía Resend (RESEND_API_KEY).
+ *   1. Da de alta a la persona en MailerLite dentro del grupo de la masterclass.
+ *      Env var: MAILERLITE_API_TOKEN. Group ID en MASTERCLASS.mailerLiteGroupId.
+ *   2. Notifica por email al equipo vía Resend (RESEND_API_KEY) como respaldo.
  *
  * Ambos son opcionales — si falta uno, el otro sigue funcionando y el registro
  * no se pierde. Si ambos fallan, respondemos 502 y el usuario ve el error.
  */
 
 const RESEND_FROM = "MVMA Academy <noreply@mvmaacademy.com>";
+const MAILERLITE_ENDPOINT = "https://connect.mailerlite.com/api/subscribers";
 
 export async function POST(req: NextRequest) {
   try {
@@ -37,15 +39,14 @@ export async function POST(req: NextRequest) {
       nombre,
       email,
       telefono,
-      timestamp: new Date().toISOString(),
       timestampMx: new Date().toLocaleString("es-MX", {
         timeZone: "America/Mexico_City",
       }),
-      masterclass: "Deja de Esconderte — 2026-07-20",
+      masterclass: `${MASTERCLASS.title} — ${MASTERCLASS.dateDisplay}`,
     };
 
     const results = await Promise.allSettled([
-      guardarEnGoogleSheets(registro),
+      guardarEnMailerLite(registro),
       notificarPorEmail(registro),
     ]);
 
@@ -74,25 +75,37 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function guardarEnGoogleSheets(r: {
+async function guardarEnMailerLite(r: {
   nombre: string;
   email: string;
   telefono: string;
-  timestamp: string;
-  timestampMx: string;
-  masterclass: string;
 }) {
-  const url = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-  if (!url) {
-    throw new Error("GOOGLE_SHEETS_WEBHOOK_URL no configurada");
+  const token = process.env.MAILERLITE_API_TOKEN;
+  if (!token) {
+    throw new Error("MAILERLITE_API_TOKEN no configurada");
   }
-  const res = await fetch(url, {
+
+  const res = await fetch(MAILERLITE_ENDPOINT, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(r),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      email: r.email,
+      fields: {
+        name: r.nombre,
+        phone: r.telefono,
+      },
+      groups: [MASTERCLASS.mailerLiteGroupId],
+      status: "active",
+    }),
   });
+
   if (!res.ok) {
-    throw new Error(`Google Sheets webhook respondió ${res.status}`);
+    const errText = await res.text().catch(() => "");
+    throw new Error(`MailerLite respondió ${res.status}: ${errText}`);
   }
 }
 
@@ -123,7 +136,7 @@ async function notificarPorEmail(r: {
         </table>
       </div>
       <div style="padding: 16px 24px; background: #EFE7D5; font-size: 12px; color: #6B1F2A;">
-        Registro desde mvmaacademy.com/masterclass
+        Registro desde mvmaacademy.com/masterclass · guardado también en MailerLite
       </div>
     </div>
   `;

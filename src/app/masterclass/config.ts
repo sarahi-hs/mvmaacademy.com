@@ -14,6 +14,8 @@ export const MASTERCLASS = {
   whatsappCommunityUrl: "https://chat.whatsapp.com/H4EjjyrL9WoK5MKYdc2fh2",
   ctaLabel: "Estoy lista para mi grandeza — Reservar gratis",
   ctaShort: "Reservar mi lugar gratis",
+  // ID del grupo en MailerLite donde caen las registradas
+  mailerLiteGroupId: "192550673358784123",
 } as const;
 
 export const PARA_QUIEN = [
