@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 import { MASTERCLASS } from "../config";
 
 export const metadata: Metadata = {
-  title: "¡Estás registrada! — Deja de Esconderte",
-  description: "Únete a la comunidad de WhatsApp para recibir el link de la masterclass.",
+  title: "¡Casi lista! — Únete a la comunidad de WhatsApp",
+  description: "Falta un paso: únete a la comunidad de WhatsApp para recibir el link de la masterclass.",
   robots: { index: false, follow: false },
 };
 
@@ -33,30 +33,34 @@ export default function GraciasPage() {
         </div>
       </div>
 
-      <main className="flex-1 flex items-center justify-center px-6 py-16">
+      <main className="flex-1 flex items-center justify-center px-6 py-12 md:py-16">
         <div className="max-w-2xl w-full text-center">
-          <p className="editorial-eyebrow mb-6">Tu lugar está reservado</p>
+          <p className="editorial-eyebrow mb-4 text-tinto">Registro confirmado ✓</p>
 
-          <h1 className="font-display text-4xl md:text-6xl text-tinto-deep mb-6 leading-tight">
-            <span className="italic">B</span>ienvenida a<br />
-            <em className="italic">Deja de Esconderte</em>
+          <h1 className="font-display text-4xl md:text-6xl text-tinto-deep mb-4 leading-tight">
+            <span className="italic">C</span>asi lista.
+            <br />
+            <em className="italic">Falta 1 paso.</em>
           </h1>
 
-          <p className="text-lg text-tinto-deep/80 mb-10 max-w-lg mx-auto leading-relaxed">
-            Falta un último paso importante: únete a nuestra comunidad de WhatsApp,
-            ahí te compartiré el <strong>link de Zoom</strong>, los recordatorios y
-            contenido extra para prepararte.
+          <p className="text-lg text-tinto-deep/80 mb-2 max-w-lg mx-auto leading-relaxed">
+            Únete a nuestra comunidad de WhatsApp — es donde vas a recibir el{" "}
+            <strong>link de Zoom</strong> el día de la clase.
+          </p>
+
+          <p className="text-sm text-tinto-deep/60 mb-8">
+            Sin este paso <strong>no recibirás</strong> el acceso a la masterclass.
           </p>
 
           <a
             href={MASTERCLASS.whatsappCommunityUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-5 bg-tinto text-hueso hover:bg-tinto-deep transition-colors text-base md:text-lg font-medium tracking-wide"
+            className="inline-flex items-center gap-3 px-10 py-6 bg-[#25D366] text-white hover:bg-[#1DA851] transition-colors text-lg md:text-xl font-medium tracking-wide shadow-lg shadow-tinto-deep/10"
           >
             <svg
-              width="24"
-              height="24"
+              width="28"
+              height="28"
               viewBox="0 0 24 24"
               fill="currentColor"
               aria-hidden
@@ -66,18 +70,29 @@ export default function GraciasPage() {
             Unirme a la comunidad
           </a>
 
-          <p className="text-sm text-tinto-deep/60 mt-8 max-w-md mx-auto">
-            El link se abre en WhatsApp. Es una <strong>comunidad</strong>, no un
-            grupo — nadie verá tu número.
+          <p className="text-xs text-tinto-deep/50 mt-4 max-w-md mx-auto">
+            Es una <strong>comunidad</strong>, no un grupo — nadie verá tu número ni el de las demás.
           </p>
 
-          <div className="mt-14 pt-10 border-t border-beige max-w-md mx-auto">
-            <p className="editorial-eyebrow mb-4">Guarda la fecha</p>
-            <p className="text-tinto-deep">
-              📅 {MASTERCLASS.dateDisplay}
-              <br />
-              💻 {MASTERCLASS.platform}
-            </p>
+          <div className="mt-12 pt-8 border-t border-beige max-w-md mx-auto space-y-4">
+            <div>
+              <p className="editorial-eyebrow mb-2">Dentro de la comunidad recibes</p>
+              <ul className="text-sm text-tinto-deep/75 space-y-1.5 text-left inline-block">
+                <li>✦ El link de Zoom el día del evento</li>
+                <li>✦ Recordatorios previos</li>
+                <li>✦ Contenido de preparación para la clase</li>
+                <li>✦ Acceso directo al equipo antes y después</li>
+              </ul>
+            </div>
+
+            <div className="pt-4 border-t border-beige">
+              <p className="editorial-eyebrow mb-2">Guarda la fecha</p>
+              <p className="text-tinto-deep">
+                📅 {MASTERCLASS.dateDisplay}
+                <br />
+                💻 {MASTERCLASS.platform}
+              </p>
+            </div>
           </div>
         </div>
       </main>
