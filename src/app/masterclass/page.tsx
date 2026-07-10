@@ -254,8 +254,8 @@ export default function MasterclassPage() {
             <div className="md:col-span-2 relative aspect-[3/4] max-w-sm mx-auto md:max-w-none w-full">
               <div className="absolute inset-0 border border-rosita-deep/30 translate-x-3 translate-y-3" aria-hidden />
               <Image
-                src="/images/sarahi/sarahi-about.jpg"
-                alt="Sarahi Haro"
+                src="/images/sarahi/sarahi-tablet.jpg"
+                alt="Sarahi Haro con blazer negro riendo con tablet"
                 fill
                 sizes="(max-width: 768px) 80vw, 320px"
                 className="object-cover relative"
