@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/comunidad",
     "/blog",
     "/contacto",
+    "/masterclass",
     "/sobre-mi", // legacy, redirige a /mi-historia eventualmente
   ];
 

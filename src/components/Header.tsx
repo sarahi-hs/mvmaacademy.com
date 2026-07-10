@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const NAV = [
   { href: "/mi-historia", label: "Mi Historia" },
@@ -16,6 +17,10 @@ const NAV = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Landing pages de conversión no llevan el nav del sitio.
+  if (pathname?.startsWith("/masterclass")) return null;
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-ivory/85 border-b border-beige/60">

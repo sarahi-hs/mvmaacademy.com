@@ -1,7 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SOCIALS, PERSON, SITE } from "@/lib/site";
 
 export function Footer() {
+  const pathname = usePathname();
+
+  // Landing pages de conversión no llevan el footer del sitio.
+  if (pathname?.startsWith("/masterclass")) return null;
+
   return (
     <footer className="mt-32 border-t border-beige bg-ivory-warm/60">
       <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-12">
