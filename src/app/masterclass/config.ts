@@ -26,6 +26,24 @@ export const PARA_QUIEN = [
   "Quieres convertirte en referente de tu industria.",
 ] as const;
 
+export const PILARES = [
+  {
+    key: "autoridad",
+    label: "Autoridad",
+    description: "Que te vean como la referente que ya eres, aunque aún no lo hayas dicho en voz alta.",
+  },
+  {
+    key: "impacto",
+    label: "Impacto",
+    description: "Que cada vez que aparezcas — en vivo, en foto, en junta — te ganes el espacio que mereces.",
+  },
+  {
+    key: "libertad",
+    label: "Libertad",
+    description: "Que dejes de disfrazarte para caber donde no perteneces y empieces a atraer donde sí.",
+  },
+] as const;
+
 export const APRENDERAS = [
   {
     title: "Por qué la ropa nunca fue el problema",
