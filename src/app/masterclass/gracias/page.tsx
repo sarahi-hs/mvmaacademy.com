@@ -43,13 +43,9 @@ export default function GraciasPage() {
             <em className="italic">Falta 1 paso.</em>
           </h1>
 
-          <p className="text-lg text-tinto-deep/80 mb-2 max-w-lg mx-auto leading-relaxed">
+          <p className="text-lg text-tinto-deep/80 mb-8 max-w-lg mx-auto leading-relaxed">
             Únete a nuestra comunidad de WhatsApp — es donde vas a recibir el{" "}
             <strong>link de Zoom</strong> el día de la clase.
-          </p>
-
-          <p className="text-sm text-tinto-deep/60 mb-8">
-            Sin este paso <strong>no recibirás</strong> el acceso a la masterclass.
           </p>
 
           <a
