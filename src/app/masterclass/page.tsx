@@ -170,20 +170,14 @@ export default function MasterclassPage() {
           <p className="editorial-eyebrow text-center mb-6">
             Un mensaje para ti antes de la clase
           </p>
-          <div className="aspect-video w-full bg-tinto-deep/5 border border-beige flex items-center justify-center">
-            {/* Placeholder para video — reemplazar con <iframe> de YouTube/Vimeo cuando esté listo */}
-            <div className="text-center text-tinto-deep/40 p-8">
-              <svg
-                width="72"
-                height="72"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="mx-auto mb-4"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              <p className="editorial-eyebrow">Video próximamente</p>
-            </div>
+          <div className="aspect-video w-full relative bg-tinto-deep/5 border border-beige overflow-hidden">
+            <iframe
+              src="https://player.vimeo.com/video/1208957237?title=0&byline=0&portrait=0"
+              className="absolute inset-0 w-full h-full"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              title="Masterclass — Deja de Esconderte"
+            />
           </div>
         </div>
       </section>
