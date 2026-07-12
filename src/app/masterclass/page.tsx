@@ -212,9 +212,9 @@ export default function MasterclassPage() {
             Lo que te vas a llevar
           </p>
           <h2 className="font-display text-3xl md:text-5xl text-tinto-deep text-center mb-16 leading-tight">
-            <span className="italic">3</span> cambios de percepción que
+            <span className="italic">L</span>os 3 secretos que transforman
             <br />
-            transforman cómo te ven
+            cómo te ve el mundo
           </h2>
           <div className="grid md:grid-cols-3 gap-8 md:gap-10">
             {APRENDERAS.map((item, i) => (
