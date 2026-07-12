@@ -129,7 +129,7 @@ export default function MasterclassPage() {
             href="#registro"
             className="inline-block px-10 py-4 bg-tinto text-hueso hover:bg-tinto-deep transition-colors text-base md:text-lg font-medium tracking-wide"
           >
-            {MASTERCLASS.ctaShort}
+            {MASTERCLASS.ctaHero}
           </a>
 
           <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-tinto-deep/70">
@@ -178,6 +178,15 @@ export default function MasterclassPage() {
               allowFullScreen
               title="Masterclass — Deja de Esconderte"
             />
+          </div>
+
+          <div className="mt-10 md:mt-12 text-center">
+            <a
+              href="#registro"
+              className="inline-block px-10 py-4 bg-tinto text-hueso hover:bg-tinto-deep transition-colors text-base md:text-lg font-medium tracking-wide"
+            >
+              {MASTERCLASS.ctaVideo}
+            </a>
           </div>
         </div>
       </section>

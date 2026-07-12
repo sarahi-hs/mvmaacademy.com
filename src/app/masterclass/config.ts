@@ -13,6 +13,8 @@ export const MASTERCLASS = {
   platform: "En vivo por Zoom",
   whatsappCommunityUrl: "https://chat.whatsapp.com/H4EjjyrL9WoK5MKYdc2fh2",
   ctaLabel: "Estoy lista para mi grandeza — Reservar gratis",
+  ctaHero: "Estoy lista para mi grandeza — Reservar mi lugar",
+  ctaVideo: "Sé que es mi momento — Reservar mi lugar",
   ctaShort: "Reservar mi lugar gratis",
   // ID del grupo en MailerLite donde caen las registradas
   mailerLiteGroupId: "192550673358784123",
