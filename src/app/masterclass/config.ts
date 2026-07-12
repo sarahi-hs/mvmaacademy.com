@@ -54,8 +54,8 @@ export const APRENDERAS = [
     body: "cómo detectarlo y desactivarlo.",
   },
   {
-    title: "Cómo tu percepción se vuelve tu realidad",
-    body: "el switch para atraer lo que sí quieres.",
+    title: "El secreto para atraer lo que sí quieres",
+    body: "y posicionarte como la referente de tu industria.",
   },
 ] as const;
 
