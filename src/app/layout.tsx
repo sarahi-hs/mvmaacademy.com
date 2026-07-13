@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { personSchema, websiteSchema } from "@/lib/schema";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { MetaPixel } from "@/components/MetaPixel";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -95,6 +96,7 @@ export default function RootLayout({
   return (
     <html lang="es-MX" className={`${cormorant.variable} ${inter.variable} ${mono.variable}`}>
       <body className="min-h-screen flex flex-col">
+        <MetaPixel />
         <JsonLd data={[personSchema("es"), websiteSchema()]} />
         <Header />
         <main className="flex-1">{children}</main>
