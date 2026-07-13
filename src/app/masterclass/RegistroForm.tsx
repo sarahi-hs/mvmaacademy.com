@@ -3,6 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 export function RegistroForm({ ctaLabel }: { ctaLabel: string }) {
   const router = useRouter();
   const [state, setState] = useState<"idle" | "sending" | "err">("idle");
@@ -23,6 +29,13 @@ export function RegistroForm({ ctaLabel }: { ctaLabel: string }) {
       if (!res.ok) {
         const j = await res.json().catch(() => ({}));
         throw new Error(j.error || "Error al registrar");
+      }
+      // Meta Pixel — evento de conversión Lead para optimización de ads
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq("track", "Lead", {
+          content_name: "Masterclass Deja de Esconderte",
+          content_category: "masterclass",
+        });
       }
       router.push("/masterclass/gracias");
     } catch (e) {
