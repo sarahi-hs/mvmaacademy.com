@@ -24,7 +24,7 @@ export const PARA_QUIEN = [
   "Estás emprendiendo o quieres emprender (tu negocio, tu marca, tu carrera).",
   "Estás lista para accionar e invertir en ti.",
   "Sientes que tienes TODO para lograrlo, pero algo te frena.",
-  "Quieres proyectarte como una mujer segura y magnética.",
+  "¿Alguna vez has sentido que eres la menos interesante del salón… aunque sabes que eres muy capaz?",
   "Quieres convertirte en referente de tu industria.",
 ] as const;
 
