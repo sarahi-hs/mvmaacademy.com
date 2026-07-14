@@ -7,8 +7,8 @@ export const MASTERCLASS = {
   subtitle:
     "Cómo proyectar el poder que ya tienes dentro para convertirte en referente de tu industria — sin ser experta en moda",
   // Fecha en ISO con offset de CDMX (UTC-6, sin horario de verano desde 2022)
-  dateIso: "2026-07-20T19:00:00-06:00",
-  dateDisplay: "Lunes 20 de julio · 7:00 pm CDMX",
+  dateIso: "2026-07-28T19:00:00-06:00",
+  dateDisplay: "Martes 28 de julio · 7:00 pm CDMX",
   durationDisplay: "1h30 – 1h45",
   platform: "En vivo por Zoom",
   whatsappCommunityUrl: "https://chat.whatsapp.com/H4EjjyrL9WoK5MKYdc2fh2",
