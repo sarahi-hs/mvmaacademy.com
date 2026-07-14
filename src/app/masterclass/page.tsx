@@ -172,7 +172,7 @@ export default function MasterclassPage() {
           </p>
           <div className="aspect-video w-full relative bg-tinto-deep/5 border border-beige overflow-hidden">
             <iframe
-              src="https://player.vimeo.com/video/1208957237?title=0&byline=0&portrait=0"
+              src="https://player.vimeo.com/video/1210003393?title=0&byline=0&portrait=0"
               className="absolute inset-0 w-full h-full"
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
