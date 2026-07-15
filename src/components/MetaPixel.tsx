@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-const META_PIXEL_ID = "1234023078756289";
+const META_PIXEL_ID = "983116238077057";
 
 /**
  * Meta Pixel base — carga fbevents.js y dispara PageView en carga inicial.
