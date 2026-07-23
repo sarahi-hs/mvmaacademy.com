@@ -203,14 +203,18 @@ export default function GlowClubPage() {
             <p className="text-ivory/70 italic">Cancela cuando quieras</p>
           </div>
 
-          {/* TODO(sarahi): reemplazar href con Payment Link real de Stripe cuando creemos la suscripción */}
           <a
-            href="/contacto?tipo=Quiero+entrar+al+Glow+Club"
+            href="https://buy.stripe.com/4gMfZidTq3fifrQ78v4wM0c"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-14 py-5 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-lg"
             style={{ letterSpacing: "0.2em" }}
           >
             QUIERO ENTRAR AL GLOW CLUB
           </a>
+          <p className="mt-4 text-xs text-ivory/50">
+            Suscripción segura vía Stripe · Cancela cuando quieras
+          </p>
         </Reveal>
       </section>
 
