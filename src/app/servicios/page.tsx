@@ -282,24 +282,31 @@ export default function ServiciosPage() {
         </Reveal>
       </section>
 
-      {/* CROSS-SELL MVMA TRIBE */}
-      <section className="bg-tinto-deep text-ivory py-20">
+      {/* PROGRAMA DIGITAL MVMA — Lead capture (sin precio, agendar llamada) */}
+      <section className="bg-tinto-deep text-ivory py-24 md:py-28">
         <Reveal className="max-w-4xl mx-auto px-6 text-center">
           <p className="editorial-eyebrow mb-6" style={{ color: "#D6C7AE" }}>
-            ¿Buscás un proceso integral?
+            ¿Buscas un proceso integral?
           </p>
           <h2 className="font-display text-3xl md:text-5xl text-ivory mb-6">
-            Conocé <span className="italic">MVMA Tribe</span>
+            <span className="italic">Programa MVMA</span> —<br />
+            Mi Versión Más Auténtica
           </h2>
-          <p className="text-ivory/85 max-w-2xl mx-auto mb-8">
-            Mi programa digital de 6 meses con 7 módulos de transformación, comunidad de mujeres en proceso
-            y clases quincenales. Para quienes quieren un acompañamiento sostenido más allá de las sesiones 1:1.
+          <p className="text-ivory/85 max-w-2xl mx-auto mb-4 leading-relaxed">
+            Mi programa digital de 6 meses con 7 módulos de transformación, comunidad de
+            mujeres en proceso y <strong className="text-beige">clases semanales</strong>.
+            Para quienes quieren un acompañamiento sostenido más allá de las sesiones 1:1.
+          </p>
+          <p className="text-ivory/70 italic max-w-xl mx-auto mb-10">
+            Este es mi programa insignia y no se vende por internet — antes de entrar,
+            platicamos por videollamada para asegurarnos de que es el proceso correcto para ti.
           </p>
           <Link
-            href="/comunidad"
-            className="inline-block px-10 py-4 bg-ivory text-tinto-deep hover:bg-beige transition-colors"
+            href="/contacto?tipo=Programa+MVMA+%28quiero+m%C3%A1s+info%29"
+            className="inline-block px-12 py-4 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-base"
+            style={{ letterSpacing: "0.2em" }}
           >
-            Ver MVMA Tribe
+            QUIERO MÁS INFORMACIÓN
           </Link>
         </Reveal>
       </section>
