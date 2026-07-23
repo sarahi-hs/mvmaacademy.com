@@ -351,22 +351,34 @@ export default function MiHistoriaPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* MARCAS QUE HAN CONFIADO */}
       <section className="bg-tinto-deep text-ivory py-24 md:py-32">
-        <Reveal className="max-w-4xl mx-auto px-6 text-center">
-          <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>— TU TURNO —</p>
-          <h2 className="font-display text-4xl md:text-6xl text-ivory mb-10 leading-[1.05]">
-            Tú <span className="italic text-beige">también puedes</span><br />
-            iniciar tu transformación<br />
-            <span className="italic">hoy.</span>
-          </h2>
-          <Link
-            href="/comunidad"
-            className="inline-block px-14 py-5 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-lg"
-            style={{ letterSpacing: "0.2em" }}
+        <Reveal className="max-w-5xl mx-auto px-6 text-center">
+          <p className="mono-label text-beige mb-6" style={{ color: "#D6C7AE" }}>
+            — MARCAS QUE HAN CONFIADO EN MÍ —
+          </p>
+          <h2
+            className="text-4xl md:text-6xl mb-16 leading-[1.05] italic"
+            style={{ fontFamily: "var(--font-script)", color: "#D6C7AE" }}
           >
-            INICIAR MI TRANSFORMACIÓN
-          </Link>
+            He trabajado con marcas<br />como
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
+            {[
+              { name: "Liverpool" },
+              { name: "Estée Lauder" },
+              { name: "Shasa" },
+            ].map((brand) => (
+              <div
+                key={brand.name}
+                className="font-display text-3xl md:text-4xl text-beige italic border border-beige/30 py-8 px-6"
+                style={{ color: "#D6C7AE" }}
+              >
+                {brand.name}
+              </div>
+            ))}
+          </div>
         </Reveal>
       </section>
     </>
