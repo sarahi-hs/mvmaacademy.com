@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/comunidad" },
 };
 
-const VIMEO_ID_PLACEHOLDER = "1196047853"; // TODO: cambiar cuando Sarahi grabe el VSL del Glow Club
+const VIMEO_ID = "1212836714";
 
 const INCLUYE = [
   {
@@ -107,16 +107,13 @@ export default function GlowClubPage() {
           <Reveal>
             <div className="relative w-full overflow-hidden shadow-[0_20px_60px_rgba(45,11,17,0.25)] bg-tinto-deep" style={{ aspectRatio: "16 / 9" }}>
               <iframe
-                src={`https://player.vimeo.com/video/${VIMEO_ID_PLACEHOLDER}?title=0&byline=0&portrait=0`}
+                src={`https://player.vimeo.com/video/${VIMEO_ID}?title=0&byline=0&portrait=0`}
                 className="absolute inset-0 w-full h-full"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
                 title="The Glow Club by MVMA"
               />
             </div>
-            <p className="text-center text-sm text-tinto-deep/50 italic mt-3">
-              Video oficial próximamente
-            </p>
           </Reveal>
         </div>
       </section>
