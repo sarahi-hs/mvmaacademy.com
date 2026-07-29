@@ -191,13 +191,21 @@ export default function GlowClubPage() {
 
           <div className="border-y border-beige/30 py-12 my-8">
             <p className="mono-label text-beige/80 mb-4" style={{ color: "rgba(214,199,174,0.8)" }}>
-              MEMBRESÍA MENSUAL
+              MEMBRESÍA MENSUAL · PRECIO DE APERTURA
             </p>
-            <div className="flex flex-wrap items-baseline gap-3 justify-center mb-3">
+            <div className="flex flex-wrap items-baseline gap-4 justify-center mb-3">
+              <p
+                className="font-display text-4xl md:text-5xl text-ivory/40 line-through decoration-ivory/60"
+                aria-label="Precio regular tachado"
+              >
+                $900
+              </p>
               <p className="font-display text-7xl md:text-8xl text-beige">$499</p>
               <span className="mono-label text-ivory/80">MXN / MES</span>
             </div>
-            <p className="text-ivory/70 italic">Cancela cuando quieras</p>
+            <p className="text-ivory/70 italic">
+              Precio de lanzamiento · Cancela cuando quieras
+            </p>
           </div>
 
           <a
