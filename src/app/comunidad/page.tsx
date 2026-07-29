@@ -235,9 +235,10 @@ export default function GlowClubPage() {
               <p className="text-beige italic text-sm mb-8">
                 Equivale a $374/mes · Te ahorras $1,497
               </p>
-              {/* TODO(sarahi): reemplazar con el Payment Link anual cuando lo crees */}
               <a
-                href="/contacto?tipo=Glow+Club+Anual"
+                href="https://buy.stripe.com/9B69AUg1yg24cfEfF14wM0f"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block mt-auto px-10 py-4 bg-beige text-tinto-deep hover:bg-ivory transition-colors mono-label text-sm"
                 style={{ letterSpacing: "0.18em" }}
               >
