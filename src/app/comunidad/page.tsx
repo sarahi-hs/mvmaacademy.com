@@ -115,6 +115,21 @@ export default function GlowClubPage() {
               />
             </div>
           </Reveal>
+
+          <Reveal delay={150}>
+            <div className="text-center mt-10">
+              <a
+                href="#inversion"
+                className="inline-block px-12 py-4 bg-tinto text-ivory hover:bg-tinto-deep transition-colors mono-label text-base"
+                style={{ letterSpacing: "0.2em" }}
+              >
+                QUIERO SER PARTE
+              </a>
+              <p className="mt-3 text-sm text-tinto-deep/60 italic">
+                Elige tu plan · Precio de apertura vigente
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
