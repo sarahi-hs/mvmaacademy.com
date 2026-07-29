@@ -189,36 +189,65 @@ export default function GlowClubPage() {
             acompaña <em>los 30 días del mes</em>.
           </p>
 
-          <div className="border-y border-beige/30 py-12 my-8">
-            <p className="mono-label text-beige/80 mb-4" style={{ color: "rgba(214,199,174,0.8)" }}>
-              MEMBRESÍA MENSUAL · PRECIO DE APERTURA
-            </p>
-            <div className="flex flex-wrap items-baseline gap-4 justify-center mb-3">
-              <p
-                className="font-display text-4xl md:text-5xl text-ivory/40 line-through decoration-ivory/60"
-                aria-label="Precio regular tachado"
-              >
-                $900
+          {/* DOS PLANES: MENSUAL + ANUAL */}
+          <div className="grid md:grid-cols-2 gap-6 my-8 max-w-4xl mx-auto">
+            {/* PLAN MENSUAL */}
+            <div className="border border-beige/30 p-8 flex flex-col">
+              <p className="mono-label text-beige/80 mb-4" style={{ color: "rgba(214,199,174,0.8)" }}>
+                MENSUAL · PRECIO DE APERTURA
               </p>
-              <p className="font-display text-7xl md:text-8xl text-beige">$499</p>
-              <span className="mono-label text-ivory/80">MXN / MES</span>
+              <div className="flex items-baseline gap-3 justify-center mb-2">
+                <p className="font-display text-3xl text-ivory/40 line-through decoration-ivory/60">
+                  $900
+                </p>
+                <p className="font-display text-6xl md:text-7xl text-beige">$499</p>
+              </div>
+              <p className="mono-label text-ivory/70 mb-6">MXN / MES</p>
+              <p className="text-ivory/60 italic text-sm mb-8">
+                Cancela cuando quieras
+              </p>
+              <a
+                href="https://buy.stripe.com/4gMfZidTq3fifrQ78v4wM0c"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-auto px-10 py-4 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-sm"
+                style={{ letterSpacing: "0.18em" }}
+              >
+                PAGAR MENSUAL
+              </a>
             </div>
-            <p className="text-ivory/70 italic">
-              Precio de lanzamiento · Cancela cuando quieras
-            </p>
+
+            {/* PLAN ANUAL — DESTACADO */}
+            <div className="relative border-2 border-beige bg-tinto p-8 flex flex-col">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-beige text-tinto-deep text-xs uppercase tracking-widest">
+                ⚜ AHORRA 25%
+              </span>
+              <p className="mono-label text-beige/90 mb-4" style={{ color: "rgba(214,199,174,0.9)" }}>
+                ANUAL · MEJOR VALOR
+              </p>
+              <div className="flex items-baseline gap-3 justify-center mb-2">
+                <p className="font-display text-3xl text-ivory/40 line-through decoration-ivory/60">
+                  $5,988
+                </p>
+                <p className="font-display text-6xl md:text-7xl text-beige">$4,491</p>
+              </div>
+              <p className="mono-label text-ivory/70 mb-6">MXN / AÑO</p>
+              <p className="text-beige italic text-sm mb-8">
+                Equivale a $374/mes · Te ahorras $1,497
+              </p>
+              {/* TODO(sarahi): reemplazar con el Payment Link anual cuando lo crees */}
+              <a
+                href="/contacto?tipo=Glow+Club+Anual"
+                className="inline-block mt-auto px-10 py-4 bg-beige text-tinto-deep hover:bg-ivory transition-colors mono-label text-sm"
+                style={{ letterSpacing: "0.18em" }}
+              >
+                PAGAR AÑO COMPLETO
+              </a>
+            </div>
           </div>
 
-          <a
-            href="https://buy.stripe.com/4gMfZidTq3fifrQ78v4wM0c"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-14 py-5 bg-ivory text-tinto-deep hover:bg-beige transition-colors mono-label text-lg"
-            style={{ letterSpacing: "0.2em" }}
-          >
-            QUIERO ENTRAR AL GLOW CLUB
-          </a>
-          <p className="mt-4 text-xs text-ivory/50">
-            Suscripción segura vía Stripe · Cancela cuando quieras
+          <p className="mt-8 text-xs text-ivory/50">
+            Pagos seguros vía Stripe · Cancela cuando quieras
           </p>
         </Reveal>
       </section>
