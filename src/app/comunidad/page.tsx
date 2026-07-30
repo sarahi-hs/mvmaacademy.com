@@ -4,6 +4,11 @@ import { SITE } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { Reveal } from "@/components/Reveal";
+import { CountdownBanner } from "@/components/CountdownBanner";
+
+// Fecha exacta en que termina el precio de apertura. Después de esta fecha
+// el timer se oculta solo. Sarahi: cámbiala si quieres extender la promo.
+const PROMO_ENDS_AT = "2026-08-04T23:59:59-06:00";
 
 export const metadata: Metadata = {
   title: "The Glow Club by MVMA — Membresía mensual de Sarahi Haro",
@@ -83,8 +88,11 @@ export default function GlowClubPage() {
         ]}
       />
 
+      {/* COUNTDOWN — precio de apertura */}
+      <CountdownBanner endAt={PROMO_ENDS_AT} />
+
       {/* HERO */}
-      <section className="bg-ivory pt-24 pb-12 md:pt-32 md:pb-16">
+      <section className="bg-ivory pt-16 pb-12 md:pt-24 md:pb-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <Reveal>
             <p className="mono-label text-tinto mb-6">— MVMA · THE GLOW CLUB —</p>
