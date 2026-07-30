@@ -88,11 +88,8 @@ export default function GlowClubPage() {
         ]}
       />
 
-      {/* COUNTDOWN — precio de apertura */}
-      <CountdownBanner endAt={PROMO_ENDS_AT} />
-
       {/* HERO */}
-      <section className="bg-ivory pt-16 pb-12 md:pt-24 md:pb-16">
+      <section className="bg-ivory pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <Reveal>
             <p className="mono-label text-tinto mb-6">— MVMA · THE GLOW CLUB —</p>
@@ -109,8 +106,11 @@ export default function GlowClubPage() {
         </div>
       </section>
 
-      {/* VIDEO — placeholder mientras Sarahi graba el VSL del Glow Club */}
-      <section className="bg-ivory pb-12 md:pb-16">
+      {/* COUNTDOWN — precio de apertura (arriba del video) */}
+      <CountdownBanner endAt={PROMO_ENDS_AT} />
+
+      {/* VIDEO */}
+      <section className="bg-ivory pt-12 pb-12 md:pt-16 md:pb-16">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
             <div className="relative w-full overflow-hidden shadow-[0_20px_60px_rgba(45,11,17,0.25)] bg-tinto-deep" style={{ aspectRatio: "16 / 9" }}>
@@ -133,9 +133,6 @@ export default function GlowClubPage() {
               >
                 QUIERO SER PARTE
               </a>
-              <p className="mt-3 text-sm text-tinto-deep/60 italic">
-                Elige tu plan · Precio de apertura vigente
-              </p>
             </div>
           </Reveal>
         </div>
