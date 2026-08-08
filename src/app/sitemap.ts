@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/contacto",
     "/masterclass",
+    "/glow-brunch",
     "/sobre-mi", // legacy, redirige a /mi-historia eventualmente
   ];
 
