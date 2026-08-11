@@ -33,7 +33,7 @@ export function GlowBrunchForm() {
       <div className="gb-form-price">
         <span className="gb-form-price-lab">Inversión</span>
         <span className="gb-form-price-val">
-          $399 <small>MXN</small>
+          $599 <small>MXN</small>
         </span>
       </div>
 
