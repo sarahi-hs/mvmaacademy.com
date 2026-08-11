@@ -47,7 +47,7 @@ export default function GlowBrunchPage() {
     },
     offers: {
       "@type": "Offer",
-      price: "399",
+      price: "599",
       priceCurrency: "MXN",
       availability: "https://schema.org/LimitedAvailability",
       url: `${SITE.url}/glow-brunch`,
@@ -209,7 +209,7 @@ export default function GlowBrunchPage() {
                   </dd>
 
                   <dt>Inversión</dt>
-                  <dd className="gb-price-dd">$399 MXN</dd>
+                  <dd className="gb-price-dd">$599 MXN</dd>
                 </dl>
               </div>
 
