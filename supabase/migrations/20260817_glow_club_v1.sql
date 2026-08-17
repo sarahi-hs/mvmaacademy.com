@@ -14,28 +14,23 @@
 --   • Cada check diario suma 10 puntos.
 --   • Una chica solo puede hacer 1 check por día (unique constraint).
 --   • Solo puede checkear el día actual (validación en app).
---   • Tiene acceso si:
---       - member_type = 'annual'  y  access_expires_at > now()
---       - member_type = 'monthly' y  status = 'active'
+--   • Sarahi da de alta a las chicas manualmente desde su panel admin.
 --   • Ranking se calcula por mes calendario (challenge_month).
 -- =========================================================
 
 -- 1) MIEMBROS DEL GLOW CLUB
 -- ---------------------------------------------------------
 create table if not exists glow_members (
-  id              uuid primary key default gen_random_uuid(),
-  email           text unique not null,
-  password_hash   text not null,
-  full_name       text not null,
-  initials        text,                            -- para el avatar (ej. "AR")
-  member_type     text not null check (member_type in ('monthly', 'annual')),
-  status          text not null default 'active'
-                    check (status in ('active', 'paused', 'canceled')),
-  access_expires_at timestamptz,                   -- solo para annual; null en monthly
-  stripe_customer_id text,                         -- para reconciliar con Stripe
-  stripe_subscription_id text,                     -- solo monthly
-  created_at      timestamptz not null default now(),
-  updated_at      timestamptz not null default now()
+  id                      uuid primary key default gen_random_uuid(),
+  email                   text unique not null,
+  password_hash           text not null,
+  full_name               text not null,
+  initials                text,                        -- para el avatar (ej. "AR")
+  status                  text not null default 'active'
+                            check (status in ('active', 'paused')),
+  must_change_password    boolean not null default true,  -- forzar cambio en 1er login
+  created_at              timestamptz not null default now(),
+  updated_at              timestamptz not null default now()
 );
 
 create index if not exists glow_members_email_idx  on glow_members (email);
@@ -43,7 +38,7 @@ create index if not exists glow_members_status_idx on glow_members (status);
 
 -- 2) RETOS MENSUALES
 -- ---------------------------------------------------------
--- Sarahi crea un reto por mes. Solo puede haber uno activo a la vez.
+-- Sarahi crea un reto por mes.
 create table if not exists glow_challenges (
   id              uuid primary key default gen_random_uuid(),
   month           date not null unique,             -- primer día del mes (ej. 2026-08-01)
@@ -75,7 +70,7 @@ create index if not exists glow_checkins_challenge_idx  on glow_checkins (challe
 
 -- 4) VISTA: RANKING DEL MES
 -- ---------------------------------------------------------
--- Calcula puntos totales y días cumplidos por chica en el reto del mes actual.
+-- Calcula puntos totales y días cumplidos por chica en cada reto mensual.
 -- Ordenada de mayor a menor puntos.
 create or replace view glow_monthly_ranking as
 select
@@ -95,10 +90,6 @@ left join glow_checkins ci
 where m.status = 'active'
 group by m.id, m.full_name, m.initials, c.id, c.month
 order by c.month desc, total_points desc, days_completed desc;
-
--- 5) VISTA: RACHA ACTUAL DE UNA CHICA
--- ---------------------------------------------------------
--- (Se puede consultar como función en el futuro; por ahora lo calculamos en app)
 
 -- =========================================================
 -- ROW LEVEL SECURITY

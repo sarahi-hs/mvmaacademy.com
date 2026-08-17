@@ -24,11 +24,8 @@ export type GlowMember = {
   password_hash: string;
   full_name: string;
   initials: string | null;
-  member_type: "monthly" | "annual";
-  status: "active" | "paused" | "canceled";
-  access_expires_at: string | null;
-  stripe_customer_id: string | null;
-  stripe_subscription_id: string | null;
+  status: "active" | "paused";
+  must_change_password: boolean;
   created_at: string;
   updated_at: string;
 };
@@ -67,15 +64,10 @@ export type GlowRankingRow = {
 
 /**
  * Devuelve true si la chica tiene acceso vigente al Glow Club.
- * - monthly: mientras status = 'active'
- * - annual : mientras access_expires_at esté en el futuro
+ * Simple: mientras el status sea 'active'.
+ * Si en el futuro Sarahi deja de cobrar a alguien, cambia el status a 'paused'
+ * desde su panel admin y esa chica pierde acceso.
  */
-export function hasActiveAccess(m: Pick<GlowMember, "status" | "member_type" | "access_expires_at">): boolean {
-  if (m.status !== "active") return false;
-  if (m.member_type === "monthly") return true;
-  if (m.member_type === "annual") {
-    if (!m.access_expires_at) return false;
-    return new Date(m.access_expires_at).getTime() > Date.now();
-  }
-  return false;
+export function hasActiveAccess(m: Pick<GlowMember, "status">): boolean {
+  return m.status === "active";
 }
