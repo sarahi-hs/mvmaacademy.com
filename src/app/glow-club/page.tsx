@@ -31,12 +31,25 @@ export default async function GlowClubPage() {
   const pointsPerDay = challenge?.points_per_day ?? 10;
   const totalPoints = checkins.size * pointsPerDay;
 
-  // Días del mes hasta hoy (para el calendario)
+  // Calendario del MES COMPLETO — muestra todos los días del mes actual.
+  // Cada día tiene un estado: cumplido, fallado (ya pasó y no checó),
+  // hoy (aún puede checar), o futuro (aún no llega).
   const todayNum = parseInt(today.slice(-2), 10);
-  const daysArray = Array.from({ length: todayNum }, (_, i) => {
-    const day = String(i + 1).padStart(2, "0");
+  const [year, month] = monthStart.split("-").map(Number);
+  // último día del mes: día 0 del siguiente mes = último día del actual
+  const daysInMonth = new Date(year!, month!, 0).getDate();
+  type DayState = "done" | "missed" | "today" | "future";
+  const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
+    const dayNum = i + 1;
+    const day = String(dayNum).padStart(2, "0");
     const dateKey = `${monthStart.slice(0, 8)}${day}`;
-    return { day: i + 1, dateKey, checked: checkins.has(dateKey) };
+    const checked = checkins.has(dateKey);
+    let state: DayState;
+    if (checked) state = "done";
+    else if (dayNum < todayNum) state = "missed";
+    else if (dayNum === todayNum) state = "today";
+    else state = "future";
+    return { day: dayNum, dateKey, checked, state };
   });
 
   // Posición de la chica en el ranking

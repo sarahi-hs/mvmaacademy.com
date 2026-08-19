@@ -5,7 +5,12 @@ import { useRouter } from "next/navigation";
 import type { GlowChallenge, GlowRankingRow } from "@/lib/glow/supabase";
 import type { GlowSession } from "@/lib/glow/auth";
 
-type DayCell = { day: number; dateKey: string; checked: boolean };
+type DayCell = {
+  day: number;
+  dateKey: string;
+  checked: boolean;
+  state: "done" | "missed" | "today" | "future";
+};
 
 type Props = {
   session: GlowSession;
@@ -165,7 +170,7 @@ export default function DashboardClient({
           </div>
         </div>
 
-        {/* Calendario del mes */}
+        {/* Calendario del mes completo */}
         <section className="rounded-2xl bg-[#FAF7F2] p-4">
           <div className="mb-3 flex items-center justify-between">
             <p className="text-[11px] font-medium uppercase tracking-wider text-[#3D1A1F]/60">
@@ -179,32 +184,70 @@ export default function DashboardClient({
           <div
             className="grid gap-1"
             style={{
-              gridTemplateColumns: `repeat(${Math.min(
-                daysArray.length,
-                17
-              )}, minmax(0, 1fr))`,
+              // Repartimos el mes en filas parejas; 16 columnas se ve bien
+              // tanto para meses de 28 como para meses de 31 días.
+              gridTemplateColumns: `repeat(16, minmax(0, 1fr))`,
             }}
           >
             {daysArray.map((d) => {
-              const isToday = d.day === todayNum;
+              // 4 estados visuales:
+              // done    → tinto sólido con ✓ (día cumplido)
+              // today   → borde punteado tinto sobre blanco (hoy, aún puede)
+              // missed  → rosita claro con ✕ tenue (ya pasó y no cumplió)
+              // future  → gris muy claro (aún no llega)
+              const styles: Record<DayCell["state"], string> = {
+                done: "bg-[#722F37]",
+                today: "border-2 border-dashed border-[#722F37] bg-white",
+                missed: "bg-[#F4D4D4]",
+                future: "bg-[#F4D4D4]/30 border border-[#F4D4D4]",
+              };
+              const dateLabel = new Date(d.dateKey + "T12:00:00")
+                .toLocaleDateString("es-MX", {
+                  day: "numeric",
+                  month: "short",
+                });
+              const titleByState = {
+                done: `${dateLabel} — ✓ cumpliste`,
+                today: `${dateLabel} — hoy`,
+                missed: `${dateLabel} — no cumpliste`,
+                future: `${dateLabel} — aún no llega`,
+              };
               return (
                 <div
                   key={d.dateKey}
-                  className={`aspect-square rounded ${
-                    d.checked
-                      ? "bg-[#722F37]"
-                      : isToday
-                        ? "border border-dashed border-[#722F37] bg-white"
-                        : "bg-[#F4D4D4]"
-                  } flex items-center justify-center`}
-                  title={`Día ${d.day}${d.checked ? " ✓" : ""}`}
+                  className={`aspect-square rounded ${styles[d.state]} flex items-center justify-center`}
+                  title={titleByState[d.state]}
                 >
-                  {d.checked && (
+                  {d.state === "done" && (
                     <span className="text-[10px] font-bold text-white">✓</span>
+                  )}
+                  {d.state === "today" && (
+                    <span className="text-[9px] font-bold text-[#722F37]">
+                      {d.day}
+                    </span>
                   )}
                 </div>
               );
             })}
+          </div>
+          {/* Leyenda pequeña */}
+          <div className="mt-3 flex flex-wrap items-center gap-3 text-[10px] text-[#3D1A1F]/60">
+            <span className="flex items-center gap-1">
+              <span className="inline-block h-2.5 w-2.5 rounded-sm bg-[#722F37]" />{" "}
+              cumplido
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="inline-block h-2.5 w-2.5 rounded-sm border-2 border-dashed border-[#722F37] bg-white" />{" "}
+              hoy
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="inline-block h-2.5 w-2.5 rounded-sm bg-[#F4D4D4]" />{" "}
+              no cumpliste
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="inline-block h-2.5 w-2.5 rounded-sm border border-[#F4D4D4] bg-[#F4D4D4]/30" />{" "}
+              por venir
+            </span>
           </div>
         </section>
 
