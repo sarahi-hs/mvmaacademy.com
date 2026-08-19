@@ -111,9 +111,9 @@ alter table glow_checkins   enable row level security;
 insert into glow_challenges (month, title, description, points_per_day, prize)
 values (
   '2026-08-01',
-  '5 minutos a solas cada día',
-  'Un momento contigo misma, sin celular, sin ruido. Respira, escúchate, vuelve a ti.',
+  '5 minutos a solas cada dia',
+  'Un momento contigo misma, sin celular, sin ruido. Respira, escuchate, vuelve a ti.',
   10,
-  'Sesión 1:1 con Sarahi'
+  'Sesion 1:1 con Sarahi'
 )
 on conflict (month) do nothing;
