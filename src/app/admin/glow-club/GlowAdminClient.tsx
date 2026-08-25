@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { GlowChallenge, GlowRankingRow } from "@/lib/glow/supabase";
 
@@ -90,6 +90,36 @@ export default function GlowAdminClient({
     });
     setNewName("");
     setNewEmail("");
+    startTransition(() => router.refresh());
+  }
+
+  async function resetMemberPassword(m: MemberRow) {
+    if (
+      !confirm(
+        `¿Generar una contraseña nueva para ${m.full_name}?\n\nLa contraseña anterior deja de servir. Vas a poder copiar la nueva desde una ventanita para mandársela por WhatsApp.`
+      )
+    )
+      return;
+    const res = await fetch("/api/admin/glow-club/members/reset-password", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ memberId: m.id }),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "No se pudo generar la nueva contraseña");
+      return;
+    }
+    // Reutilizamos el mismo modal del alta para mostrar la contraseña nueva
+    setTempPasswordShown({
+      email: data.member.email,
+      name: data.member.full_name,
+      password: data.tempPassword,
+    });
+    // Scroll suave al modal
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 50);
     startTransition(() => router.refresh());
   }
 
@@ -230,44 +260,18 @@ export default function GlowAdminClient({
         )}
 
         {tempPasswordShown && (
-          <div className="mt-4 rounded-xl border-2 border-[#722F37] bg-[#F4D4D4]/30 p-4">
-            <p className="text-sm font-medium text-[#3D1A1F]">
-              ✅ Cuenta creada para {tempPasswordShown.name}
-            </p>
-            <p className="mt-2 text-xs text-[#3D1A1F]/70">
-              Manda estos datos por WhatsApp:
-            </p>
-            <div className="mt-2 rounded-lg bg-white p-3 font-mono text-sm">
-              <div>Portal: mvmaacademy.com/glow-club</div>
-              <div>Correo: <strong>{tempPasswordShown.email}</strong></div>
-              <div>
-                Contraseña temporal:{" "}
-                <strong className="text-[#722F37]">
-                  {tempPasswordShown.password}
-                </strong>
-              </div>
-            </div>
-            <p className="mt-2 text-[11px] text-[#3D1A1F]/60">
-              ⚠️ Guarda o copia la contraseña ahora — no se vuelve a mostrar. Ella
-              la va a cambiar la primera vez que entre.
-            </p>
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(
-                  `Bienvenida al Glow Club 🌸\n\nPortal: https://mvmaacademy.com/glow-club\nCorreo: ${tempPasswordShown.email}\nContraseña: ${tempPasswordShown.password}\n\nEntra y cambia tu contraseña por una que solo tú sepas ✨`
-                );
-              }}
-              className="mt-3 rounded-lg bg-[#722F37] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#3D1A1F]"
-            >
-              📋 Copiar mensaje para WhatsApp
-            </button>
-            <button
-              onClick={() => setTempPasswordShown(null)}
-              className="ml-2 text-xs text-[#3D1A1F]/60 underline"
-            >
-              Cerrar
-            </button>
-          </div>
+          <TempPasswordCard
+            data={tempPasswordShown}
+            onClose={() => {
+              if (
+                confirm(
+                  "¿Segura de cerrar? La contraseña no se vuelve a mostrar."
+                )
+              ) {
+                setTempPasswordShown(null);
+              }
+            }}
+          />
         )}
       </section>
 
@@ -329,13 +333,23 @@ export default function GlowAdminClient({
                       </span>
                     </td>
                     <td className="py-2 text-right">
-                      <button
-                        onClick={() => toggleMemberStatus(m)}
-                        disabled={pending}
-                        className="text-xs text-[#722F37] underline underline-offset-2 hover:no-underline"
-                      >
-                        {m.status === "active" ? "pausar" : "reactivar"}
-                      </button>
+                      <div className="flex items-center justify-end gap-3">
+                        <button
+                          onClick={() => resetMemberPassword(m)}
+                          disabled={pending}
+                          className="text-xs text-[#722F37] underline underline-offset-2 hover:no-underline"
+                          title="Generar una contraseña temporal nueva"
+                        >
+                          🔑 nueva contraseña
+                        </button>
+                        <button
+                          onClick={() => toggleMemberStatus(m)}
+                          disabled={pending}
+                          className="text-xs text-[#722F37] underline underline-offset-2 hover:no-underline"
+                        >
+                          {m.status === "active" ? "pausar" : "reactivar"}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 );
@@ -345,5 +359,138 @@ export default function GlowAdminClient({
         )}
       </section>
     </main>
+  );
+}
+
+// -----------------------------------------------------------
+// TempPasswordCard
+// -----------------------------------------------------------
+// Modal defensivo — muestra la contraseña temporal y hace TODO lo posible
+// para que Sarahi no la pierda si accidentalmente refresca o cierra:
+//   1. Auto-copia el mensaje al portapapeles apenas aparece
+//   2. Warning ANTES de cerrar (confirm)
+//   3. Botón para abrir WhatsApp Web con el mensaje pre-cargado
+//   4. Botón para descargar como .txt de respaldo
+// -----------------------------------------------------------
+function TempPasswordCard({
+  data,
+  onClose,
+}: {
+  data: { email: string; name: string; password: string };
+  onClose: () => void;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const message = `Bienvenida al Glow Club 🌸\n\nPortal: https://mvmaacademy.com/glow-club\nCorreo: ${data.email}\nContraseña temporal: ${data.password}\n\nEntra y cambia tu contraseña por una que solo tú sepas ✨`;
+
+  // Auto-copiar al portapapeles cuando el modal se muestra por primera vez
+  useEffect(() => {
+    navigator.clipboard
+      .writeText(message)
+      .then(() => setCopied(true))
+      .catch(() => setCopied(false));
+    // No dependemos de "message" — solo queremos correrlo una vez por modal
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Prevenir cerrar la pestaña sin querer mientras el modal está abierto
+  useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, []);
+
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(message);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      alert("No se pudo copiar. Selecciona el texto manualmente.");
+    }
+  }
+
+  function openWhatsApp() {
+    // Abre WhatsApp Web con el mensaje listo (sin destinatario, para elegir a quién enviarlo)
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/?text=${encoded}`, "_blank", "noopener,noreferrer");
+  }
+
+  function downloadTxt() {
+    const blob = new Blob([message], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `glow-club-${data.email.replace(/[@.]/g, "-")}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  return (
+    <div className="mt-4 rounded-xl border-2 border-[#722F37] bg-[#F4D4D4]/30 p-4">
+      <div className="flex items-center justify-between">
+        <p className="text-sm font-medium text-[#3D1A1F]">
+          ✅ Contraseña temporal lista para {data.name}
+        </p>
+        {copied && (
+          <span className="rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-medium text-green-800">
+            ✓ copiada al portapapeles
+          </span>
+        )}
+      </div>
+
+      <p className="mt-2 text-xs text-[#3D1A1F]/70">
+        Manda estos datos por WhatsApp:
+      </p>
+      <div className="mt-2 rounded-lg bg-white p-3 font-mono text-sm">
+        <div>Portal: mvmaacademy.com/glow-club</div>
+        <div>
+          Correo: <strong>{data.email}</strong>
+        </div>
+        <div>
+          Contraseña temporal:{" "}
+          <strong className="text-[#722F37]">{data.password}</strong>
+        </div>
+      </div>
+
+      <p className="mt-2 text-[11px] text-[#3D1A1F]/60">
+        ⚠️ La contraseña <strong>no se vuelve a mostrar</strong>. Ya la copié al
+        portapapeles automáticamente y también puedes descargarla como archivo
+        de respaldo. Si la pierdes, usa el botón <strong>🔑 nueva contraseña</strong> en
+        la lista de abajo.
+      </p>
+
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <button
+          onClick={copyToClipboard}
+          className="rounded-lg bg-[#722F37] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#3D1A1F]"
+        >
+          📋 {copied ? "Copiada ✓" : "Copiar de nuevo"}
+        </button>
+        <button
+          onClick={openWhatsApp}
+          className="rounded-lg border border-[#722F37] px-3 py-1.5 text-xs font-medium text-[#722F37] hover:bg-[#F4D4D4]/40"
+        >
+          💬 Abrir en WhatsApp
+        </button>
+        <button
+          onClick={downloadTxt}
+          className="rounded-lg border border-[#722F37] px-3 py-1.5 text-xs font-medium text-[#722F37] hover:bg-[#F4D4D4]/40"
+        >
+          💾 Descargar como .txt
+        </button>
+        <button
+          onClick={onClose}
+          className="ml-auto text-xs text-[#3D1A1F]/60 underline"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
   );
 }
