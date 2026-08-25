@@ -17,21 +17,6 @@ export function prSupabase() {
   });
 }
 
-export type PrQuery = {
-  id: string;
-  source: string | null;
-  subject: string | null;
-  journalist_email: string | null;
-  body: string | null;
-  deadline: string | null;
-  score: number;
-  draft_response: string | null;
-  status: "pending" | "approved" | "sent" | "rejected";
-  approved_by_user_id: string | null;
-  created_at: string;
-  sent_at: string | null;
-};
-
 export type PrUser = {
   id: string;
   email: string;

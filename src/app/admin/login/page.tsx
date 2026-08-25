@@ -21,7 +21,7 @@ export default function AdminLoginPage() {
         body: JSON.stringify({ email, password }),
       });
       if (res.ok) {
-        router.push("/admin/pr-autopilot");
+        router.push("/admin/glow-club");
       } else {
         const data = await res.json().catch(() => ({}));
         setError(data.error || "No se pudo iniciar sesión");
@@ -39,7 +39,7 @@ export default function AdminLoginPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-sm bg-ivory-warm/40 border border-beige p-10"
       >
-        <p className="mono-label text-tinto mb-2 text-center">— PR AUTO-PILOT —</p>
+        <p className="mono-label text-tinto mb-2 text-center">— ADMIN —</p>
         <h1 className="font-display text-3xl text-tinto-deep mb-8 text-center">
           Tu tablero privado
         </h1>
