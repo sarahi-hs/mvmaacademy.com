@@ -13,14 +13,14 @@ export function GlowBrunchForm() {
     const n = nombre.trim();
     const c = correo.trim();
     if (!n || !c) {
-      alert("Déjame tu nombre y correo para poder confirmarte.");
+      alert("Déjame tu nombre y correo para poder avisarte.");
       return;
     }
     const msg =
-      "¡Hola Sarahi! Quiero apartar mi lugar para The Glow Brunch del domingo 23 de agosto en Guadalajara.\n\n" +
+      "¡Hola Sarahi! ✨ Quiero estar en la lista de espera para el próximo Glow Brunch.\n\n" +
       `Mi nombre: ${n}\n` +
       `Mi correo: ${c}\n\n` +
-      "¿Me pasas los datos para hacer la transferencia? ✨";
+      "¡Avísame apenas se abran los lugares!";
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank", "noopener");
   }
@@ -28,14 +28,8 @@ export function GlowBrunchForm() {
   return (
     <form className="gb-reservar" id="reservar" onSubmit={handleSubmit} noValidate>
       <h3>
-        Aparta <em>tu lugar</em>
+        Anótate a la <em>lista</em>
       </h3>
-      <div className="gb-form-price">
-        <span className="gb-form-price-lab">Inversión</span>
-        <span className="gb-form-price-val">
-          $599 <small>MXN</small>
-        </span>
-      </div>
 
       <label>
         Nombre
@@ -62,12 +56,14 @@ export function GlowBrunchForm() {
         />
       </label>
       <button type="submit" className="gb-submit">
-        Reservar por WhatsApp
+        Anótame por WhatsApp
         <span className="gb-arrow" aria-hidden="true">
           →
         </span>
       </button>
-      <p className="gb-form-note">Sin cobro hasta confirmar por transferencia.</p>
+      <p className="gb-form-note">
+        Sin costo, sin compromiso. Te aviso primero cuando abramos los lugares.
+      </p>
     </form>
   );
 }
