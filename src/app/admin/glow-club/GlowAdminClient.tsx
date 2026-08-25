@@ -116,22 +116,14 @@ export default function GlowAdminClient({
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-medium text-[#3D1A1F]">
-            Admin · Glow Club
-          </h1>
-          <p className="text-sm text-[#3D1A1F]/60">
-            {activeCount} chica{activeCount === 1 ? "" : "s"} activa
-            {activeCount === 1 ? "" : "s"} · {members.length} total
-          </p>
-        </div>
-        <a
-          href="/admin/pr-autopilot"
-          className="text-xs text-[#722F37] underline underline-offset-2"
-        >
-          ← PR Autopilot
-        </a>
+      <div className="mb-6">
+        <h1 className="text-2xl font-medium text-[#3D1A1F]">
+          Admin · Glow Club
+        </h1>
+        <p className="text-sm text-[#3D1A1F]/60">
+          {activeCount} chica{activeCount === 1 ? "" : "s"} activa
+          {activeCount === 1 ? "" : "s"} · {members.length} total
+        </p>
       </div>
 
       {/* Reto del mes */}
