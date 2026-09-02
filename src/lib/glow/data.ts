@@ -3,6 +3,7 @@ import {
   type GlowChallenge,
   type GlowRankingRow,
   type GlowReflection,
+  type GlowReflectionReply,
   type GlowReflectionWithAuthor,
 } from "./supabase";
 
@@ -129,7 +130,7 @@ export async function getRecentReflections(
       | { full_name: string; initials: string | null }[]
       | null;
   };
-  return ((data || []) as unknown as Row[]).map((r) => {
+  const reflections = ((data || []) as unknown as Row[]).map((r) => {
     const author = Array.isArray(r.glow_members)
       ? r.glow_members[0]
       : r.glow_members;
@@ -142,8 +143,59 @@ export async function getRecentReflections(
       created_at: r.created_at,
       author_name: author?.full_name ?? "Una Glow Girl",
       author_initials: author?.initials ?? null,
+      replies: [] as GlowReflectionReply[],
     };
   });
+
+  // Segunda query: todas las respuestas de estas reflexiones, con autor.
+  // Una sola query masiva es más eficiente que N queries individuales.
+  const reflectionIds = reflections.map((r) => r.id);
+  if (reflectionIds.length === 0) return reflections;
+
+  const { data: repliesData, error: repErr } = await supa
+    .from("glow_reflection_replies")
+    .select(
+      `id, reflection_id, member_id, text, created_at,
+       glow_members ( full_name, initials )`
+    )
+    .in("reflection_id", reflectionIds)
+    .order("created_at", { ascending: true });
+
+  if (repErr) {
+    console.error("[glow data] getRecentReflections replies", repErr);
+    return reflections;
+  }
+
+  type ReplyRow = Omit<GlowReflectionReply, "author_name" | "author_initials"> & {
+    glow_members:
+      | { full_name: string; initials: string | null }
+      | { full_name: string; initials: string | null }[]
+      | null;
+  };
+  const byRef = new Map<string, GlowReflectionReply[]>();
+  for (const raw of (repliesData || []) as unknown as ReplyRow[]) {
+    const author = Array.isArray(raw.glow_members)
+      ? raw.glow_members[0]
+      : raw.glow_members;
+    const reply: GlowReflectionReply = {
+      id: raw.id,
+      reflection_id: raw.reflection_id,
+      member_id: raw.member_id,
+      text: raw.text,
+      created_at: raw.created_at,
+      author_name: author?.full_name ?? "Una Glow Girl",
+      author_initials: author?.initials ?? null,
+    };
+    const list = byRef.get(raw.reflection_id) ?? [];
+    list.push(reply);
+    byRef.set(raw.reflection_id, list);
+  }
+
+  for (const r of reflections) {
+    r.replies = byRef.get(r.id) ?? [];
+  }
+
+  return reflections;
 }
 
 /** Ranking del mes actual. */

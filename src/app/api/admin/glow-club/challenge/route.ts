@@ -33,6 +33,10 @@ export async function POST(req: Request) {
       points_per_day:
         typeof body.points_per_day === "number" ? body.points_per_day : 10,
       prize: typeof body.prize === "string" ? body.prize.trim() : null,
+      closing_phrase:
+        typeof body.closing_phrase === "string"
+          ? body.closing_phrase.trim() || null
+          : null,
     };
 
     // Upsert por mes
