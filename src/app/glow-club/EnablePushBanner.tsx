@@ -1,0 +1,216 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+// Convierte la VAPID public key (base64url) al ArrayBuffer que necesita
+// pushManager.subscribe(). Requisito de la Web Push API.
+// Devolvemos ArrayBuffer (no Uint8Array) para que TypeScript no se queje
+// con la firma tipada de applicationServerKey.
+function urlBase64ToArrayBuffer(base64: string): ArrayBuffer {
+  const padding = "=".repeat((4 - (base64.length % 4)) % 4);
+  const b64 = (base64 + padding).replace(/-/g, "+").replace(/_/g, "/");
+  const raw = atob(b64);
+  const buffer = new ArrayBuffer(raw.length);
+  const view = new Uint8Array(buffer);
+  for (let i = 0; i < raw.length; i++) view[i] = raw.charCodeAt(i);
+  return buffer;
+}
+
+type UiState =
+  | "loading"          // aún verificando qué tiene el browser
+  | "unsupported"      // este browser no soporta push (iOS viejo, etc.)
+  | "not-installed"    // iOS sin PWA instalada — la única forma de pushes es instalar
+  | "denied"           // ya rechazó permisos en el pasado
+  | "prompt"           // aún no ha decidido — mostramos botón
+  | "subscribed"       // ya tiene notificaciones activas
+  | "loading-action";  // spinner mientras subscribimos/desubscribimos
+
+export default function EnablePushBanner() {
+  const [state, setState] = useState<UiState>("loading");
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    void detectState();
+  }, []);
+
+  async function detectState() {
+    setError(null);
+    if (typeof window === "undefined") return;
+
+    if (!("serviceWorker" in navigator) || !("PushManager" in window)) {
+      setState("unsupported");
+      return;
+    }
+
+    // iOS solo permite push si la PWA está instalada (standalone mode)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !("MSStream" in window);
+    const isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      (window.navigator as { standalone?: boolean }).standalone === true;
+    if (isIOS && !isStandalone) {
+      setState("not-installed");
+      return;
+    }
+
+    if (Notification.permission === "denied") {
+      setState("denied");
+      return;
+    }
+
+    try {
+      const reg = await navigator.serviceWorker.getRegistration("/glow-club/");
+      const existing = await reg?.pushManager.getSubscription();
+      if (existing && Notification.permission === "granted") {
+        setState("subscribed");
+        return;
+      }
+    } catch {
+      // ignoramos, cae al prompt
+    }
+    setState("prompt");
+  }
+
+  async function enablePush() {
+    setState("loading-action");
+    setError(null);
+    try {
+      const vapid = process.env.NEXT_PUBLIC_GLOW_VAPID_PUBLIC_KEY;
+      if (!vapid) throw new Error("Falta VAPID public key");
+
+      // Registrar el Service Worker (o reutilizar si ya está)
+      let reg = await navigator.serviceWorker.getRegistration("/glow-club/");
+      if (!reg) {
+        reg = await navigator.serviceWorker.register("/glow-club/sw.js", {
+          scope: "/glow-club/",
+        });
+      }
+      await navigator.serviceWorker.ready;
+
+      // Pedir permiso
+      const permission = await Notification.requestPermission();
+      if (permission !== "granted") {
+        setState(permission === "denied" ? "denied" : "prompt");
+        return;
+      }
+
+      // Subscribe
+      const sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToArrayBuffer(vapid),
+      });
+      const raw = sub.toJSON();
+      const p256dh = raw.keys?.p256dh;
+      const auth = raw.keys?.auth;
+      if (!raw.endpoint || !p256dh || !auth) {
+        throw new Error("Subscripción sin datos");
+      }
+
+      const res = await fetch("/api/glow-club/push/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          endpoint: raw.endpoint,
+          keys: { p256dh, auth },
+          userAgent: navigator.userAgent,
+        }),
+      });
+      if (!res.ok) {
+        throw new Error("El servidor rechazó la subscripción");
+      }
+      setState("subscribed");
+    } catch (err) {
+      console.error(err);
+      setError(err instanceof Error ? err.message : "No se pudo activar");
+      setState("prompt");
+    }
+  }
+
+  async function disablePush() {
+    setState("loading-action");
+    try {
+      const reg = await navigator.serviceWorker.getRegistration("/glow-club/");
+      const sub = await reg?.pushManager.getSubscription();
+      if (sub) {
+        await fetch("/api/glow-club/push/unsubscribe", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ endpoint: sub.endpoint }),
+        });
+        await sub.unsubscribe();
+      }
+      setState("prompt");
+    } catch {
+      setState("subscribed");
+    }
+  }
+
+  if (state === "loading" || state === "subscribed" || state === "unsupported") {
+    // subscribed + unsupported: no mostramos nada (ya está o no aplica)
+    // loading: espera silenciosa
+    return null;
+  }
+
+  return (
+    <div className="mt-5 rounded-2xl border border-[#F4D4D4] bg-[#F4D4D4]/30 p-4">
+      <div className="flex items-start gap-3">
+        <span className="text-lg" aria-hidden>🔔</span>
+        <div className="flex-1">
+          <p className="text-sm font-medium text-[#3D1A1F]">
+            Activa recordatorios diarios
+          </p>
+          {state === "prompt" && (
+            <p className="mt-1 text-xs text-[#3D1A1F]/70">
+              Recibe una notificación bonita en tu cel a las 7pm si aún no diste
+              tu check del día. Suave y sin spam 🌸
+            </p>
+          )}
+          {state === "not-installed" && (
+            <p className="mt-1 text-xs text-[#3D1A1F]/70">
+              Para recibir notificaciones en tu iPhone, primero{" "}
+              <strong>agrega este portal a tu pantalla de inicio</strong> desde
+              Safari (compartir → añadir a inicio). Después regresa aquí para
+              activarlas.
+            </p>
+          )}
+          {state === "denied" && (
+            <p className="mt-1 text-xs text-[#3D1A1F]/70">
+              Tienes las notificaciones bloqueadas para este sitio. Ve a los
+              ajustes de tu navegador para permitirlas y vuelve a esta página.
+            </p>
+          )}
+          {error && (
+            <p className="mt-2 rounded-lg bg-red-50 px-2 py-1 text-[11px] text-red-700">
+              {error}
+            </p>
+          )}
+
+          {state === "prompt" && (
+            <button
+              onClick={enablePush}
+              className="mt-3 rounded-lg bg-[#722F37] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#3D1A1F]"
+            >
+              🔔 Activar recordatorios
+            </button>
+          )}
+          {state === "loading-action" && (
+            <button
+              disabled
+              className="mt-3 rounded-lg bg-[#722F37] px-3 py-1.5 text-xs font-medium text-white opacity-60"
+            >
+              Activando…
+            </button>
+          )}
+        </div>
+        {state === "prompt" && (
+          <button
+            onClick={disablePush}
+            className="text-[11px] text-[#3D1A1F]/40 underline"
+            title="Ocultar (puedes activar más tarde)"
+          >
+            ahora no
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}

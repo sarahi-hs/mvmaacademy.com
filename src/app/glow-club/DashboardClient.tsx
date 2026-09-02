@@ -11,6 +11,7 @@ import {
   type GlowReflectionWithAuthor,
 } from "@/lib/glow/supabase";
 import type { GlowSession } from "@/lib/glow/auth";
+import EnablePushBanner from "./EnablePushBanner";
 
 type DayCell = {
   day: number;
@@ -125,6 +126,11 @@ export default function DashboardClient({
           </button>
         </div>
       </header>
+
+      {/* Banner de "Activar recordatorios" (solo aparece si aplica) */}
+      <div className="mb-5 -mt-1">
+        <EnablePushBanner />
+      </div>
 
       {/* Contenedor blanco principal */}
       <div className="space-y-5 rounded-2xl border border-[#F4D4D4] bg-white p-5">

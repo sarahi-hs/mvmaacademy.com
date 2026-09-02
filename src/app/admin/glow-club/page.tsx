@@ -11,14 +11,20 @@ export default async function GlowClubAdminPage() {
   if (!session) redirect("/admin/login");
 
   const supa = glowSupabase();
-  const [membersRes, challenge, ranking] = await Promise.all([
+  const [membersRes, challenge, ranking, subsRes] = await Promise.all([
     supa
       .from("glow_members")
       .select("id, email, full_name, initials, status, must_change_password, created_at")
       .order("created_at", { ascending: false }),
     getCurrentChallenge(),
     getMonthlyRanking(),
+    supa.from("glow_push_subscriptions").select("member_id"),
   ]);
+
+  // Cuántas chicas únicas tienen al menos 1 device con notificaciones activas
+  const subscribedMemberIds = new Set(
+    (subsRes.data || []).map((s) => s.member_id as string)
+  );
 
   const members = (membersRes.data || []) as Array<{
     id: string;
@@ -35,6 +41,7 @@ export default async function GlowClubAdminPage() {
       members={members}
       challenge={challenge}
       ranking={ranking}
+      subscribedMemberIds={Array.from(subscribedMemberIds)}
     />
   );
 }
