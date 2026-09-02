@@ -42,9 +42,10 @@ export default function GlowLoginPage() {
     <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-12">
       <div className="mb-8 text-center">
         <div className="mx-auto mb-3 h-20 w-20 overflow-hidden rounded-full bg-[#FAF7F2]">
+          {/* Logomark: G + estrella, sin el texto "Glow Club" (el título ya lo dice abajo) */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/glow-club/icons/icon-192.png"
+            src="/glow-club/icons/logomark-192.png"
             alt="Logo del Glow Club"
             className="h-full w-full object-cover"
           />
