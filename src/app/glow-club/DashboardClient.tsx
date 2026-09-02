@@ -100,9 +100,10 @@ export default function DashboardClient({
       <header className="mb-5 flex items-center justify-between rounded-2xl border border-[#F4D4D4] bg-white px-4 py-3">
         <div className="flex items-center gap-2">
           <div className="h-9 w-9 overflow-hidden rounded-full bg-[#FAF7F2]">
+            {/* Logomark: solo la G + estrella, sin el texto "Glow Club" */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/glow-club/icons/icon-192.png"
+              src="/glow-club/icons/logomark-192.png"
               alt=""
               aria-hidden
               className="h-full w-full object-cover"
