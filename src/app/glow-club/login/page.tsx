@@ -41,10 +41,13 @@ export default function GlowLoginPage() {
   return (
     <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6 py-12">
       <div className="mb-8 text-center">
-        <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#F4D4D4]">
-          <span className="text-2xl" aria-hidden>
-            ✨
-          </span>
+        <div className="mx-auto mb-3 h-20 w-20 overflow-hidden rounded-full bg-[#FAF7F2]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/glow-club/icons/icon-192.png"
+            alt="Logo del Glow Club"
+            className="h-full w-full object-cover"
+          />
         </div>
         <h1 className="text-2xl font-medium text-[#3D1A1F]">Glow Club</h1>
         <p className="mt-1 text-sm text-[#3D1A1F]/60">

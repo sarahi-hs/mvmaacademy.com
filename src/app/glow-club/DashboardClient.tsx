@@ -99,8 +99,14 @@ export default function DashboardClient({
       {/* Header */}
       <header className="mb-5 flex items-center justify-between rounded-2xl border border-[#F4D4D4] bg-white px-4 py-3">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F4D4D4]">
-            <span aria-hidden>✨</span>
+          <div className="h-9 w-9 overflow-hidden rounded-full bg-[#FAF7F2]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/glow-club/icons/icon-192.png"
+              alt=""
+              aria-hidden
+              className="h-full w-full object-cover"
+            />
           </div>
           <span className="text-sm font-medium text-[#3D1A1F]">Glow Club</span>
         </div>
