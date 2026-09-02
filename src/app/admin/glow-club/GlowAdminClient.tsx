@@ -553,21 +553,46 @@ function PushRemindPanel({
   totalMembers: number;
   subscribedCount: number;
 }) {
-  const [sending, setSending] = useState(false);
+  const [sending, setSending] = useState<null | "remind" | "test" | "custom">(
+    null
+  );
   const [result, setResult] = useState<string | null>(null);
+  const [customBody, setCustomBody] = useState("");
 
-  async function sendNow() {
+  async function sendReminder() {
     if (
       !confirm(
-        "¿Mandar recordatorio a todas las chicas que aún no han checkeado hoy?"
+        "¿Mandar recordatorio a las chicas que aún no han checkeado hoy?"
       )
     )
       return;
-    setSending(true);
+    await callEndpoint("/api/admin/glow-club/push-remind", "remind");
+  }
+
+  async function sendTest() {
+    await callEndpoint("/api/admin/glow-club/push-test", "test");
+  }
+
+  async function sendCustom() {
+    if (customBody.trim().length === 0) {
+      setResult("Escribe algo antes de enviar 🌸");
+      return;
+    }
+    if (
+      !confirm(
+        `¿Enviar este mensaje a ${subscribedCount} chica${
+          subscribedCount === 1 ? "" : "s"
+        }?\n\n"${customBody.trim()}"`
+      )
+    )
+      return;
+    setSending("custom");
     setResult(null);
     try {
-      const res = await fetch("/api/admin/glow-club/push-remind", {
+      const res = await fetch("/api/admin/glow-club/push-custom", {
         method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ body: customBody.trim() }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -578,46 +603,132 @@ function PushRemindPanel({
         setResult(`ℹ️ ${data.note}`);
       } else {
         setResult(
-          `✓ ${data.sent} recordatorio${
+          `✓ Tu mensaje se envió a ${data.sent} chica${
             data.sent === 1 ? "" : "s"
-          } enviado${data.sent === 1 ? "" : "s"}${
-            data.failed ? ` · ${data.failed} fallaron` : ""
-          }`
+          }${data.failed ? ` · ${data.failed} fallaron` : ""}`
+        );
+        setCustomBody(""); // limpiar para escribir otro después
+      }
+    } catch {
+      setResult("❌ Error de conexión");
+    } finally {
+      setSending(null);
+    }
+  }
+
+  async function callEndpoint(url: string, kind: "remind" | "test") {
+    setSending(kind);
+    setResult(null);
+    try {
+      const res = await fetch(url, { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) {
+        setResult(`❌ ${data.error || "Error"}`);
+        return;
+      }
+      if (data.sent === 0 && data.note) {
+        setResult(`ℹ️ ${data.note}`);
+      } else {
+        setResult(
+          `✓ ${data.sent} notificación${data.sent === 1 ? "" : "es"} enviada${
+            data.sent === 1 ? "" : "s"
+          }${data.failed ? ` · ${data.failed} fallaron` : ""}`
         );
       }
     } catch {
       setResult("❌ Error de conexión");
     } finally {
-      setSending(false);
+      setSending(null);
     }
   }
 
   return (
     <section className="mb-6 rounded-2xl border border-[#F4D4D4] bg-white p-5">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h2 className="text-lg font-medium text-[#3D1A1F]">
-            🔔 Notificaciones al cel
-          </h2>
-          <p className="mt-1 text-xs text-[#3D1A1F]/70">
-            {subscribedCount} de {totalMembers} chica
-            {totalMembers === 1 ? "" : "s"} activa
-            {totalMembers === 1 ? "" : "s"} tienen notificaciones prendidas
-            (van a recibir el recordatorio automático a las 7pm si no
-            han checkeado).
-          </p>
-        </div>
+      <div>
+        <h2 className="text-lg font-medium text-[#3D1A1F]">
+          🔔 Notificaciones al cel
+        </h2>
+        <p className="mt-1 text-xs text-[#3D1A1F]/70">
+          {subscribedCount} de {totalMembers} chica
+          {totalMembers === 1 ? "" : "s"} activa
+          {totalMembers === 1 ? "" : "s"} tienen notificaciones prendidas.
+          El recordatorio automático se manda todos los días a las 7pm a
+          las que no hayan checkeado.
+        </p>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
         <button
-          onClick={sendNow}
-          disabled={sending || subscribedCount === 0}
-          className="whitespace-nowrap rounded-lg bg-[#722F37] px-3 py-2 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-50"
+          onClick={sendReminder}
+          disabled={sending !== null || subscribedCount === 0}
+          className="rounded-lg bg-[#722F37] px-3 py-2 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-50"
+          title="Solo va a las que aún no dieron su check hoy"
         >
-          {sending ? "Enviando…" : "🔔 Recordar ahora"}
+          {sending === "remind" ? "Enviando…" : "🔔 Recordar ahora"}
+        </button>
+        <button
+          onClick={sendTest}
+          disabled={sending !== null || subscribedCount === 0}
+          className="rounded-lg border border-[#722F37] bg-white px-3 py-2 text-xs font-medium text-[#722F37] hover:bg-[#F4D4D4]/40 disabled:opacity-50"
+          title="Manda una notificación de prueba a TODAS las chicas con notificaciones activas (incluida tú si estás suscrita), sin importar si ya checkearon"
+        >
+          {sending === "test" ? "Enviando…" : "🧪 Prueba (a todas)"}
         </button>
       </div>
+
       {result && (
         <p className="mt-3 text-xs text-[#3D1A1F]/80">{result}</p>
       )}
+
+      {/* Caja para mandar mensajes libres — "abrazos random" durante el día */}
+      <div className="mt-5 border-t border-[#F4D4D4] pt-4">
+        <label className="block">
+          <span className="text-[11px] font-medium uppercase tracking-wider text-[#3D1A1F]/60">
+            💌 Mandar un mensaje libre a todas
+          </span>
+          <textarea
+            value={customBody}
+            onChange={(e) => setCustomBody(e.target.value)}
+            rows={2}
+            maxLength={250}
+            placeholder="Ej: Hermosa, hoy te elijo con todo mi corazón. Sigue brillando 🌸"
+            className="mt-1 w-full resize-none rounded-lg border border-[#F4D4D4] bg-white px-3 py-2 text-sm outline-none focus:border-[#722F37]"
+          />
+        </label>
+        <div className="mt-2 flex items-center justify-between gap-2">
+          <span className="text-[10px] text-[#3D1A1F]/40">
+            {customBody.length}/250 · aparece como &quot;Sarahi 🌸&quot;
+          </span>
+          <button
+            onClick={sendCustom}
+            disabled={
+              sending !== null ||
+              subscribedCount === 0 ||
+              customBody.trim().length === 0
+            }
+            className="rounded-lg bg-[#722F37] px-3 py-2 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-50"
+          >
+            {sending === "custom" ? "Enviando…" : "💌 Enviar a todas"}
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-4 rounded-lg bg-[#FAF7F2] px-3 py-2 text-[11px] text-[#3D1A1F]/70">
+        <p className="font-medium text-[#3D1A1F]">Los 3 botones:</p>
+        <p className="mt-1">
+          <strong>🔔 Recordar ahora</strong> → solo a chicas que NO han
+          checkeado hoy. Si tú ya cumpliste, no te llega.
+        </p>
+        <p className="mt-1">
+          <strong>🧪 Prueba (a todas)</strong> → a TODAS las suscritas para
+          verificar que llegan. Úsalo para probar en tu propio cel.
+        </p>
+        <p className="mt-1">
+          <strong>💌 Enviar a todas</strong> → tu mensaje libre a TODAS las
+          suscritas. Perfecto para abrazos random.
+        </p>
+      </div>
+
       {subscribedCount === 0 && (
         <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-[11px] text-amber-800">
           Aún ninguna chica tiene notificaciones activas. Deben instalar el
