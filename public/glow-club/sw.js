@@ -7,8 +7,11 @@
 // Scope: '/glow-club/' — solo maneja pushes de esta parte del sitio.
 
 self.addEventListener("install", (event) => {
-  // Activar el nuevo SW en cuanto se instale, sin esperar a la próxima carga
-  self.skipWaiting();
+  // iOS Safari es estricto: skipWaiting() debe ir dentro de waitUntil
+  // para que la activación se complete correctamente. Sin esto, el SW
+  // se queda "colgado" en estado 'installing' y navigator.serviceWorker.ready
+  // nunca resuelve en iPhone.
+  event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener("activate", (event) => {
