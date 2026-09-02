@@ -2,6 +2,17 @@
 
 import { useEffect, useState } from "react";
 
+// Envuelve una promesa con timeout — evita quedarse esperando eternamente
+// en steps de push notifications que pueden colgarse en iOS Safari.
+function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
+  return Promise.race([
+    p,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error(`${label} (timeout ${ms / 1000}s)`)), ms)
+    ),
+  ]);
+}
+
 // Convierte la VAPID public key (base64url) al ArrayBuffer que necesita
 // pushManager.subscribe(). Requisito de la Web Push API.
 // Devolvemos ArrayBuffer (no Uint8Array) para que TypeScript no se queje
@@ -71,33 +82,61 @@ export default function EnablePushBanner() {
   }
 
   async function enablePush() {
-    setState("loading-action");
     setError(null);
-    try {
-      const vapid = process.env.NEXT_PUBLIC_GLOW_VAPID_PUBLIC_KEY;
-      if (!vapid) throw new Error("Falta VAPID public key");
+    const vapid = process.env.NEXT_PUBLIC_GLOW_VAPID_PUBLIC_KEY;
+    if (!vapid) {
+      setError("Falta configurar las notificaciones. Contacta a Sarahi.");
+      return;
+    }
 
+    // 🍎 CRÍTICO PARA iOS: la petición de permiso DEBE ir primero,
+    // sincrónica al click. Si metemos awaits antes (como registrar el SW),
+    // iOS pierde el "contexto de click" y la petición se cuelga en silencio.
+    // requestPermission() se llama inmediatamente, sin awaits previos.
+    let permission: NotificationPermission;
+    try {
+      permission = await Notification.requestPermission();
+    } catch (err) {
+      console.error("[push] requestPermission threw", err);
+      setError("Tu navegador no permite notificaciones aquí.");
+      return;
+    }
+    if (permission !== "granted") {
+      setState(permission === "denied" ? "denied" : "prompt");
+      return;
+    }
+
+    // Ya con permiso concedido, ahora sí podemos hacer el resto async
+    setState("loading-action");
+    try {
       // Registrar el Service Worker (o reutilizar si ya está)
       let reg = await navigator.serviceWorker.getRegistration("/glow-club/");
       if (!reg) {
-        reg = await navigator.serviceWorker.register("/glow-club/sw.js", {
-          scope: "/glow-club/",
-        });
-      }
-      await navigator.serviceWorker.ready;
-
-      // Pedir permiso
-      const permission = await Notification.requestPermission();
-      if (permission !== "granted") {
-        setState(permission === "denied" ? "denied" : "prompt");
-        return;
+        reg = await withTimeout(
+          navigator.serviceWorker.register("/glow-club/sw.js", {
+            scope: "/glow-club/",
+          }),
+          10000,
+          "El service worker no cargó"
+        );
       }
 
-      // Subscribe
-      const sub = await reg.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToArrayBuffer(vapid),
-      });
+      // serviceWorker.ready también puede colgarse — le ponemos timeout
+      await withTimeout(
+        navigator.serviceWorker.ready,
+        10000,
+        "El service worker no se activó"
+      );
+
+      // Subscribe al push service
+      const sub = await withTimeout(
+        reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToArrayBuffer(vapid),
+        }),
+        15000,
+        "El push service no respondió (revisa tu conexión)"
+      );
       const raw = sub.toJSON();
       const p256dh = raw.keys?.p256dh;
       const auth = raw.keys?.auth;
@@ -119,7 +158,7 @@ export default function EnablePushBanner() {
       }
       setState("subscribed");
     } catch (err) {
-      console.error(err);
+      console.error("[push] enablePush error", err);
       setError(err instanceof Error ? err.message : "No se pudo activar");
       setState("prompt");
     }
