@@ -2,7 +2,12 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import type { GlowChallenge, GlowRankingRow } from "@/lib/glow/supabase";
+import type {
+  GlowChallenge,
+  GlowRankingRow,
+  GlowReflection,
+  GlowReflectionWithAuthor,
+} from "@/lib/glow/supabase";
 import type { GlowSession } from "@/lib/glow/auth";
 
 type DayCell = {
@@ -22,6 +27,8 @@ type Props = {
   daysArray: DayCell[];
   ranking: GlowRankingRow[];
   myPosition: number;
+  todayReflection: GlowReflection | null;
+  reflections: GlowReflectionWithAuthor[];
 };
 
 const monthNames = [
@@ -51,6 +58,8 @@ export default function DashboardClient({
   daysArray,
   ranking,
   myPosition,
+  todayReflection: initialTodayReflection,
+  reflections,
 }: Props) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
@@ -58,6 +67,9 @@ export default function DashboardClient({
   const [streak, setStreak] = useState(initialStreak);
   const [points, setPoints] = useState(initialPoints);
   const [err, setErr] = useState<string | null>(null);
+  const [todayReflection, setTodayReflection] = useState<GlowReflection | null>(
+    initialTodayReflection
+  );
 
   const todayNum = parseInt(today.slice(-2), 10);
   const monthNum = parseInt(today.slice(5, 7), 10);
@@ -129,9 +141,18 @@ export default function DashboardClient({
               Tu check de hoy · {dayName(today)} {todayNum}
             </p>
             {checked ? (
-              <div className="mt-2 flex items-center justify-center gap-2 rounded-lg border border-green-300 bg-green-50 px-4 py-3 text-sm font-medium text-green-800">
-                ✓ Ya cumpliste hoy, hermosa
-              </div>
+              <>
+                <div className="mt-2 flex items-center justify-center gap-2 rounded-lg border border-green-300 bg-green-50 px-4 py-3 text-sm font-medium text-green-800">
+                  ✓ Ya cumpliste hoy, hermosa
+                </div>
+                <TodayReflection
+                  existing={todayReflection}
+                  onSaved={(r) => {
+                    setTodayReflection(r);
+                    startTransition(() => router.refresh());
+                  }}
+                />
+              </>
             ) : (
               <button
                 onClick={doCheckin}
@@ -144,9 +165,11 @@ export default function DashboardClient({
             {err && (
               <p className="mt-2 text-xs text-red-700">{err}</p>
             )}
-            <p className="mt-2 text-center text-[11px] text-[#3D1A1F]/50">
-              Suma {challenge?.points_per_day ?? 10} puntos al presionar
-            </p>
+            {!checked && (
+              <p className="mt-2 text-center text-[11px] text-[#3D1A1F]/50">
+                Suma {challenge?.points_per_day ?? 10} puntos al presionar
+              </p>
+            )}
           </div>
 
           <div className="rounded-2xl bg-[#FAF7F2] p-4">
@@ -311,6 +334,9 @@ export default function DashboardClient({
         </section>
       </div>
 
+      {/* Diario de la Comunidad — reflexiones de todas las chicas del mes */}
+      <CommunityDiary reflections={reflections} meMemberId={session.memberId} />
+
       {/* Placeholder de Sarahi AI (Fase 3) */}
       <div className="mt-5 rounded-2xl bg-[#3D1A1F] p-4 text-white">
         <div className="flex items-center gap-3">
@@ -325,4 +351,202 @@ export default function DashboardClient({
       </div>
     </main>
   );
+}
+
+// -----------------------------------------------------------
+// TodayReflection
+// -----------------------------------------------------------
+// Cajita opcional que aparece justo debajo del "✓ Ya cumpliste hoy".
+// - Si la chica AÚN no escribió reflexión hoy: muestra la textarea con
+//   el prompt "¿Cómo te sentiste?" y botón "Compartir con la comunidad".
+// - Si ya escribió: muestra su texto tal cual, con un "editar" pequeñito
+//   para poder cambiarlo.
+// -----------------------------------------------------------
+function TodayReflection({
+  existing,
+  onSaved,
+}: {
+  existing: GlowReflection | null;
+  onSaved: (r: GlowReflection) => void;
+}) {
+  const [editing, setEditing] = useState(!existing);
+  const [text, setText] = useState(existing?.text ?? "");
+  const [saving, setSaving] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setErr(null);
+    if (text.trim().length === 0) {
+      setErr("Escribe algo antes de compartir 🌸");
+      return;
+    }
+    setSaving(true);
+    try {
+      const res = await fetch("/api/glow-club/reflection", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErr(data.error || "No se pudo guardar");
+        return;
+      }
+      onSaved(data.reflection as GlowReflection);
+      setEditing(false);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  if (!editing && existing) {
+    return (
+      <div className="mt-3 rounded-lg border border-[#F4D4D4] bg-white p-3">
+        <div className="mb-1 flex items-center justify-between">
+          <p className="text-[10px] font-medium uppercase tracking-wider text-[#3D1A1F]/50">
+            Tu reflexión de hoy
+          </p>
+          <button
+            type="button"
+            onClick={() => setEditing(true)}
+            className="text-[11px] text-[#722F37] underline underline-offset-2 hover:no-underline"
+          >
+            editar
+          </button>
+        </div>
+        <p className="whitespace-pre-line text-sm text-[#3D1A1F]/90">
+          {existing.text}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="mt-3">
+      <label className="block text-[11px] font-medium uppercase tracking-wider text-[#3D1A1F]/60">
+        ¿Cómo te sentiste? <span className="normal-case text-[#3D1A1F]/40">(opcional)</span>
+      </label>
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        maxLength={2000}
+        rows={3}
+        placeholder="Cuéntanos qué cambió, qué sentiste, qué descubriste hoy…"
+        className="mt-1 w-full resize-none rounded-lg border border-[#F4D4D4] bg-white px-3 py-2 text-sm outline-none focus:border-[#722F37]"
+      />
+      {err && <p className="mt-1 text-xs text-red-700">{err}</p>}
+      <div className="mt-2 flex items-center justify-between gap-2">
+        <span className="text-[10px] text-[#3D1A1F]/40">
+          {text.length}/2000
+        </span>
+        <div className="flex items-center gap-2">
+          {existing && (
+            <button
+              type="button"
+              onClick={() => {
+                setText(existing.text);
+                setEditing(false);
+                setErr(null);
+              }}
+              className="text-[11px] text-[#3D1A1F]/60 underline"
+            >
+              cancelar
+            </button>
+          )}
+          <button
+            type="submit"
+            disabled={saving}
+            className="rounded-lg bg-[#722F37] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-60"
+          >
+            {saving ? "Guardando…" : "💌 Compartir con la comunidad"}
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+}
+
+// -----------------------------------------------------------
+// CommunityDiary
+// -----------------------------------------------------------
+// Feed con las reflexiones de todas las chicas del reto del mes.
+// Ordenadas de la más nueva a la más vieja. Marca la del yo con un
+// borde tinto sutil para que la chica encuentre lo suyo fácil.
+// -----------------------------------------------------------
+function CommunityDiary({
+  reflections,
+  meMemberId,
+}: {
+  reflections: GlowReflectionWithAuthor[];
+  meMemberId: string;
+}) {
+  return (
+    <section className="mt-5 rounded-2xl border border-[#F4D4D4] bg-white p-5">
+      <div className="mb-1 flex items-center gap-2">
+        <span aria-hidden>🌸</span>
+        <h2 className="text-lg font-medium text-[#3D1A1F]">
+          Diario de la comunidad
+        </h2>
+      </div>
+      <p className="mb-4 text-xs text-[#3D1A1F]/60">
+        Cómo se están sintiendo las Glow Girls este mes.
+      </p>
+
+      {reflections.length === 0 ? (
+        <p className="rounded-lg bg-[#FAF7F2] px-4 py-6 text-center text-sm text-[#3D1A1F]/60">
+          Aún no hay reflexiones este mes. ¡Sé la primera en compartir cómo te
+          sentiste después de tu check! 🌸
+        </p>
+      ) : (
+        <ol className="space-y-3">
+          {reflections.map((r) => {
+            const isMine = r.member_id === meMemberId;
+            return (
+              <li
+                key={r.id}
+                className={`rounded-xl p-3 ${
+                  isMine
+                    ? "border border-[#722F37]/40 bg-[#F4D4D4]/20"
+                    : "bg-[#FAF7F2]"
+                }`}
+              >
+                <div className="mb-1 flex items-center gap-2">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F4D4D4] text-[11px] font-medium text-[#722F37]">
+                    {r.author_initials || r.author_name.slice(0, 2).toUpperCase()}
+                  </div>
+                  <span className="text-sm font-medium text-[#3D1A1F]">
+                    {isMine ? "Tú" : r.author_name}
+                  </span>
+                  <span className="text-[10px] text-[#3D1A1F]/50">
+                    · {formatRelativeMx(r.created_at)}
+                  </span>
+                </div>
+                <p className="whitespace-pre-line text-sm text-[#3D1A1F]/90">
+                  {r.text}
+                </p>
+              </li>
+            );
+          })}
+        </ol>
+      )}
+    </section>
+  );
+}
+
+// Timestamp legible en español ("hace 2 h", "hace 3 d", etc.)
+function formatRelativeMx(iso: string): string {
+  const then = new Date(iso).getTime();
+  const now = Date.now();
+  const diffMin = Math.round((now - then) / 60000);
+  if (diffMin < 1) return "ahorita";
+  if (diffMin < 60) return `hace ${diffMin} min`;
+  const diffHr = Math.round(diffMin / 60);
+  if (diffHr < 24) return `hace ${diffHr} h`;
+  const diffDay = Math.round(diffHr / 24);
+  if (diffDay < 30) return `hace ${diffDay} d`;
+  return new Date(iso).toLocaleDateString("es-MX", {
+    day: "numeric",
+    month: "short",
+  });
 }

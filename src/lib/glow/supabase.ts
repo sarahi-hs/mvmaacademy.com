@@ -60,6 +60,22 @@ export type GlowRankingRow = {
   last_checkin: string | null;
 };
 
+export type GlowReflection = {
+  id: string;
+  member_id: string;
+  challenge_id: string;
+  reflection_date: string; // 'YYYY-MM-DD'
+  text: string;
+  created_at: string;
+};
+
+// Reflexión enriquecida con datos de la chica que la escribió,
+// para pintar el feed del "Diario de la comunidad" sin joins extra.
+export type GlowReflectionWithAuthor = GlowReflection & {
+  author_name: string;
+  author_initials: string | null;
+};
+
 // ------ Reglas de acceso ------
 
 /**
