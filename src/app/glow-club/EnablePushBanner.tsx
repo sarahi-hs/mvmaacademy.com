@@ -13,6 +13,44 @@ function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
   ]);
 }
 
+/**
+ * Espera a que el registration tenga un service worker en estado 'activated'.
+ * Alternativa robusta a navigator.serviceWorker.ready, que se cuelga
+ * indefinidamente en iOS si el SW quedó en estado 'installing' o
+ * 'redundant'. Aquí escuchamos los cambios de estado del worker directamente.
+ */
+function waitForActiveWorker(
+  reg: ServiceWorkerRegistration,
+  timeoutMs: number
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (reg.active) {
+      resolve();
+      return;
+    }
+    const timer = setTimeout(() => {
+      reject(new Error(`El service worker no se activó (timeout ${timeoutMs / 1000}s)`));
+    }, timeoutMs);
+
+    const check = () => {
+      if (reg.active) {
+        clearTimeout(timer);
+        resolve();
+      }
+    };
+    const attach = (worker: ServiceWorker | null) => {
+      if (!worker) return;
+      worker.addEventListener("statechange", check);
+    };
+    attach(reg.installing);
+    attach(reg.waiting);
+    attach(reg.active);
+    reg.addEventListener("updatefound", () => {
+      attach(reg.installing);
+    });
+  });
+}
+
 // Convierte la VAPID public key (base64url) al ArrayBuffer que necesita
 // pushManager.subscribe(). Requisito de la Web Push API.
 // Devolvemos ArrayBuffer (no Uint8Array) para que TypeScript no se queje
@@ -109,28 +147,38 @@ export default function EnablePushBanner() {
     // Ya con permiso concedido, ahora sí podemos hacer el resto async
     setState("loading-action");
     try {
-      // Registrar el Service Worker (o reutilizar si ya está)
-      let reg = await navigator.serviceWorker.getRegistration("/glow-club/");
-      if (!reg) {
-        reg = await withTimeout(
-          navigator.serviceWorker.register("/glow-club/sw.js", {
-            scope: "/glow-club/",
-          }),
-          10000,
-          "El service worker no cargó"
-        );
+      // Registro fresco: si había un SW anterior en estado raro (colgado
+      // en 'installing' desde un intento previo), lo desregistramos para
+      // arrancar limpio. Esto arregla el clásico "El service worker no
+      // se activó" en iOS que persiste hasta reinstalar la PWA.
+      const existing = await navigator.serviceWorker.getRegistration("/glow-club/");
+      if (existing && !existing.active) {
+        // No hay SW activo — probablemente uno viejo colgado
+        await existing.unregister();
       }
 
-      // serviceWorker.ready también puede colgarse — le ponemos timeout
-      await withTimeout(
-        navigator.serviceWorker.ready,
+      const reg = await withTimeout(
+        navigator.serviceWorker.register("/glow-club/sw.js", {
+          scope: "/glow-club/",
+          updateViaCache: "none", // no cachear el SW file — siempre fresco
+        }),
         10000,
-        "El service worker no se activó"
+        "El service worker no cargó"
       );
+
+      // Esperar a que haya un worker activo. En vez de serviceWorker.ready
+      // (que puede colgarse indefinidamente en iOS), miramos directamente
+      // el estado del registration. Si está installing/waiting, esperamos
+      // que transicione a 'activated'.
+      await waitForActiveWorker(reg, 10000);
+
+      // Refrescar el registration porque el activo puede haber cambiado
+      const readyReg =
+        (await navigator.serviceWorker.getRegistration("/glow-club/")) || reg;
 
       // Subscribe al push service
       const sub = await withTimeout(
-        reg.pushManager.subscribe({
+        readyReg.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey: urlBase64ToArrayBuffer(vapid),
         }),
