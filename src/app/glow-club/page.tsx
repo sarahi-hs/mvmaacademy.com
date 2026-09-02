@@ -6,6 +6,8 @@ import {
   getMemberCheckinsThisMonth,
   computeStreak,
   getMonthlyRanking,
+  getTodayReflection,
+  getRecentReflections,
   todayMx,
 } from "@/lib/glow/data";
 import DashboardClient from "./DashboardClient";
@@ -16,11 +18,17 @@ export default async function GlowClubPage() {
   const session = await getGlowSession();
   if (!session) redirect("/glow-club/login");
 
-  const [challenge, checkins, ranking] = await Promise.all([
+  const [challenge, checkins, ranking, todayReflection] = await Promise.all([
     getCurrentChallenge(),
     getMemberCheckinsThisMonth(session.memberId),
     getMonthlyRanking(),
+    getTodayReflection(session.memberId),
   ]);
+
+  // Feed de reflexiones del reto del mes — solo si ya hay reto activo
+  const reflections = challenge
+    ? await getRecentReflections(challenge.id, 50)
+    : [];
 
   const today = todayMx();
   const checkedToday = checkins.has(today);
@@ -66,6 +74,8 @@ export default async function GlowClubPage() {
       daysArray={daysArray}
       ranking={ranking}
       myPosition={myPosition}
+      todayReflection={todayReflection}
+      reflections={reflections}
     />
   );
 }

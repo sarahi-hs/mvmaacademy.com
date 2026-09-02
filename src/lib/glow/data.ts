@@ -1,4 +1,10 @@
-import { glowSupabase, type GlowChallenge, type GlowRankingRow } from "./supabase";
+import {
+  glowSupabase,
+  type GlowChallenge,
+  type GlowRankingRow,
+  type GlowReflection,
+  type GlowReflectionWithAuthor,
+} from "./supabase";
 
 /** Devuelve fecha "YYYY-MM-DD" en zona México. */
 export function todayMx(): string {
@@ -71,6 +77,73 @@ export function computeStreak(checkedDates: Set<string>): number {
     }
   }
   return streak;
+}
+
+/** La reflexión de hoy de la chica logueada, si ya escribió una. */
+export async function getTodayReflection(
+  memberId: string
+): Promise<GlowReflection | null> {
+  const supa = glowSupabase();
+  const { data, error } = await supa
+    .from("glow_reflections")
+    .select("*")
+    .eq("member_id", memberId)
+    .eq("reflection_date", todayMx())
+    .maybeSingle();
+  if (error) {
+    console.error("[glow data] getTodayReflection", error);
+    return null;
+  }
+  return (data as GlowReflection) || null;
+}
+
+/**
+ * Reflexiones recientes del reto del mes en curso, con nombre e iniciales
+ * de la autora ya resueltos para pintar el feed sin joins extra.
+ * Ordenadas de la más nueva a la más vieja.
+ */
+export async function getRecentReflections(
+  challengeId: string,
+  limit = 50
+): Promise<GlowReflectionWithAuthor[]> {
+  const supa = glowSupabase();
+  // Traemos reflexiones + join con glow_members para autor
+  const { data, error } = await supa
+    .from("glow_reflections")
+    .select(
+      `id, member_id, challenge_id, reflection_date, text, created_at,
+       glow_members ( full_name, initials )`
+    )
+    .eq("challenge_id", challengeId)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error) {
+    console.error("[glow data] getRecentReflections", error);
+    return [];
+  }
+  // Supabase tipa las relaciones anidadas como array aunque el FK sea 1:1;
+  // por eso tomamos el primer (y único) elemento de glow_members.
+  type Row = GlowReflection & {
+    glow_members:
+      | { full_name: string; initials: string | null }
+      | { full_name: string; initials: string | null }[]
+      | null;
+  };
+  return ((data || []) as unknown as Row[]).map((r) => {
+    const author = Array.isArray(r.glow_members)
+      ? r.glow_members[0]
+      : r.glow_members;
+    return {
+      id: r.id,
+      member_id: r.member_id,
+      challenge_id: r.challenge_id,
+      reflection_date: r.reflection_date,
+      text: r.text,
+      created_at: r.created_at,
+      author_name: author?.full_name ?? "Una Glow Girl",
+      author_initials: author?.initials ?? null,
+    };
+  });
 }
 
 /** Ranking del mes actual. */
