@@ -18,13 +18,16 @@ type Props = {
   members: MemberRow[];
   challenge: GlowChallenge | null;
   ranking: GlowRankingRow[];
+  subscribedMemberIds: string[]; // chicas con push activo
 };
 
 export default function GlowAdminClient({
   members,
   challenge,
   ranking,
+  subscribedMemberIds,
 }: Props) {
+  const subscribedSet = new Set(subscribedMemberIds);
   const router = useRouter();
   const [pending, startTransition] = useTransition();
 
@@ -164,6 +167,12 @@ export default function GlowAdminClient({
           {activeCount === 1 ? "" : "s"} · {members.length} total
         </p>
       </div>
+
+      {/* Notificaciones */}
+      <PushRemindPanel
+        totalMembers={members.filter((m) => m.status === "active").length}
+        subscribedCount={subscribedSet.size}
+      />
 
       {/* Reto del mes */}
       <section className="mb-6 rounded-2xl border border-[#F4D4D4] bg-white p-5">
@@ -331,6 +340,15 @@ export default function GlowAdminClient({
                           {m.initials || "?"}
                         </div>
                         <span>{m.full_name}</span>
+                        {subscribedSet.has(m.id) && (
+                          <span
+                            title="Notificaciones activas"
+                            className="text-[11px]"
+                            aria-label="Notificaciones activas"
+                          >
+                            🔔
+                          </span>
+                        )}
                         {m.must_change_password && (
                           <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] text-amber-800">
                             aún no cambia contraseña
@@ -517,5 +535,95 @@ function TempPasswordCard({
         </button>
       </div>
     </div>
+  );
+}
+
+
+// -----------------------------------------------------------
+// PushRemindPanel
+// -----------------------------------------------------------
+// Sección del admin con:
+//   - Contador: cuántas chicas activas tienen notificaciones activas
+//   - Botón manual "Recordar ahora" — dispara el cron cuando Sarahi quiera
+// -----------------------------------------------------------
+function PushRemindPanel({
+  totalMembers,
+  subscribedCount,
+}: {
+  totalMembers: number;
+  subscribedCount: number;
+}) {
+  const [sending, setSending] = useState(false);
+  const [result, setResult] = useState<string | null>(null);
+
+  async function sendNow() {
+    if (
+      !confirm(
+        "¿Mandar recordatorio a todas las chicas que aún no han checkeado hoy?"
+      )
+    )
+      return;
+    setSending(true);
+    setResult(null);
+    try {
+      const res = await fetch("/api/admin/glow-club/push-remind", {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setResult(`❌ ${data.error || "Error"}`);
+        return;
+      }
+      if (data.sent === 0 && data.note) {
+        setResult(`ℹ️ ${data.note}`);
+      } else {
+        setResult(
+          `✓ ${data.sent} recordatorio${
+            data.sent === 1 ? "" : "s"
+          } enviado${data.sent === 1 ? "" : "s"}${
+            data.failed ? ` · ${data.failed} fallaron` : ""
+          }`
+        );
+      }
+    } catch {
+      setResult("❌ Error de conexión");
+    } finally {
+      setSending(false);
+    }
+  }
+
+  return (
+    <section className="mb-6 rounded-2xl border border-[#F4D4D4] bg-white p-5">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-lg font-medium text-[#3D1A1F]">
+            🔔 Notificaciones al cel
+          </h2>
+          <p className="mt-1 text-xs text-[#3D1A1F]/70">
+            {subscribedCount} de {totalMembers} chica
+            {totalMembers === 1 ? "" : "s"} activa
+            {totalMembers === 1 ? "" : "s"} tienen notificaciones prendidas
+            (van a recibir el recordatorio automático a las 7pm si no
+            han checkeado).
+          </p>
+        </div>
+        <button
+          onClick={sendNow}
+          disabled={sending || subscribedCount === 0}
+          className="whitespace-nowrap rounded-lg bg-[#722F37] px-3 py-2 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-50"
+        >
+          {sending ? "Enviando…" : "🔔 Recordar ahora"}
+        </button>
+      </div>
+      {result && (
+        <p className="mt-3 text-xs text-[#3D1A1F]/80">{result}</p>
+      )}
+      {subscribedCount === 0 && (
+        <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-[11px] text-amber-800">
+          Aún ninguna chica tiene notificaciones activas. Deben instalar el
+          portal como app en su cel y aceptar el permiso desde su dashboard.
+        </p>
+      )}
+    </section>
   );
 }
