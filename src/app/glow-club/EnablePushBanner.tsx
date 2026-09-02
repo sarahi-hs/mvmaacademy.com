@@ -158,12 +158,7 @@ export default function EnablePushBanner() {
           <p className="text-sm font-medium text-[#3D1A1F]">
             Activa recordatorios diarios
           </p>
-          {state === "prompt" && (
-            <p className="mt-1 text-xs text-[#3D1A1F]/70">
-              Recibe una notificación bonita en tu cel a las 7pm si aún no diste
-              tu check del día. Suave y sin spam 🌸
-            </p>
-          )}
+          {/* prompt: sin subtexto, solo el título + botón para no dar contexto */}
           {state === "not-installed" && (
             <p className="mt-1 text-xs text-[#3D1A1F]/70">
               Para recibir notificaciones en tu iPhone, primero{" "}
@@ -189,7 +184,7 @@ export default function EnablePushBanner() {
               onClick={enablePush}
               className="mt-3 rounded-lg bg-[#722F37] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#3D1A1F]"
             >
-              🔔 Activar recordatorios
+              Activar recordatorios
             </button>
           )}
           {state === "loading-action" && (
