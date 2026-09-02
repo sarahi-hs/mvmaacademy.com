@@ -37,8 +37,13 @@ export type GlowChallenge = {
   description: string | null;
   points_per_day: number;
   prize: string | null;
+  closing_phrase: string | null; // frase corta al cerrar el check + reflexión
   created_at: string;
 };
+
+/** Frase por defecto si Sarahi no configura una en el admin del reto. */
+export const DEFAULT_CLOSING_PHRASE =
+  "Cada día que te eliges, te construyes.";
 
 export type GlowCheckin = {
   id: string;
@@ -69,11 +74,24 @@ export type GlowReflection = {
   created_at: string;
 };
 
-// Reflexión enriquecida con datos de la chica que la escribió,
-// para pintar el feed del "Diario de la comunidad" sin joins extra.
+// Respuesta al hilo de una reflexión (cualquier chica puede responder)
+export type GlowReflectionReply = {
+  id: string;
+  reflection_id: string;
+  member_id: string;
+  text: string;
+  created_at: string;
+  author_name: string;
+  author_initials: string | null;
+};
+
+// Reflexión enriquecida con datos de la chica que la escribió y su hilo
+// de respuestas, para pintar el feed del "Diario de la comunidad" sin
+// joins extra en el cliente.
 export type GlowReflectionWithAuthor = GlowReflection & {
   author_name: string;
   author_initials: string | null;
+  replies: GlowReflectionReply[];
 };
 
 // ------ Reglas de acceso ------

@@ -2,11 +2,13 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import type {
-  GlowChallenge,
-  GlowRankingRow,
-  GlowReflection,
-  GlowReflectionWithAuthor,
+import {
+  DEFAULT_CLOSING_PHRASE,
+  type GlowChallenge,
+  type GlowRankingRow,
+  type GlowReflection,
+  type GlowReflectionReply,
+  type GlowReflectionWithAuthor,
 } from "@/lib/glow/supabase";
 import type { GlowSession } from "@/lib/glow/auth";
 
@@ -154,6 +156,9 @@ export default function DashboardClient({
                 </div>
                 <TodayReflection
                   existing={todayReflection}
+                  closingPhrase={
+                    challenge?.closing_phrase || DEFAULT_CLOSING_PHRASE
+                  }
                   onSaved={(r) => {
                     setTodayReflection(r);
                     startTransition(() => router.refresh());
@@ -371,15 +376,22 @@ export default function DashboardClient({
 // -----------------------------------------------------------
 function TodayReflection({
   existing,
+  closingPhrase,
   onSaved,
 }: {
   existing: GlowReflection | null;
+  closingPhrase: string;
   onSaved: (r: GlowReflection) => void;
 }) {
-  const [editing, setEditing] = useState(!existing);
   const [text, setText] = useState(existing?.text ?? "");
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+
+  // Si ya hay reflexión guardada, mostramos la frase de cierre.
+  // La chica puede editar su reflexión desde el Diario de la comunidad abajo.
+  if (existing) {
+    return <ClosingPhraseCard phrase={closingPhrase} />;
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -401,32 +413,9 @@ function TodayReflection({
         return;
       }
       onSaved(data.reflection as GlowReflection);
-      setEditing(false);
     } finally {
       setSaving(false);
     }
-  }
-
-  if (!editing && existing) {
-    return (
-      <div className="mt-3 rounded-lg border border-[#F4D4D4] bg-white p-3">
-        <div className="mb-1 flex items-center justify-between">
-          <p className="text-[10px] font-medium uppercase tracking-wider text-[#3D1A1F]/50">
-            Tu reflexión de hoy
-          </p>
-          <button
-            type="button"
-            onClick={() => setEditing(true)}
-            className="text-[11px] text-[#722F37] underline underline-offset-2 hover:no-underline"
-          >
-            editar
-          </button>
-        </div>
-        <p className="whitespace-pre-line text-sm text-[#3D1A1F]/90">
-          {existing.text}
-        </p>
-      </div>
-    );
   }
 
   return (
@@ -447,30 +436,36 @@ function TodayReflection({
         <span className="text-[10px] text-[#3D1A1F]/40">
           {text.length}/2000
         </span>
-        <div className="flex items-center gap-2">
-          {existing && (
-            <button
-              type="button"
-              onClick={() => {
-                setText(existing.text);
-                setEditing(false);
-                setErr(null);
-              }}
-              className="text-[11px] text-[#3D1A1F]/60 underline"
-            >
-              cancelar
-            </button>
-          )}
-          <button
-            type="submit"
-            disabled={saving}
-            className="rounded-lg bg-[#722F37] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-60"
-          >
-            {saving ? "Guardando…" : "💌 Compartir con la comunidad"}
-          </button>
-        </div>
+        <button
+          type="submit"
+          disabled={saving}
+          className="rounded-lg bg-[#722F37] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-60"
+        >
+          {saving ? "Guardando…" : "💌 Compartir con la comunidad"}
+        </button>
       </div>
     </form>
+  );
+}
+
+// Cajita con la frase de cierre — el "abrazo" que recibe la chica
+// después de dar su check + compartir su reflexión.
+function ClosingPhraseCard({ phrase }: { phrase: string }) {
+  return (
+    <div className="mt-3 overflow-hidden rounded-xl border border-[#F4D4D4] bg-gradient-to-b from-white to-[#F4D4D4]/30 p-4 text-center">
+      <p className="text-[10px] font-medium uppercase tracking-widest text-[#722F37]/70">
+        Un abrazo para ti
+      </p>
+      <p
+        className="mt-2 text-base leading-relaxed text-[#3D1A1F]"
+        style={{ fontFamily: "Georgia, 'Cormorant Garamond', serif" }}
+      >
+        {phrase}
+      </p>
+      <p className="mt-3 text-[10px] text-[#3D1A1F]/50">
+        Tu reflexión ya está en el diario más abajo. Puedes editarla desde ahí.
+      </p>
+    </div>
   );
 }
 
@@ -507,37 +502,248 @@ function CommunityDiary({
         </p>
       ) : (
         <ol className="space-y-3">
-          {reflections.map((r) => {
-            const isMine = r.member_id === meMemberId;
+          {reflections.map((r) => (
+            <ReflectionCard key={r.id} reflection={r} meMemberId={meMemberId} />
+          ))}
+        </ol>
+      )}
+    </section>
+  );
+}
+
+// Una tarjeta de reflexión en el diario. Maneja:
+//   - Editar (solo si la reflexión es mía)
+//   - Ver el hilo de respuestas
+//   - Formulario para responder (cualquiera puede)
+function ReflectionCard({
+  reflection,
+  meMemberId,
+}: {
+  reflection: GlowReflectionWithAuthor;
+  meMemberId: string;
+}) {
+  const router = useRouter();
+  const isMine = reflection.member_id === meMemberId;
+  const [text, setText] = useState(reflection.text);
+  const [editing, setEditing] = useState(false);
+  const [savingEdit, setSavingEdit] = useState(false);
+  const [editErr, setEditErr] = useState<string | null>(null);
+
+  // Estado local de respuestas (para que se vean al instante sin refresh)
+  const [replies, setReplies] = useState<GlowReflectionReply[]>(reflection.replies);
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [replyText, setReplyText] = useState("");
+  const [sendingReply, setSendingReply] = useState(false);
+  const [replyErr, setReplyErr] = useState<string | null>(null);
+
+  async function saveEdit(e: React.FormEvent) {
+    e.preventDefault();
+    setEditErr(null);
+    if (text.trim().length === 0) {
+      setEditErr("No puede quedar vacío 🌸");
+      return;
+    }
+    setSavingEdit(true);
+    try {
+      const res = await fetch("/api/glow-club/reflection", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setEditErr(data.error || "No se pudo guardar");
+        return;
+      }
+      setEditing(false);
+      router.refresh();
+    } finally {
+      setSavingEdit(false);
+    }
+  }
+
+  async function sendReply(e: React.FormEvent) {
+    e.preventDefault();
+    setReplyErr(null);
+    if (replyText.trim().length === 0) {
+      setReplyErr("Escribe algo antes de responder");
+      return;
+    }
+    setSendingReply(true);
+    try {
+      const res = await fetch(
+        `/api/glow-club/reflection/${reflection.id}/reply`,
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ text: replyText }),
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        setReplyErr(data.error || "No se pudo enviar la respuesta");
+        return;
+      }
+      // Optimista: agregamos localmente para no esperar refresh
+      setReplies((prev) => [
+        ...prev,
+        {
+          ...(data.reply as GlowReflectionReply),
+          author_name: "Tú",
+          author_initials: null,
+        },
+      ]);
+      setReplyText("");
+      setShowReplyForm(false);
+      router.refresh();
+    } finally {
+      setSendingReply(false);
+    }
+  }
+
+  return (
+    <li
+      className={`rounded-xl p-3 ${
+        isMine
+          ? "border border-[#722F37]/40 bg-[#F4D4D4]/20"
+          : "bg-[#FAF7F2]"
+      }`}
+    >
+      <div className="mb-1 flex items-center gap-2">
+        <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F4D4D4] text-[11px] font-medium text-[#722F37]">
+          {reflection.author_initials ||
+            reflection.author_name.slice(0, 2).toUpperCase()}
+        </div>
+        <span className="text-sm font-medium text-[#3D1A1F]">
+          {isMine ? "Tú" : reflection.author_name}
+        </span>
+        <span className="text-[10px] text-[#3D1A1F]/50">
+          · {formatRelativeMx(reflection.created_at)}
+        </span>
+      </div>
+
+      {editing ? (
+        <form onSubmit={saveEdit} className="mt-2">
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            rows={3}
+            maxLength={2000}
+            className="w-full resize-none rounded-lg border border-[#F4D4D4] bg-white px-3 py-2 text-sm outline-none focus:border-[#722F37]"
+          />
+          {editErr && <p className="mt-1 text-xs text-red-700">{editErr}</p>}
+          <div className="mt-2 flex items-center justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setText(reflection.text);
+                setEditing(false);
+                setEditErr(null);
+              }}
+              className="text-[11px] text-[#3D1A1F]/60 underline"
+            >
+              cancelar
+            </button>
+            <button
+              type="submit"
+              disabled={savingEdit}
+              className="rounded-lg bg-[#722F37] px-3 py-1 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-60"
+            >
+              {savingEdit ? "Guardando…" : "Guardar cambios"}
+            </button>
+          </div>
+        </form>
+      ) : (
+        <p className="whitespace-pre-line text-sm text-[#3D1A1F]/90">
+          {reflection.text}
+        </p>
+      )}
+
+      {/* Acciones (editar / responder) */}
+      {!editing && (
+        <div className="mt-2 flex items-center gap-3 text-[11px]">
+          {isMine && (
+            <button
+              type="button"
+              onClick={() => setEditing(true)}
+              className="text-[#722F37] underline underline-offset-2 hover:no-underline"
+            >
+              editar
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => setShowReplyForm((v) => !v)}
+            className="text-[#722F37] underline underline-offset-2 hover:no-underline"
+          >
+            responder
+          </button>
+        </div>
+      )}
+
+      {/* Hilo de respuestas */}
+      {replies.length > 0 && (
+        <ul className="mt-3 space-y-2 border-l-2 border-[#F4D4D4] pl-3">
+          {replies.map((rp) => {
+            const rpIsMine = rp.member_id === meMemberId;
             return (
-              <li
-                key={r.id}
-                className={`rounded-xl p-3 ${
-                  isMine
-                    ? "border border-[#722F37]/40 bg-[#F4D4D4]/20"
-                    : "bg-[#FAF7F2]"
-                }`}
-              >
-                <div className="mb-1 flex items-center gap-2">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F4D4D4] text-[11px] font-medium text-[#722F37]">
-                    {r.author_initials || r.author_name.slice(0, 2).toUpperCase()}
+              <li key={rp.id}>
+                <div className="mb-0.5 flex items-center gap-2">
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#F4D4D4] text-[9px] font-medium text-[#722F37]">
+                    {rp.author_initials ||
+                      rp.author_name.slice(0, 2).toUpperCase()}
                   </div>
-                  <span className="text-sm font-medium text-[#3D1A1F]">
-                    {isMine ? "Tú" : r.author_name}
+                  <span className="text-[12px] font-medium text-[#3D1A1F]">
+                    {rpIsMine ? "Tú" : rp.author_name}
                   </span>
                   <span className="text-[10px] text-[#3D1A1F]/50">
-                    · {formatRelativeMx(r.created_at)}
+                    · {formatRelativeMx(rp.created_at)}
                   </span>
                 </div>
-                <p className="whitespace-pre-line text-sm text-[#3D1A1F]/90">
-                  {r.text}
+                <p className="whitespace-pre-line text-[13px] text-[#3D1A1F]/85">
+                  {rp.text}
                 </p>
               </li>
             );
           })}
-        </ol>
+        </ul>
       )}
-    </section>
+
+      {/* Formulario para responder */}
+      {showReplyForm && (
+        <form onSubmit={sendReply} className="mt-3">
+          <textarea
+            value={replyText}
+            onChange={(e) => setReplyText(e.target.value)}
+            rows={2}
+            maxLength={1000}
+            placeholder="Responde con calidez 🌸"
+            className="w-full resize-none rounded-lg border border-[#F4D4D4] bg-white px-3 py-2 text-sm outline-none focus:border-[#722F37]"
+          />
+          {replyErr && <p className="mt-1 text-xs text-red-700">{replyErr}</p>}
+          <div className="mt-2 flex items-center justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setReplyText("");
+                setShowReplyForm(false);
+                setReplyErr(null);
+              }}
+              className="text-[11px] text-[#3D1A1F]/60 underline"
+            >
+              cancelar
+            </button>
+            <button
+              type="submit"
+              disabled={sendingReply}
+              className="rounded-lg bg-[#722F37] px-3 py-1 text-xs font-medium text-white hover:bg-[#3D1A1F] disabled:opacity-60"
+            >
+              {sendingReply ? "Enviando…" : "Enviar respuesta"}
+            </button>
+          </div>
+        </form>
+      )}
+    </li>
   );
 }
 

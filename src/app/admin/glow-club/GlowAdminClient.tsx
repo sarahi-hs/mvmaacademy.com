@@ -32,6 +32,9 @@ export default function GlowAdminClient({
   const [title, setTitle] = useState(challenge?.title || "");
   const [description, setDescription] = useState(challenge?.description || "");
   const [prize, setPrize] = useState(challenge?.prize || "");
+  const [closingPhrase, setClosingPhrase] = useState(
+    challenge?.closing_phrase || ""
+  );
   const [pointsPerDay, setPointsPerDay] = useState(
     challenge?.points_per_day ?? 10
   );
@@ -56,7 +59,13 @@ export default function GlowAdminClient({
     const res = await fetch("/api/admin/glow-club/challenge", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ title, description, prize, points_per_day: pointsPerDay }),
+      body: JSON.stringify({
+        title,
+        description,
+        prize,
+        closing_phrase: closingPhrase,
+        points_per_day: pointsPerDay,
+      }),
     });
     setSavingChallenge(false);
     const data = await res.json();
@@ -209,6 +218,22 @@ export default function GlowAdminClient({
               />
             </label>
           </div>
+          <label className="block">
+            <span className="text-xs font-medium text-[#3D1A1F]">
+              Frase de cierre (opcional)
+            </span>
+            <input
+              value={closingPhrase}
+              onChange={(e) => setClosingPhrase(e.target.value)}
+              placeholder="Cada día que te eliges, te construyes."
+              maxLength={200}
+              className="mt-1 w-full rounded-lg border border-[#F4D4D4] bg-white px-3 py-2 text-sm outline-none focus:border-[#722F37]"
+            />
+            <span className="mt-1 block text-[10px] text-[#3D1A1F]/50">
+              Aparece a las chicas después de dar su check + reflexión. Si la
+              dejas vacía, se muestra la frase por defecto.
+            </span>
+          </label>
           <div className="flex items-center gap-3">
             <button
               type="submit"
