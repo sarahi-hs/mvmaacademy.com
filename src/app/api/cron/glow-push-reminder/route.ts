@@ -93,6 +93,17 @@ async function handle(req: Request): Promise<Response> {
     return NextResponse.json({ error: "DB error" }, { status: 500 });
   }
 
+  // Caso: hay chicas que no checkearon, pero ninguna tiene push activo
+  if (!subs || subs.length === 0) {
+    return NextResponse.json({
+      ok: true,
+      sent: 0,
+      note: `${needReminder.length} chica${
+        needReminder.length === 1 ? "" : "s"
+      } sin check aún, pero ninguna tiene notificaciones activas`,
+    });
+  }
+
   // 5. Mandar el push
   const payload = {
     title: "Glow Club 🌸",
@@ -102,7 +113,7 @@ async function handle(req: Request): Promise<Response> {
 
   let sent = 0,
     failed = 0;
-  for (const sub of (subs || []) as GlowPushSubscription[]) {
+  for (const sub of (subs as GlowPushSubscription[])) {
     const ok = await sendPushToSubscription(sub, payload);
     ok ? sent++ : failed++;
   }
@@ -113,7 +124,7 @@ async function handle(req: Request): Promise<Response> {
     active_members: memberIds.length,
     checked_today: checkedToday.size,
     need_reminder: needReminder.length,
-    subscriptions_targeted: (subs || []).length,
+    subscriptions_targeted: subs.length,
     sent,
     failed,
   });
