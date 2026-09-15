@@ -112,15 +112,25 @@ export default function MasterclassPage() {
       </header>
 
       {/* ============================================================
-          HERO — sin imagen, centrado, con post-it horizontal
+          HERO — countdown arriba, título, post-it, CTA
       ============================================================ */}
       <section className="relative overflow-hidden bg-ivory py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="editorial-eyebrow mb-8 text-rosa-shock">
+          <p className="editorial-eyebrow mb-6 text-rosa-shock">
             <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle mr-3" />
             {MASTERCLASS.eyebrow}
             <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle ml-3" />
           </p>
+
+          {/* COUNTDOWN arriba */}
+          <div className="mb-10 md:mb-12">
+            <p className="editorial-eyebrow mb-4 text-tinto">
+              — La próxima sesión comienza en —
+            </p>
+            <div className="inline-block bg-rosa-suave/60 border border-rosa-vivo/50 px-6 md:px-10 py-5 md:py-6">
+              <Countdown targetIso={MASTERCLASS.nextSessionIso} />
+            </div>
+          </div>
 
           <h1 className="font-display leading-[0.95] text-tinto-deep mb-8">
             <span className="block text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] tracking-tight uppercase">
@@ -417,16 +427,6 @@ export default function MasterclassPage() {
         />
 
         <div className="relative max-w-2xl mx-auto px-6">
-          {/* TIMER ARRIBA */}
-          <div className="text-center mb-10 md:mb-14">
-            <p className="editorial-eyebrow text-rosa-vivo mb-4">
-              La próxima sesión comienza en
-            </p>
-            <div className="inline-block bg-ivory/10 border border-rosa-vivo/40 backdrop-blur-sm px-8 md:px-12 py-6 md:py-8">
-              <Countdown targetIso={MASTERCLASS.nextSessionIso} />
-            </div>
-          </div>
-
           <div className="text-center mb-10 md:mb-12">
             <p className="editorial-eyebrow text-rosa-vivo mb-4">
               — Reserva tu lugar —
