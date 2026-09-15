@@ -22,7 +22,7 @@ const PARA_QUIEN_COLORS = [
   { bg: "bg-tinto-deep", text: "text-ivory", num: "text-rosa-vivo" },
 ];
 
-/* Paleta rotativa para testimonios (Client Love) */
+/* Paleta rotativa para testimonios */
 const TESTIMONIAL_PALETTE = [
   { bg: "bg-tinto", text: "text-ivory", accent: "text-rosa-vivo" },
   { bg: "bg-rosa-vivo", text: "text-tinto-deep", accent: "text-tinto" },
@@ -112,93 +112,61 @@ export default function MasterclassPage() {
       </header>
 
       {/* ============================================================
-          HERO — split con foto + panel gris atrás + tipografía mixta
+          HERO — sin imagen, centrado, con post-it horizontal
       ============================================================ */}
-      <section className="relative overflow-hidden bg-ivory">
-        {/* Panel gris grande decorativo detrás del hero */}
-        <div
-          className="absolute top-0 right-0 w-1/2 h-full bg-gris-claro/60 hidden md:block"
-          aria-hidden
-        />
+      <section className="relative overflow-hidden bg-ivory py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="editorial-eyebrow mb-8 text-rosa-shock">
+            <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle mr-3" />
+            {MASTERCLASS.eyebrow}
+            <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle ml-3" />
+          </p>
 
-        <SparkleDecoration className="absolute top-24 right-1/3 hidden lg:block text-rosa-vivo" />
-        <SparkleDecoration className="absolute bottom-16 left-24 hidden lg:block text-tinto" />
+          <h1 className="font-display leading-[0.95] text-tinto-deep mb-8">
+            <span className="block text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] tracking-tight uppercase">
+              Conviértete en una
+            </span>
+            <span className="block text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] tracking-tight uppercase">
+              mujer que
+            </span>
+            <span
+              className="block text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[11rem] italic text-rosa-vivo -mt-2 md:-mt-4"
+              style={{
+                fontFamily:
+                  "var(--font-cormorant), 'Playfair Display', serif",
+                fontWeight: 300,
+                letterSpacing: "-0.04em",
+                lineHeight: "0.85",
+              }}
+            >
+              se cumple
+            </span>
+          </h1>
 
-        <div className="relative max-w-7xl mx-auto px-6 py-12 md:py-20 grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Left: texto */}
-          <div className="md:col-span-7 relative">
-            <p className="editorial-eyebrow mb-8 text-rosa-shock">
-              <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle mr-3" />
-              {MASTERCLASS.eyebrow}
-            </p>
+          <p className="font-display text-xl md:text-3xl text-tinto italic mb-12 max-w-2xl mx-auto">
+            Recupera tu confianza y alcanza tus objetivos
+          </p>
 
-            <h1 className="font-display leading-[0.95] text-tinto-deep mb-6">
-              <span className="block text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.2rem] tracking-tight uppercase">
-                Conviértete en una
-              </span>
-              <span className="block text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.2rem] tracking-tight uppercase">
-                mujer que
-              </span>
-              <span
-                className="block text-[3.6rem] sm:text-7xl md:text-[6rem] lg:text-[8rem] italic text-rosa-vivo -mt-1"
-                style={{ letterSpacing: "-0.03em", fontWeight: 400 }}
-              >
-                se cumple
-              </span>
-            </h1>
-
-            <p className="font-display text-xl md:text-2xl text-tinto italic mb-8 max-w-lg">
-              Recupera tu confianza y alcanza tus objetivos
-            </p>
-
-            <p className="text-base md:text-lg text-tinto-deep/80 max-w-xl leading-relaxed mb-10">
-              {MASTERCLASS.promise}
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-10">
-              <a href="#registro" className={ctaPinkClasses}>
-                {MASTERCLASS.ctaHero}
-              </a>
-              <div className="text-sm text-tinto-deep/70 space-y-0.5">
-                <p>🗓 {MASTERCLASS.cadence}</p>
-                <p>⏱ {MASTERCLASS.durationDisplay} · 💻 Zoom</p>
-              </div>
-            </div>
+          {/* POST-IT horizontal con promesa + fecha */}
+          <div className="max-w-2xl mx-auto mb-12 md:mb-14">
+            <PostIt />
           </div>
 
-          {/* Right: foto + círculo rotativo */}
-          <div className="md:col-span-5 relative">
-            <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
-              <div
-                className="absolute -inset-3 md:-inset-4 bg-rosa-vivo -rotate-3"
-                aria-hidden
-              />
-              <div className="relative w-full h-full overflow-hidden">
-                <Image
-                  src="/images/sarahi/sarahi-tablet.jpg"
-                  alt="Sarahi Haro"
-                  fill
-                  sizes="(max-width: 768px) 90vw, 400px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
-              <RotatingSeal className="absolute -bottom-8 -right-6 md:-bottom-12 md:-right-12 w-24 md:w-32" />
-            </div>
+          <div>
+            <a href="#registro" className={ctaPinkClasses}>
+              {MASTERCLASS.ctaHero}
+            </a>
           </div>
         </div>
       </section>
 
       {/* ============================================================
-          BLOQUE TINTO — statement con polaroids
+          BLOQUE TINTO-DEEP — statement con todo en rosa
       ============================================================ */}
-      <section className="relative overflow-hidden bg-tinto py-24 md:py-32">
-        <SparkleDecoration className="absolute top-12 left-1/4 text-rosa-vivo" />
-        <SparkleDecoration className="absolute bottom-16 right-1/4 text-rosa-vivo" />
-
+      <section className="relative overflow-hidden bg-tinto-deep py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-12 gap-8 items-center">
+            {/* Foto izquierda (reference #1 — reemplazar cuando Sarahi la suba) */}
             <div className="md:col-span-3 hidden md:flex justify-center">
               <PolaroidPhoto
                 src="/images/sarahi/sarahi-parada.jpg"
@@ -211,20 +179,20 @@ export default function MasterclassPage() {
               <p className="editorial-eyebrow mb-6 text-rosa-vivo">
                 Deja de empezar de cero.
               </p>
-              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.1] text-ivory mb-8">
-                <em className="italic text-rosa-vivo">Cumplirte</em> no es
+              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.1] text-rosa-vivo mb-8">
+                <em className="italic">Cumplirte</em> no es
                 <br />
                 cuestión de motivación
                 <br />
                 <span className="italic">— es cuestión de método.</span>
               </h2>
-              <p className="text-ivory/85 text-lg leading-relaxed max-w-xl mx-auto">
-                Una hora que reorganiza cómo te tratas, cómo te sostienes, y
-                cómo vuelves a tu palabra. Sin discursos motivacionales. Con lo
-                que sí funciona.
+              <p className="text-rosa-suave text-lg leading-relaxed max-w-xl mx-auto">
+                Una hora que reorganiza cómo te tratas, cómo te sostienes y cómo
+                vuelves a tu palabra.
               </p>
             </div>
 
+            {/* Foto derecha (reference #2 — reemplazar cuando Sarahi la suba) */}
             <div className="md:col-span-3 hidden md:flex justify-center">
               <PolaroidPhoto
                 src="/images/sarahi/sarahi-extra-laptop-rosa.jpg"
@@ -255,9 +223,6 @@ export default function MasterclassPage() {
           SECRETOS — tabs estilo CARPETA
       ============================================================ */}
       <section className="relative overflow-hidden bg-rosa-suave/60 py-24 md:py-32">
-        <SparkleDecoration className="absolute top-16 left-12 text-rosa-shock" />
-        <SparkleDecoration className="absolute bottom-24 right-12 text-tinto" />
-
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
             <p className="editorial-eyebrow mb-4 text-rosa-shock">
@@ -296,7 +261,6 @@ export default function MasterclassPage() {
             </h2>
           </div>
 
-          {/* Grid de cuadros */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             {PARA_QUIEN.map((linea, i) => {
               const c = PARA_QUIEN_COLORS[i % PARA_QUIEN_COLORS.length];
@@ -334,12 +298,9 @@ export default function MasterclassPage() {
       </section>
 
       {/* ============================================================
-          TU HOST — sobre fondo gris cálido
+          TU HOST — sobre fondo gris claro
       ============================================================ */}
       <section className="relative overflow-hidden bg-gris-claro/70 py-24 md:py-32">
-        <SparkleDecoration className="absolute top-16 right-16 hidden md:block text-rosa-shock" />
-        <SparkleDecoration className="absolute bottom-20 left-20 hidden md:block text-tinto" />
-
         <div className="max-w-6xl mx-auto px-6">
           <p className="editorial-eyebrow text-center mb-4 text-rosa-shock">
             Tu host
@@ -357,7 +318,7 @@ export default function MasterclassPage() {
                 />
                 <div className="relative w-full h-full overflow-hidden">
                   <Image
-                    src="/images/sarahi/sarahi-hero.jpg"
+                    src="/images/sarahi/sarahi-tablet.jpg"
                     alt="Sarahi Haro"
                     fill
                     sizes="(max-width: 768px) 80vw, 400px"
@@ -437,7 +398,7 @@ export default function MasterclassPage() {
       )}
 
       {/* ============================================================
-          REGISTRO FINAL
+          REGISTRO FINAL — Timer arriba, "Reserva tu lugar" grande
       ============================================================ */}
       <section
         id="registro"
@@ -451,35 +412,37 @@ export default function MasterclassPage() {
           className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-rosa-vivo rounded-full blur-3xl opacity-30"
           aria-hidden
         />
-        <SparkleDecoration className="absolute top-16 right-1/4 text-rosa-vivo" />
-        <SparkleDecoration className="absolute bottom-24 left-1/4 text-rosa-vivo" />
 
         <div className="relative max-w-2xl mx-auto px-6">
+          {/* TIMER ARRIBA */}
+          <div className="text-center mb-10 md:mb-14">
+            <p className="editorial-eyebrow text-rosa-vivo mb-4">
+              La próxima sesión comienza en
+            </p>
+            <div className="inline-block bg-ivory/10 border border-rosa-vivo/40 backdrop-blur-sm px-8 md:px-12 py-6 md:py-8">
+              <Countdown targetIso={MASTERCLASS.nextSessionIso} />
+            </div>
+          </div>
+
           <div className="text-center mb-10 md:mb-12">
             <p className="editorial-eyebrow text-rosa-vivo mb-4">
-              Reserva tu lugar
+              — Reserva tu lugar —
             </p>
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl text-ivory leading-[0.95] mb-6">
-              <span className="italic">V</span>engo a
+              <span className="italic">R</span>eserva
               <br />
-              <span className="italic text-rosa-vivo">cumplirme</span>
+              <em className="italic text-rosa-vivo">tu lugar</em>
             </h2>
 
-            <div className="inline-flex flex-col gap-2 text-ivory/85 text-base md:text-lg">
+            <div className="inline-flex flex-col gap-2 text-ivory/85 text-base md:text-lg mt-6">
               <span>📍 Masterclass online</span>
               <span>🎟 Acceso gratuito</span>
               <span>🗓 {MASTERCLASS.nextSessionDisplay}</span>
-              <span>⏰ 60 minutos exactos</span>
+              <span>⏰ Duración: 60 minutos</span>
             </div>
           </div>
 
           <div className="bg-ivory p-8 md:p-12 border border-rosa-vivo shadow-2xl shadow-tinto-deep/50">
-            <p className="editorial-eyebrow mb-2 text-rosa-shock">
-              Comienza en
-            </p>
-            <div className="mb-6">
-              <Countdown targetIso={MASTERCLASS.nextSessionIso} />
-            </div>
             <RegistroForm ctaLabel={MASTERCLASS.ctaForm} />
           </div>
         </div>
@@ -523,7 +486,38 @@ const ctaPinkClasses =
   "inline-block px-8 md:px-10 py-3.5 md:py-4 bg-rosa-vivo text-tinto-deep hover:bg-rosa-shock hover:text-ivory transition-all duration-300 text-sm md:text-base font-semibold tracking-wide rounded-full shadow-lg shadow-rosa-vivo/30 hover:shadow-xl hover:shadow-rosa-shock/40 hover:-translate-y-0.5";
 
 /* ============================================================
-   COMPONENTES DECORATIVOS
+   POST-IT horizontal — promesa + fecha
+============================================================ */
+
+function PostIt() {
+  return (
+    <div className="relative inline-block max-w-2xl w-full -rotate-1 mx-auto">
+      {/* Cinta washi arriba */}
+      <div
+        className="absolute -top-4 left-1/2 -translate-x-1/2 w-24 md:w-32 h-6 md:h-7 bg-tinto-deep/70 shadow-md rotate-2 z-20"
+        style={{
+          clipPath:
+            "polygon(4% 20%, 96% 0%, 100% 80%, 0% 100%)",
+        }}
+        aria-hidden
+      />
+
+      {/* Cuerpo post-it */}
+      <div className="relative bg-rosa-suave px-8 md:px-12 py-8 md:py-10 shadow-2xl shadow-tinto-deep/25 border-b-4 border-rosa-vivo/40">
+        <p className="text-base md:text-lg leading-relaxed text-tinto-deep/90 mb-5 font-display italic">
+          &ldquo;{MASTERCLASS.promise}&rdquo;
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-x-8 gap-y-1 text-xs md:text-sm uppercase tracking-[0.2em] text-tinto pt-4 border-t border-tinto-deep/15">
+          <span>🗓 {MASTERCLASS.nextSessionDisplay}</span>
+          <span>⏱ 60 min</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   POLAROID
 ============================================================ */
 
 function PolaroidPhoto({
@@ -549,71 +543,9 @@ function PolaroidPhoto({
   );
 }
 
-function SparkleDecoration({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 40 40"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      width="28"
-      height="28"
-      aria-hidden
-    >
-      <path
-        d="M20 4 L22 18 L36 20 L22 22 L20 36 L18 22 L4 20 L18 18 Z"
-        fill="currentColor"
-        opacity="0.8"
-      />
-    </svg>
-  );
-}
-
-function RotatingSeal({ className }: { className?: string }) {
-  return (
-    <div className={`${className} pointer-events-none`}>
-      <svg
-        viewBox="0 0 200 200"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full animate-[spin_18s_linear_infinite]"
-        aria-hidden
-      >
-        <defs>
-          <path
-            id="rotating-circle"
-            d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
-          />
-        </defs>
-        <circle
-          cx="100"
-          cy="100"
-          r="88"
-          fill="currentColor"
-          className="text-tinto-deep"
-        />
-        <text
-          fill="#F7F2E8"
-          className="text-[11px] tracking-[0.3em]"
-          fontFamily="var(--font-inter), sans-serif"
-        >
-          <textPath xlinkHref="#rotating-circle">
-            · MASTERCLASS · GRATIS · CADA JUEVES · MASTERCLASS · GRATIS · CADA
-            JUEVES ·
-          </textPath>
-        </text>
-        <text
-          x="100"
-          y="105"
-          textAnchor="middle"
-          fill="#F7F2E8"
-          className="text-xs italic tracking-wide"
-          fontFamily="var(--font-cormorant), serif"
-        >
-          reserva
-        </text>
-      </svg>
-    </div>
-  );
-}
+/* ============================================================
+   ICONS SOCIAL
+============================================================ */
 
 function IconIG() {
   return (
