@@ -124,9 +124,6 @@ export default function MasterclassPage() {
 
           {/* COUNTDOWN arriba */}
           <div className="mb-10 md:mb-12">
-            <p className="editorial-eyebrow mb-4 text-tinto">
-              — La próxima sesión comienza en —
-            </p>
             <div className="inline-block bg-rosa-suave/60 border border-rosa-vivo/50 px-6 md:px-10 py-5 md:py-6">
               <Countdown targetIso={MASTERCLASS.nextSessionIso} />
             </div>
