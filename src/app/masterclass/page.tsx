@@ -179,7 +179,10 @@ export default function MasterclassPage() {
               <p className="editorial-eyebrow mb-6 text-rosa-vivo">
                 Deja de empezar de cero.
               </p>
-              <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.1] text-rosa-vivo mb-8">
+              <h2
+                className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.1] mb-8"
+                style={{ color: "var(--color-rosa-vivo)" }}
+              >
                 <em className="italic">Cumplirte</em> no es
                 <br />
                 cuestión de motivación
@@ -428,10 +431,18 @@ export default function MasterclassPage() {
             <p className="editorial-eyebrow text-rosa-vivo mb-4">
               — Reserva tu lugar —
             </p>
-            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl text-ivory leading-[0.95] mb-6">
+            <h2
+              className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-6"
+              style={{ color: "var(--color-ivory)" }}
+            >
               <span className="italic">R</span>eserva
               <br />
-              <em className="italic text-rosa-vivo">tu lugar</em>
+              <em
+                className="italic"
+                style={{ color: "var(--color-rosa-vivo)" }}
+              >
+                tu lugar
+              </em>
             </h2>
 
             <div className="inline-flex flex-col gap-2 text-ivory/85 text-base md:text-lg mt-6">
