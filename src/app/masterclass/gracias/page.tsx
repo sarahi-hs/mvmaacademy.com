@@ -5,14 +5,28 @@ import { MASTERCLASS } from "../config";
 
 export const metadata: Metadata = {
   title: "¡Casi lista! — Únete a la comunidad de WhatsApp",
-  description: "Falta un paso: únete a la comunidad de WhatsApp para recibir el link de la masterclass.",
+  description:
+    "Falta un paso: únete a la comunidad de WhatsApp para recibir el link de la masterclass.",
   robots: { index: false, follow: false },
 };
 
 export default function GraciasPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-ivory">
-      <div className="border-b border-beige/60">
+    <div className="min-h-screen flex flex-col bg-ivory relative overflow-hidden">
+      {/* Blob decorativo de fondo */}
+      <svg
+        viewBox="0 0 500 500"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute -top-40 -right-40 w-[600px] h-[600px] text-rosita/60"
+        aria-hidden
+      >
+        <path
+          fill="currentColor"
+          d="M406.5,325Q377,400,301,439.5Q225,479,145,431Q65,383,49.5,301.5Q34,220,86,151Q138,82,226,69.5Q314,57,375.5,123Q437,189,436,264.5Q435,340,406.5,325Z"
+        />
+      </svg>
+
+      <div className="relative z-10 border-b border-beige/60 bg-ivory/80 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <Link
             href="/"
@@ -26,24 +40,25 @@ export default function GraciasPage() {
               className="h-9 w-9 object-contain"
             />
             <span className="font-display text-lg tracking-tight text-tinto-deep">
-              <span className="italic">S</span>arahi{" "}
-              <span className="italic">H</span>aro
+              <span className="italic">S</span>arahi <span className="italic">H</span>aro
             </span>
           </Link>
         </div>
       </div>
 
-      <main className="flex-1 flex items-center justify-center px-6 py-12 md:py-16">
+      <main className="relative z-10 flex-1 flex items-center justify-center px-6 py-12 md:py-16">
         <div className="max-w-2xl w-full text-center">
-          <p className="editorial-eyebrow mb-4 text-tinto">Registro confirmado ✓</p>
+          <p className="editorial-eyebrow mb-4 text-rosita-deep">
+            Registro confirmado ✓
+          </p>
 
-          <h1 className="font-display text-4xl md:text-6xl text-tinto-deep mb-4 leading-tight">
+          <h1 className="font-display text-5xl md:text-7xl text-tinto-deep mb-6 leading-[0.95]">
             <span className="italic">C</span>asi lista.
             <br />
-            <em className="italic">Falta 1 paso.</em>
+            <em className="italic text-rosita-deep">Falta 1 paso.</em>
           </h1>
 
-          <p className="text-lg text-tinto-deep/80 mb-8 max-w-lg mx-auto leading-relaxed">
+          <p className="text-lg text-tinto-deep/80 mb-10 max-w-lg mx-auto leading-relaxed">
             Únete a nuestra comunidad de WhatsApp — es donde vas a recibir el{" "}
             <strong>link de Zoom</strong> el día de la clase.
           </p>
@@ -52,7 +67,7 @@ export default function GraciasPage() {
             href={MASTERCLASS.whatsappCommunityUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-6 bg-[#25D366] text-white hover:bg-[#1DA851] transition-colors text-lg md:text-xl font-medium tracking-wide shadow-lg shadow-tinto-deep/10"
+            className="inline-flex items-center gap-3 px-10 py-6 bg-[#25D366] text-white hover:bg-[#1DA851] transition-all hover:-translate-y-0.5 text-lg md:text-xl font-medium tracking-wide shadow-lg shadow-tinto-deep/10"
           >
             <svg
               width="28"
@@ -67,24 +82,29 @@ export default function GraciasPage() {
           </a>
 
           <p className="text-xs text-tinto-deep/50 mt-4 max-w-md mx-auto">
-            Es una <strong>comunidad</strong>, no un grupo — nadie verá tu número ni el de las demás.
+            Es una <strong>comunidad</strong>, no un grupo — nadie verá tu
+            número ni el de las demás.
           </p>
 
-          <div className="mt-12 pt-8 border-t border-beige max-w-md mx-auto space-y-4">
+          <div className="mt-14 pt-8 border-t border-beige max-w-md mx-auto space-y-6">
             <div>
-              <p className="editorial-eyebrow mb-2">Dentro de la comunidad recibes</p>
+              <p className="editorial-eyebrow mb-3 text-rosita-deep">
+                Dentro de la comunidad recibes
+              </p>
               <ul className="text-sm text-tinto-deep/75 space-y-1.5 text-left inline-block">
-                <li>✦ El link de Zoom el día del evento</li>
+                <li>✦ El link de Zoom el día de la clase</li>
                 <li>✦ Recordatorios previos</li>
-                <li>✦ Contenido de preparación para la clase</li>
+                <li>✦ Contenido de preparación</li>
                 <li>✦ Acceso directo al equipo antes y después</li>
               </ul>
             </div>
 
             <div className="pt-4 border-t border-beige">
-              <p className="editorial-eyebrow mb-2">Guarda la fecha</p>
+              <p className="editorial-eyebrow mb-2 text-rosita-deep">
+                Guarda la fecha
+              </p>
               <p className="text-tinto-deep">
-                📅 {MASTERCLASS.dateDisplay}
+                🗓 {MASTERCLASS.nextSessionDisplay}
                 <br />
                 💻 {MASTERCLASS.platform}
               </p>

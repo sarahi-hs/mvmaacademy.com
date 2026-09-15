@@ -14,6 +14,15 @@
   --color-hueso-warm: #EFE7D5;     /* Alias compatibilidad */
   --color-rosita-deep: #C99E98;    /* Alias compatibilidad */
 
+  /* Ampliación paleta editorial (masterclass "Mujer que se cumple") */
+  --color-rosa-vivo: #E38BA0;      /* Rosa vivo — CTAs, cuadros, accents */
+  --color-rosa-shock: #D66584;     /* Rosa intenso — hover, énfasis */
+  --color-rosa-suave: #F5D5DC;     /* Rosa suave background */
+  --color-gris: #6E6E6E;           /* Gris cálido medio — accents, backgrounds bloque */
+  --color-gris-oscuro: #3A3A3A;    /* Gris oscuro — texto sobre gris claro */
+  --color-gris-claro: #D9D5D0;     /* Gris claro cálido — borders, dividers */
+  --color-gris-humo: #B8B0A8;      /* Gris humo cálido — accents editoriales */
+
   /* Tipografía */
   --font-display: var(--font-cormorant), "Playfair Display", "Times New Roman", serif;
   --font-body: var(--font-inter), -apple-system, system-ui, sans-serif;
@@ -49,11 +58,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--color-tinto-deep);
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--color-tinto-deep);
+  }
 }
 
 ::selection {

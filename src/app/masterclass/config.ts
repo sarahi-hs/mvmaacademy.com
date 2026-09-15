@@ -1,83 +1,100 @@
 /**
- * Configuración de la masterclass. Editar aquí cuando cambien datos.
+ * Configuración de la masterclass evergreen "Conviértete en una mujer que se cumple".
+ *
+ * CADENCIA: cada jueves a las 7:30 pm CDMX.
+ *
+ * 🔁 CÓMO ACTUALIZAR LA FECHA CADA SEMANA (10 segundos):
+ * 1. Cambia únicamente `nextSessionIso` (ISO con offset -06:00 de CDMX)
+ * 2. Cambia `nextSessionDisplay` con la nueva fecha en español
+ * El contador regresivo y el schema.org se actualizan solos.
  */
 
 export const MASTERCLASS = {
-  title: "Deja de Esconderte",
-  subtitle:
-    "Cómo proyectar el poder que ya tienes dentro para convertirte en referente de tu industria — sin ser experta en moda",
-  // Fecha en ISO con offset de CDMX (UTC-6, sin horario de verano desde 2022)
-  dateIso: "2026-07-28T19:00:00-06:00",
-  dateDisplay: "Martes 28 de julio · 7:00 pm CDMX",
-  durationDisplay: "1h30 – 1h45",
+  title: "Conviértete en una mujer que se cumple",
+  subtitle: "Recupera tu confianza y alcanza tus objetivos",
+  eyebrow: "Masterclass online — GRATIS",
+
+  promise:
+    "Descubre qué está haciendo que sigas postergando la mujer que sabes que puedes llegar a ser, y aprende a romper el ciclo que te hace empezar una y otra vez desde cero.",
+
+  // 👇 Próxima sesión — actualizar cada semana
+  nextSessionIso: "2026-10-15T19:30:00-06:00",
+  nextSessionDisplay: "Jueves 15 de octubre · 7:30 pm CDMX",
+
+  cadence: "Cada jueves · 7:30 pm CDMX",
+  durationDisplay: "60 minutos exactos",
   platform: "En vivo por Zoom",
+
+  // Comunidad de WhatsApp (misma que antes por decisión de Sarahi)
   whatsappCommunityUrl: "https://chat.whatsapp.com/H4EjjyrL9WoK5MKYdc2fh2",
-  ctaLabel: "Estoy lista para mi grandeza — Reservar gratis",
-  ctaHero: "Estoy lista para mi grandeza — Reservar mi lugar",
-  ctaVideo: "Sé que es mi momento — Reservar mi lugar",
-  ctaShort: "Reservar mi lugar gratis",
-  // ID del grupo en MailerLite donde caen las registradas
+
+  // 4 CTAs distintos para distintos puntos del scroll
+  ctaHero: "Quiero mi lugar gratis",
+  ctaSecretos: "Quiero descubrir los 3 secretos",
+  ctaPara: "Reservar mi lugar gratis",
+  ctaFinal: "Sí, quiero mi lugar gratis",
+  ctaForm: "Vengo a cumplirme",
+
+  // TODO: cambiar a nuevo grupo de MailerLite cuando Sarahi lo cree
+  // ("Mujer que se cumple" — evergreen). Por ahora usa el mismo para no bloquear.
   mailerLiteGroupId: "192550673358784123",
 } as const;
 
+/**
+ * 3 secretos que revela — copy escrito por Sarahi.
+ * Formato curiosidad + promesa sin revelar.
+ */
+export const SECRETOS = [
+  {
+    key: "01",
+    label: "SECRETO #1",
+    body: "El error silencioso que cometes cada vez que intentas 'volver a empezar' — y que podría estar alejándote cada vez más de tus objetivos.",
+  },
+  {
+    key: "02",
+    label: "SECRETO #2",
+    body: "La razón por la que puedes saber perfectamente qué tienes que hacer… y aun así seguir sin hacerlo.",
+  },
+  {
+    key: "03",
+    label: "SECRETO #3",
+    body: "El factor que casi nadie considera cuando intenta cambiar su vida — y que puede determinar si esta vez realmente lo sostienes o vuelves al mismo lugar.",
+  },
+] as const;
+
+/**
+ * "Esta masterclass es para ti si…" — copy escrito por Sarahi.
+ */
 export const PARA_QUIEN = [
-  "Estás emprendiendo o quieres emprender (tu negocio, tu marca, tu carrera).",
-  "Estás lista para accionar e invertir en ti.",
-  "Sientes que tienes TODO para lograrlo, pero algo te frena.",
-  "¿Alguna vez has sentido que eres la menos interesante del salón… aunque sabes que eres muy capaz?",
-  "Quieres convertirte en referente de tu industria.",
+  "Te emocionas con nuevas metas, pero te cuesta mantenerlas.",
+  "Sabes que tienes muchísimo potencial, pero sientes que no lo estás aprovechando al máximo.",
+  "Has dejado tus necesidades, tus sueños o tus proyectos para después.",
+  "Quieres recuperar la confianza en ti.",
+  "Quieres sentirte orgullosa de la mujer en la que te estás convirtiendo.",
+  "Sabes que estás hecha para más, y estás lista para tu siguiente nivel.",
 ] as const;
 
-export const PILARES = [
-  {
-    key: "autoridad",
-    label: "Autoridad",
-    description: "Que te vean como la referente que ya eres, aunque aún no lo hayas dicho en voz alta.",
-  },
-  {
-    key: "impacto",
-    label: "Impacto",
-    description: "Que cada vez que aparezcas — en vivo, en foto, en junta — te ganes el espacio que mereces.",
-  },
-  {
-    key: "libertad",
-    label: "Libertad",
-    description: "Que dejes de disfrazarte para caber donde no perteneces y empieces a atraer donde sí.",
-  },
-] as const;
+/**
+ * Bio de la host — copy escrito por Sarahi (firma como "Sara Haro" aquí).
+ */
+export const HOST = {
+  name: "Sarahi Haro",
+  role: "Personal Branding Expert",
+  credentials: "Creadora de MVMA ACADEMY® y The Glow Club",
+  bio: [
+    "Durante los últimos años he acompañado a cientos de mujeres a fortalecer su identidad, confianza, imagen y manera de mostrarse ante el mundo.",
+    "Y algo que he comprobado una y otra vez es que tener potencial no siempre es suficiente.",
+    "Por eso creé esta masterclass: para ayudarte a entender qué está interfiriendo entre la mujer que eres hoy y la mujer que sabes que puedes llegar a ser.",
+  ],
+  photo: "/images/sarahi/sarahi-tablet.jpg",
+} as const;
 
-export const APRENDERAS = [
-  {
-    title: "Por qué la ropa nunca fue el problema",
-    body: "y cómo convertirla en tu herramienta de posicionamiento.",
-  },
-  {
-    title: "El sabotaje invisible que te hace pequeña",
-    body: "cómo detectarlo y desactivarlo.",
-  },
-  {
-    title: "El secreto para atraer lo que sí quieres",
-    body: "y posicionarte como la referente de tu industria.",
-  },
-] as const;
-
-export const TESTIMONIOS = [
-  {
-    quote:
-      "Haber tomado la decisión de dejar de postergarme y por fin hacer algo para mí, para mi evolución, es algo que me cambió la vida.",
-    name: "Natalia R.",
-    location: "Puebla",
-  },
-  {
-    quote:
-      "Nunca pensé que con Sarahi encontraría la respuesta de qué era lo que me estaba frenando, pero ahora por fin tengo claridad en mi objetivo y comencé a ver resultados.",
-    name: "Viviana M.",
-    location: "Guadalajara",
-  },
-  {
-    quote:
-      "Con Sarahi entendí lo que realmente significaba vestirte para las oportunidades, y se fue la frustración de no saber qué ponerme.",
-    name: "Mariana L.",
-    location: "Texas",
-  },
-] as const;
+/**
+ * Testimonios — pendientes de que Sarahi mande screenshots.
+ * Los transcribiré cuando lleguen. Por ahora dejo la sección oculta.
+ */
+export const TESTIMONIOS: ReadonlyArray<{
+  quote: string;
+  name: string;
+  location?: string;
+}> = [];

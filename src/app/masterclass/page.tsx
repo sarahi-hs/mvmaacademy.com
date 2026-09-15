@@ -4,50 +4,40 @@ import { JsonLd } from "@/components/JsonLd";
 import { PERSON } from "@/lib/site";
 import { Countdown } from "./Countdown";
 import { RegistroForm } from "./RegistroForm";
+import { SecretosTabs } from "./SecretosTabs";
 import {
   MASTERCLASS,
   PARA_QUIEN,
-  APRENDERAS,
+  HOST,
   TESTIMONIOS,
-  PILARES,
 } from "./config";
 
-const PILAR_ICONS: Record<string, React.ReactNode> = {
-  autoridad: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M3 8l3 8h12l3-8-5 3-4-6-4 6-5-3z" />
-      <path d="M6 20h12" />
-      <circle cx="3" cy="8" r="1" fill="currentColor" />
-      <circle cx="12" cy="4" r="1" fill="currentColor" />
-      <circle cx="21" cy="8" r="1" fill="currentColor" />
-    </svg>
-  ),
-  impacto: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M6 3h12l3 6-9 12L3 9l3-6z" />
-      <path d="M6 3l3 6h6l3-6" />
-      <path d="M9 9l3 12 3-12" />
-    </svg>
-  ),
-  libertad: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M3 20h18" />
-      <path d="M6 20V12" />
-      <path d="M11 20V8" />
-      <path d="M16 20V5" />
-      <path d="M4 8l6-3 4 2 6-4" />
-      <circle cx="20" cy="3" r="1.5" fill="currentColor" />
-    </svg>
-  ),
-};
+/* Paleta rotativa para "Para ti si…" — cuadros de distintos colores */
+const PARA_QUIEN_COLORS = [
+  { bg: "bg-tinto", text: "text-ivory", num: "text-rosa-vivo" },
+  { bg: "bg-rosa-vivo", text: "text-tinto-deep", num: "text-tinto-deep" },
+  { bg: "bg-gris", text: "text-ivory", num: "text-rosa-vivo" },
+  { bg: "bg-ivory-warm", text: "text-tinto-deep", num: "text-tinto" },
+  { bg: "bg-rosa-suave", text: "text-tinto-deep", num: "text-tinto" },
+  { bg: "bg-tinto-deep", text: "text-ivory", num: "text-rosa-vivo" },
+];
+
+/* Paleta rotativa para testimonios */
+const TESTIMONIAL_PALETTE = [
+  { bg: "bg-tinto", text: "text-ivory", accent: "text-rosa-vivo" },
+  { bg: "bg-rosa-vivo", text: "text-tinto-deep", accent: "text-tinto" },
+  { bg: "bg-gris", text: "text-ivory", accent: "text-rosa-vivo" },
+  { bg: "bg-ivory-warm", text: "text-tinto-deep", accent: "text-rosa-shock" },
+  { bg: "bg-tinto-deep", text: "text-ivory", accent: "text-rosa-vivo" },
+];
 
 export default function MasterclassPage() {
   const eventSchema = {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: `${MASTERCLASS.title} — Masterclass con Sarahi Haro`,
-    description: MASTERCLASS.subtitle,
-    startDate: MASTERCLASS.dateIso,
+    name: `${MASTERCLASS.title} — Masterclass con ${HOST.name}`,
+    description: MASTERCLASS.promise,
+    startDate: MASTERCLASS.nextSessionIso,
     eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     location: {
@@ -73,308 +63,526 @@ export default function MasterclassPage() {
     <>
       <JsonLd data={eventSchema} />
 
-      {/* Barra superior con logo — sin nav */}
-      <div className="border-b border-beige/60 bg-ivory/85 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      {/* ============================================================
+          HEADER estilo revista
+      ============================================================ */}
+      <header className="relative z-20 bg-ivory border-b border-tinto-deep/10">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4 text-tinto-deep/70">
+            <a
+              href="https://www.instagram.com/sarahiharooficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="hover:text-tinto transition-colors"
+            >
+              <IconIG />
+            </a>
+            <a
+              href="https://www.tiktok.com/@sarahiharo18"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="hover:text-tinto transition-colors"
+            >
+              <IconTikTok />
+            </a>
+          </div>
+
           <Link
             href="/"
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
             <Image
               src="/images/sarahi/mvma-logo.png"
-              alt="MVMA logo"
-              width={40}
-              height={40}
-              className="h-9 w-9 md:h-10 md:w-10 object-contain"
+              alt="MVMA"
+              width={32}
+              height={32}
+              className="h-7 w-7 md:h-8 md:w-8 object-contain"
             />
-            <span className="font-display text-lg md:text-xl tracking-tight text-tinto-deep">
-              <span className="italic">S</span>arahi{" "}
-              <span className="italic">H</span>aro
+            <span className="font-display text-lg md:text-xl tracking-[0.15em] uppercase text-tinto-deep">
+              MVMA · Sarahi Haro
             </span>
           </Link>
-          <a
-            href="#registro"
-            className="hidden sm:inline text-xs uppercase tracking-widest text-tinto hover:text-tinto-deep"
-          >
-            Reservar mi lugar →
-          </a>
-        </div>
-      </div>
 
-      {/* ========================= HERO ========================= */}
-      <section className="relative overflow-hidden bg-ivory">
-        <div className="max-w-4xl mx-auto px-6 pt-16 md:pt-24 pb-12 md:pb-16 text-center">
-          <p className="editorial-eyebrow mb-6">
-            Masterclass en vivo · {MASTERCLASS.dateDisplay}
+          <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-tinto">
+            <span className="hidden sm:inline">MASTERCLASS · </span>GRATIS
+          </div>
+        </div>
+      </header>
+
+      {/* ============================================================
+          HERO — countdown arriba, título, post-it, CTA
+      ============================================================ */}
+      <section className="relative overflow-hidden bg-ivory py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="editorial-eyebrow mb-6 text-rosa-shock">
+            <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle mr-3" />
+            {MASTERCLASS.eyebrow}
+            <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle ml-3" />
           </p>
-          <h1 className="font-display text-5xl md:text-7xl leading-[0.95] mb-6">
-            <span className="text-tinto-deep">
-              <span className="italic">D</span>eja de
+
+          {/* COUNTDOWN arriba */}
+          <div className="mb-10 md:mb-12">
+            <div className="inline-block bg-rosa-suave/60 border border-rosa-vivo/50 px-6 md:px-10 py-5 md:py-6">
+              <Countdown targetIso={MASTERCLASS.nextSessionIso} />
+            </div>
+          </div>
+
+          <h1 className="font-display leading-[0.95] text-tinto-deep mb-8">
+            <span className="block text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] tracking-tight uppercase">
+              Conviértete en una
             </span>
-            <br />
-            <span className="text-rosita-deep">
-              <span className="italic">E</span>sconderte
+            <span className="block text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] tracking-tight uppercase">
+              mujer que
+            </span>
+            <span
+              className="block text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[11rem] italic text-rosa-vivo -mt-2 md:-mt-4"
+              style={{
+                fontFamily:
+                  "var(--font-cormorant), 'Playfair Display', serif",
+                fontWeight: 300,
+                letterSpacing: "-0.04em",
+                lineHeight: "0.85",
+              }}
+            >
+              se cumple
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-tinto-deep/75 max-w-2xl mx-auto leading-relaxed">
-            {MASTERCLASS.subtitle}
+
+          <p className="font-display text-xl md:text-3xl text-tinto italic mb-12 max-w-2xl mx-auto">
+            Recupera tu confianza y alcanza tus objetivos
           </p>
 
-          <div className="mt-12 mb-8">
-            <p className="editorial-eyebrow mb-4">Comienza en</p>
-            <Countdown targetIso={MASTERCLASS.dateIso} />
+          {/* POST-IT horizontal con promesa + fecha */}
+          <div className="max-w-2xl mx-auto mb-12 md:mb-14">
+            <PostIt />
           </div>
 
-          <a
-            href="#registro"
-            className="inline-block px-10 py-4 bg-tinto text-hueso hover:bg-tinto-deep transition-colors text-base md:text-lg font-medium tracking-wide"
-          >
-            {MASTERCLASS.ctaHero}
-          </a>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-tinto-deep/70">
-            <span>📅 {MASTERCLASS.dateDisplay}</span>
-            <span>⏱ Duración: {MASTERCLASS.durationDisplay}</span>
-            <span>💻 {MASTERCLASS.platform}</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================= 3 PILARES ========================= */}
-      <section className="bg-rosita/30 py-16 md:py-20 border-y border-rosita-deep/20">
-        <div className="max-w-5xl mx-auto px-6">
-          <p className="editorial-eyebrow text-center mb-10 text-rosita-deep">
-            Los 3 pilares que trabajaremos
-          </p>
-          <div className="grid md:grid-cols-3 gap-10 md:gap-8">
-            {PILARES.map((pilar) => (
-              <div key={pilar.key} className="text-center">
-                <div className="mx-auto w-14 h-14 md:w-16 md:h-16 mb-5 text-rosita-deep">
-                  {PILAR_ICONS[pilar.key]}
-                </div>
-                <h3 className="font-display text-2xl md:text-3xl text-tinto-deep mb-3 tracking-wide uppercase">
-                  {pilar.label}
-                </h3>
-                <p className="text-sm md:text-base text-tinto-deep/75 leading-relaxed max-w-xs mx-auto">
-                  {pilar.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================= VIDEO ========================= */}
-      <section className="bg-ivory-warm/60 py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="editorial-eyebrow text-center mb-6">
-            Un mensaje para ti antes de la clase
-          </p>
-          <div className="aspect-video w-full relative bg-tinto-deep/5 border border-beige overflow-hidden">
-            <iframe
-              src="https://player.vimeo.com/video/1210003393?title=0&byline=0&portrait=0"
-              className="absolute inset-0 w-full h-full"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              title="Masterclass — Deja de Esconderte"
-            />
-          </div>
-
-          <div className="mt-10 md:mt-12 text-center">
-            <a
-              href="#registro"
-              className="inline-block px-10 py-4 bg-tinto text-hueso hover:bg-tinto-deep transition-colors text-base md:text-lg font-medium tracking-wide"
-            >
-              {MASTERCLASS.ctaVideo}
+          <div>
+            <a href="#registro" className={ctaPinkClasses}>
+              {MASTERCLASS.ctaHero}
             </a>
           </div>
         </div>
       </section>
 
-      {/* ========================= PARA QUIÉN ========================= */}
-      <section className="bg-ivory py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-6">
-          <p className="editorial-eyebrow text-center mb-4">Esta clase es para ti si</p>
-          <h2 className="font-display text-3xl md:text-5xl text-tinto-deep text-center mb-12 leading-tight">
-            <span className="italic">T</span>e reconoces en{" "}
-            <em className="italic">al menos</em> una de estas frases
-          </h2>
-          <ul className="space-y-5 max-w-2xl mx-auto">
-            {PARA_QUIEN.map((linea, i) => (
-              <li key={i} className="flex gap-4 items-start">
-                <span className="font-display text-rosita-deep text-2xl leading-none pt-1">
-                  ✦
-                </span>
-                <p className="text-lg text-tinto-deep/85 leading-relaxed">
-                  {linea}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ========================= APRENDERÁS — versión editorial suave ========================= */}
-      <section className="bg-ivory-warm py-16 md:py-24">
-        <div className="max-w-5xl mx-auto px-6">
-          <p className="editorial-eyebrow text-center mb-4 text-rosita-deep">
-            Lo que te vas a llevar
-          </p>
-          <h2 className="font-display text-3xl md:text-5xl text-tinto-deep text-center mb-16 leading-tight">
-            <span className="italic">L</span>os 3 secretos que transforman
-            <br />
-            cómo te ve el mundo
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
-            {APRENDERAS.map((item, i) => (
-              <div
-                key={i}
-                className="bg-ivory p-8 border border-rosita-deep/20 text-center md:text-left"
-              >
-                <p className="font-display italic text-5xl text-rosita-deep mb-4">
-                  0{i + 1}
-                </p>
-                <h3 className="font-display text-xl md:text-2xl text-tinto-deep mb-3 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-tinto-deep/75 leading-relaxed">{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================= SOBRE SARAHI ========================= */}
-      <section className="bg-ivory py-16 md:py-24">
+      {/* ============================================================
+          BLOQUE TINTO-DEEP — statement con todo en rosa
+      ============================================================ */}
+      <section className="relative overflow-hidden bg-tinto-deep py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="editorial-eyebrow text-center mb-4">Quién imparte esta clase</p>
-          <h2 className="font-display text-3xl md:text-5xl text-tinto-deep text-center mb-12 leading-tight">
-            <span className="italic">S</span>arahi <span className="italic">H</span>aro
-          </h2>
-
-          <div className="grid md:grid-cols-5 gap-10 md:gap-14 items-center max-w-5xl mx-auto">
-            {/* Foto */}
-            <div className="md:col-span-2 relative aspect-[3/4] max-w-sm mx-auto md:max-w-none w-full">
-              <div className="absolute inset-0 border border-rosita-deep/30 translate-x-3 translate-y-3" aria-hidden />
-              <Image
-                src="/images/sarahi/sarahi-tablet.jpg"
-                alt="Sarahi Haro con blazer negro riendo con tablet"
-                fill
-                sizes="(max-width: 768px) 80vw, 320px"
-                className="object-cover relative"
-                priority={false}
+          <div className="grid md:grid-cols-12 gap-8 items-center">
+            {/* Foto izquierda (reference #1 — reemplazar cuando Sarahi la suba) */}
+            <div className="md:col-span-3 hidden md:flex justify-center">
+              <PolaroidPhoto
+                src="/images/sarahi/masterclass-host.png"
+                alt="Sarahi Haro"
+                rotate="-rotate-6"
               />
             </div>
 
-            {/* Texto */}
-            <div className="md:col-span-3 text-tinto-deep/85 leading-relaxed space-y-4 text-lg">
-              <p>
-                Asesora de imagen certificada, mercadóloga, coach de marca personal,
-                speaker internacional y autora del libro{" "}
-                <em>&ldquo;Volver a mí y no irme nunca más&rdquo;</em>.
+            <div className="md:col-span-6 text-center">
+              <p className="editorial-eyebrow mb-6 text-rosa-vivo">
+                Deja de empezar de cero.
               </p>
-              <p>
-                Fundadora del método{" "}
-                <strong className="text-rosita-deep">MVMA</strong> — Mi Versión Más
-                Auténtica, con el que ha acompañado a más de{" "}
-                <strong>200 mujeres</strong> a construir una marca personal alineada
-                con quiénes son y hacia dónde van. Su comunidad supera las{" "}
-                <strong>400,000 personas</strong> en redes sociales.
+              <h2
+                className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.1] mb-8"
+                style={{ color: "var(--color-rosa-vivo)" }}
+              >
+                <em className="italic">Cumplirte</em> no es
+                <br />
+                cuestión de motivación
+                <br />
+                <span className="italic">— es cuestión de método.</span>
+              </h2>
+              <p className="text-rosa-suave text-lg leading-relaxed max-w-xl mx-auto">
+                Una hora que reorganiza cómo te tratas, cómo te sostienes y cómo
+                vuelves a tu palabra.
               </p>
-              <div className="pt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                <span className="editorial-eyebrow text-rosita-deep">
-                  Autoridad
-                </span>
-                <span className="editorial-eyebrow text-rosita-deep">
-                  Impacto
-                </span>
-                <span className="editorial-eyebrow text-rosita-deep">
-                  Libertad
-                </span>
+            </div>
+
+            {/* Foto derecha (reference #2 — reemplazar cuando Sarahi la suba) */}
+            <div className="md:col-span-3 hidden md:flex justify-center">
+              <PolaroidPhoto
+                src="/images/sarahi/masterclass-2.jpg"
+                alt="Sarahi Haro"
+                rotate="rotate-6"
+              />
+            </div>
+          </div>
+
+          <div className="md:hidden flex justify-center gap-6 mt-12">
+            <PolaroidPhoto
+              src="/images/sarahi/masterclass-host.png"
+              alt="Sarahi Haro"
+              rotate="-rotate-6"
+              size="small"
+            />
+            <PolaroidPhoto
+              src="/images/sarahi/masterclass-2.jpg"
+              alt="Sarahi Haro"
+              rotate="rotate-6"
+              size="small"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          SECRETOS — tabs estilo CARPETA
+      ============================================================ */}
+      <section className="relative overflow-hidden bg-rosa-suave/60 py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+            <p className="editorial-eyebrow mb-4 text-rosa-shock">
+              En esta masterclass
+            </p>
+            <h2 className="font-display text-4xl md:text-6xl leading-[1] text-tinto-deep mb-4">
+              Te voy a revelar
+              <br />
+              <span className="italic text-rosa-shock">3 secretos</span>
+            </h2>
+          </div>
+
+          <SecretosTabs />
+
+          <div className="text-center mt-14 md:mt-16">
+            <a href="#registro" className={ctaPinkClasses}>
+              {MASTERCLASS.ctaSecretos}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          PARA QUIÉN ES — GRID de cuadros de colores
+      ============================================================ */}
+      <section className="relative overflow-hidden bg-ivory py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+            <p className="editorial-eyebrow mb-4 text-rosa-shock">
+              Esta masterclass es para ti si…
+            </p>
+            <h2 className="font-display text-4xl md:text-6xl leading-[0.98] text-tinto-deep mb-4">
+              <span className="italic">T</span>e reconoces en
+              <br />
+              <em className="italic text-rosa-vivo">al menos</em> una frase
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+            {PARA_QUIEN.map((linea, i) => {
+              const c = PARA_QUIEN_COLORS[i % PARA_QUIEN_COLORS.length];
+              return (
+                <div
+                  key={i}
+                  className={`
+                    ${c.bg} ${c.text} relative
+                    p-8 md:p-10 aspect-square md:aspect-[4/3]
+                    flex flex-col justify-between
+                    transition-transform hover:-translate-y-1 duration-300
+                    shadow-lg
+                  `}
+                >
+                  <p
+                    className={`font-display italic text-6xl md:text-7xl leading-none ${c.num} opacity-90`}
+                    aria-hidden
+                  >
+                    0{i + 1}
+                  </p>
+                  <p className="font-display text-lg md:text-xl leading-snug">
+                    {linea}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-14 md:mt-16">
+            <a href="#registro" className={ctaPinkClasses}>
+              {MASTERCLASS.ctaPara}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          TU HOST — sobre fondo gris claro
+      ============================================================ */}
+      <section className="relative overflow-hidden bg-gris-claro/70 py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="editorial-eyebrow text-center mb-4 text-rosa-shock">
+            Tu host
+          </p>
+          <h2 className="font-display text-center text-6xl md:text-8xl lg:text-[9rem] leading-[0.9] text-tinto-deep mb-12 md:mb-16">
+            <span className="italic">S</span>arahi <span className="italic">H</span>aro
+          </h2>
+
+          <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+            <div className="md:col-span-5">
+              <div className="relative aspect-[3/4] max-w-md mx-auto w-full">
+                <div
+                  className="absolute -inset-4 bg-rosa-vivo rotate-2"
+                  aria-hidden
+                />
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src="/images/sarahi/sarahi-tablet.jpg"
+                    alt="Sarahi Haro"
+                    fill
+                    sizes="(max-width: 768px) 80vw, 400px"
+                    className="object-cover"
+                  />
+                </div>
               </div>
+            </div>
+
+            <div className="md:col-span-7">
+              <p className="text-tinto italic mb-2 text-xl font-display">
+                {HOST.role}
+              </p>
+              <p className="text-sm text-gris-oscuro mb-8 tracking-[0.15em] uppercase">
+                {HOST.credentials}
+              </p>
+              <div className="space-y-5 text-lg md:text-xl text-tinto-deep/85 leading-relaxed">
+                {HOST.bio.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+              <p className="editorial-eyebrow mt-10 text-rosa-shock">
+                <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle mr-3" />
+                Nos vemos en la clase
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ========================= TESTIMONIOS ========================= */}
-      <section className="bg-beige-light/40 py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="editorial-eyebrow text-center mb-4">
-            Lo que dicen de trabajar con Sarahi
-          </p>
-          <h2 className="font-display text-3xl md:text-5xl text-tinto-deep text-center mb-14 leading-tight">
-            <span className="italic">M</span>ujeres que ya
-            <br />
-            dieron el paso
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {TESTIMONIOS.map((t, i) => (
-              <figure
-                key={i}
-                className="bg-ivory p-8 border border-rosita-deep/20 flex flex-col"
-              >
-                <span
-                  className="font-display italic text-6xl text-rosita-deep/50 leading-none mb-2"
-                  aria-hidden
-                >
-                  &ldquo;
-                </span>
-                <blockquote className="flex-1 text-tinto-deep/85 leading-relaxed italic">
-                  {t.quote}
-                </blockquote>
-                <figcaption className="mt-6 pt-6 border-t border-rosita-deep/20">
-                  <p className="font-display text-lg text-tinto-deep">
-                    {t.name}
-                  </p>
-                  <p className="editorial-eyebrow mt-1 text-rosita-deep">
-                    {t.location}
-                  </p>
-                </figcaption>
-              </figure>
-            ))}
+      {/* ============================================================
+          TESTIMONIOS
+      ============================================================ */}
+      {TESTIMONIOS.length > 0 && (
+        <section className="relative overflow-hidden bg-ivory py-24 md:py-28">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-14 md:mb-16">
+              <p className="editorial-eyebrow mb-4 text-rosa-shock">
+                Lo que dicen mujeres que ya lo vivieron
+              </p>
+              <h2 className="font-display text-4xl md:text-6xl leading-[1] text-tinto-deep">
+                <span className="italic">C</span>lient{" "}
+                <em className="italic text-rosa-vivo">Love</em>
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {TESTIMONIOS.map((t, i) => {
+                const c = TESTIMONIAL_PALETTE[i % TESTIMONIAL_PALETTE.length];
+                return (
+                  <figure
+                    key={i}
+                    className={`${c.bg} ${c.text} p-8 md:p-10 flex flex-col relative`}
+                  >
+                    <span
+                      className={`font-display italic text-6xl ${c.accent} leading-none mb-2 opacity-70`}
+                      aria-hidden
+                    >
+                      &ldquo;
+                    </span>
+                    <blockquote className="flex-1 leading-relaxed">
+                      {t.quote}
+                    </blockquote>
+                    <figcaption className="mt-6 pt-6 border-t border-current/20">
+                      <p className="font-display text-lg">{t.name}</p>
+                      {t.location && (
+                        <p className={`editorial-eyebrow mt-1 ${c.accent}`}>
+                          {t.location}
+                        </p>
+                      )}
+                    </figcaption>
+                  </figure>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* ========================= REGISTRO ========================= */}
-      <section id="registro" className="bg-tinto py-16 md:py-24">
-        <div className="max-w-2xl mx-auto px-6">
-          <p className="editorial-eyebrow text-rosita text-center mb-4">
-            Reserva tu lugar — 100% gratis
-          </p>
-          <h2 className="font-display text-3xl md:text-5xl text-hueso text-center mb-4 leading-tight">
-            <span className="italic">E</span>stoy lista para
-            <br />
-            mi grandeza
-          </h2>
-          <p className="text-hueso/80 text-center mb-10">
-            {MASTERCLASS.dateDisplay} · {MASTERCLASS.platform}
-          </p>
+      {/* ============================================================
+          REGISTRO FINAL — Timer arriba, "Reserva tu lugar" grande
+      ============================================================ */}
+      <section
+        id="registro"
+        className="relative overflow-hidden bg-tinto-deep py-24 md:py-32"
+      >
+        <div
+          className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-tinto rounded-full blur-3xl opacity-40"
+          aria-hidden
+        />
+        <div
+          className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-rosa-vivo rounded-full blur-3xl opacity-30"
+          aria-hidden
+        />
 
-          <div className="bg-ivory p-6 md:p-10 border border-rosita">
-            <RegistroForm ctaLabel={MASTERCLASS.ctaLabel} />
-          </div>
-        </div>
-      </section>
-
-      {/* ========================= FOOTER MINIMAL ========================= */}
-      <footer className="bg-ivory border-t border-beige">
-        <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-tinto-deep/60">
-          <p>© {new Date().getFullYear()} Sarahi Haro · MVMA Academy</p>
-          <div className="flex gap-6">
-            <Link href="/" className="hover:text-tinto">
-              Ir al sitio
-            </Link>
-            <a
-              href={`mailto:${PERSON.email}`}
-              className="hover:text-tinto"
+        <div className="relative max-w-2xl mx-auto px-6">
+          <div className="text-center mb-10 md:mb-12">
+            <p className="editorial-eyebrow text-rosa-vivo mb-4">
+              — Reserva tu lugar —
+            </p>
+            <h2
+              className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-6"
+              style={{ color: "var(--color-ivory)" }}
             >
-              Contacto
-            </a>
+              <span className="italic">R</span>eserva
+              <br />
+              <em
+                className="italic"
+                style={{ color: "var(--color-rosa-vivo)" }}
+              >
+                tu lugar
+              </em>
+            </h2>
+
+            <div className="inline-flex flex-col gap-2 text-ivory/85 text-base md:text-lg mt-6">
+              <span>📍 Masterclass online</span>
+              <span>🎟 Acceso gratuito</span>
+              <span>🗓 {MASTERCLASS.nextSessionDisplay}</span>
+              <span>⏰ Duración: 60 minutos</span>
+            </div>
+          </div>
+
+          <div className="bg-ivory p-8 md:p-12 border border-rosa-vivo shadow-2xl shadow-tinto-deep/50">
+            <RegistroForm ctaLabel={MASTERCLASS.ctaForm} />
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          FIRMA / FOOTER editorial
+      ============================================================ */}
+      <footer className="bg-ivory border-t border-tinto-deep/10">
+        <div className="max-w-7xl mx-auto px-6 py-14 md:py-20 text-center">
+          <p className="font-display text-5xl md:text-7xl text-tinto-deep/80 tracking-tight">
+            <span className="italic">M</span>VMA{" "}
+            <em className="italic text-rosa-vivo">Academy</em>
+          </p>
+          <p className="editorial-eyebrow mt-4 text-rosa-shock">
+            Sarahi Haro · MVMA Academy®
+          </p>
+
+          <div className="mt-10 pt-6 border-t border-tinto-deep/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-tinto-deep/60">
+            <p>© {new Date().getFullYear()} Sarahi Haro · MVMA Academy</p>
+            <div className="flex gap-6">
+              <Link href="/" className="hover:text-tinto">
+                Ir al sitio
+              </Link>
+              <a href={`mailto:${PERSON.email}`} className="hover:text-tinto">
+                Contacto
+              </a>
+            </div>
           </div>
         </div>
       </footer>
     </>
+  );
+}
+
+/* ============================================================
+   ESTILOS DE CTA
+============================================================ */
+
+const ctaPinkClasses =
+  "inline-block px-8 md:px-10 py-3.5 md:py-4 bg-rosa-vivo text-tinto-deep hover:bg-rosa-shock hover:text-ivory transition-all duration-300 text-sm md:text-base font-semibold tracking-wide rounded-full shadow-lg shadow-rosa-vivo/30 hover:shadow-xl hover:shadow-rosa-shock/40 hover:-translate-y-0.5";
+
+/* ============================================================
+   POST-IT horizontal — promesa + fecha
+============================================================ */
+
+function PostIt() {
+  return (
+    <div className="relative inline-block max-w-2xl w-full -rotate-1 mx-auto">
+      {/* Cinta washi arriba */}
+      <div
+        className="absolute -top-4 left-1/2 -translate-x-1/2 w-24 md:w-32 h-6 md:h-7 bg-tinto-deep/70 shadow-md rotate-2 z-20"
+        style={{
+          clipPath:
+            "polygon(4% 20%, 96% 0%, 100% 80%, 0% 100%)",
+        }}
+        aria-hidden
+      />
+
+      {/* Cuerpo post-it */}
+      <div className="relative bg-rosa-suave px-8 md:px-12 py-8 md:py-10 shadow-2xl shadow-tinto-deep/25 border-b-4 border-rosa-vivo/40">
+        <p className="text-base md:text-lg leading-relaxed text-tinto-deep/90 mb-5 font-display italic">
+          &ldquo;{MASTERCLASS.promise}&rdquo;
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-x-8 gap-y-1 text-xs md:text-sm uppercase tracking-[0.2em] text-tinto pt-4 border-t border-tinto-deep/15">
+          <span>🗓 {MASTERCLASS.nextSessionDisplay}</span>
+          <span>⏱ 60 min</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   POLAROID
+============================================================ */
+
+function PolaroidPhoto({
+  src,
+  alt,
+  rotate,
+  size = "normal",
+}: {
+  src: string;
+  alt: string;
+  rotate: string;
+  size?: "small" | "normal";
+}) {
+  const dims = size === "small" ? "w-32" : "w-36 md:w-48";
+  return (
+    <div
+      className={`${rotate} ${dims} bg-ivory p-2 md:p-3 pb-6 md:pb-8 shadow-2xl shadow-tinto-deep/40`}
+    >
+      <div className="relative aspect-[4/5] w-full overflow-hidden">
+        <Image src={src} alt={alt} fill sizes="200px" className="object-cover" />
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ICONS SOCIAL
+============================================================ */
+
+function IconIG() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      aria-hidden
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconTikTok() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V9.29a8.31 8.31 0 0 0 4.87 1.55V7.5a4.76 4.76 0 0 1-1.94-.81z" />
+    </svg>
   );
 }
