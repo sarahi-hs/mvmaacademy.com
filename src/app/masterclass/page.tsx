@@ -271,7 +271,7 @@ export default function MasterclassPage() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
             {PARA_QUIEN.map((linea, i) => {
               const c = PARA_QUIEN_COLORS[i % PARA_QUIEN_COLORS.length];
               return (
@@ -279,19 +279,20 @@ export default function MasterclassPage() {
                   key={i}
                   className={`
                     ${c.bg} ${c.text} relative
-                    p-8 md:p-10 aspect-square md:aspect-[4/3]
+                    p-4 sm:p-6 md:p-10
+                    aspect-square md:aspect-[4/3]
                     flex flex-col justify-between
                     transition-transform hover:-translate-y-1 duration-300
                     shadow-lg
                   `}
                 >
                   <p
-                    className={`font-display italic text-6xl md:text-7xl leading-none ${c.num} opacity-90`}
+                    className={`font-display italic text-4xl sm:text-5xl md:text-7xl leading-none ${c.num} opacity-90`}
                     aria-hidden
                   >
                     0{i + 1}
                   </p>
-                  <p className="font-display text-lg md:text-xl leading-snug">
+                  <p className="font-display text-sm sm:text-base md:text-xl leading-snug">
                     {linea}
                   </p>
                 </div>
