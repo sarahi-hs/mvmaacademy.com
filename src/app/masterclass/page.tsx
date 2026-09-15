@@ -179,7 +179,7 @@ export default function MasterclassPage() {
             {/* Foto izquierda (reference #1 — reemplazar cuando Sarahi la suba) */}
             <div className="md:col-span-3 hidden md:flex justify-center">
               <PolaroidPhoto
-                src="/images/sarahi/sarahi-parada.jpg"
+                src="/images/sarahi/masterclass-1.jpg"
                 alt="Sarahi Haro"
                 rotate="-rotate-6"
               />
@@ -208,8 +208,8 @@ export default function MasterclassPage() {
             {/* Foto derecha (reference #2 — reemplazar cuando Sarahi la suba) */}
             <div className="md:col-span-3 hidden md:flex justify-center">
               <PolaroidPhoto
-                src="/images/sarahi/sarahi-extra-laptop-rosa.jpg"
-                alt="Sarahi Haro trabajando"
+                src="/images/sarahi/masterclass-2.jpg"
+                alt="Sarahi Haro"
                 rotate="rotate-6"
               />
             </div>
@@ -217,14 +217,14 @@ export default function MasterclassPage() {
 
           <div className="md:hidden flex justify-center gap-6 mt-12">
             <PolaroidPhoto
-              src="/images/sarahi/sarahi-parada.jpg"
+              src="/images/sarahi/masterclass-1.jpg"
               alt="Sarahi Haro"
               rotate="-rotate-6"
               size="small"
             />
             <PolaroidPhoto
-              src="/images/sarahi/sarahi-extra-laptop-rosa.jpg"
-              alt="Sarahi Haro trabajando"
+              src="/images/sarahi/masterclass-2.jpg"
+              alt="Sarahi Haro"
               rotate="rotate-6"
               size="small"
             />
@@ -331,7 +331,7 @@ export default function MasterclassPage() {
                 />
                 <div className="relative w-full h-full overflow-hidden">
                   <Image
-                    src="/images/sarahi/sarahi-tablet.jpg"
+                    src="/images/sarahi/masterclass-host.png"
                     alt="Sarahi Haro"
                     fill
                     sizes="(max-width: 768px) 80vw, 400px"
