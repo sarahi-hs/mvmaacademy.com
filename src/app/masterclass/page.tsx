@@ -12,13 +12,23 @@ import {
   TESTIMONIOS,
 } from "./config";
 
-/* Paleta de cards para testimonios (contraste editorial) */
+/* Paleta rotativa para "Para ti si…" — cuadros de distintos colores */
+const PARA_QUIEN_COLORS = [
+  { bg: "bg-tinto", text: "text-ivory", num: "text-rosa-vivo" },
+  { bg: "bg-rosa-vivo", text: "text-tinto-deep", num: "text-tinto-deep" },
+  { bg: "bg-gris", text: "text-ivory", num: "text-rosa-vivo" },
+  { bg: "bg-ivory-warm", text: "text-tinto-deep", num: "text-tinto" },
+  { bg: "bg-rosa-suave", text: "text-tinto-deep", num: "text-tinto" },
+  { bg: "bg-tinto-deep", text: "text-ivory", num: "text-rosa-vivo" },
+];
+
+/* Paleta rotativa para testimonios (Client Love) */
 const TESTIMONIAL_PALETTE = [
-  { bg: "bg-tinto", text: "text-ivory", accent: "text-rosita" },
-  { bg: "bg-rosita-deep", text: "text-tinto-deep", accent: "text-tinto" },
-  { bg: "bg-ivory-warm", text: "text-tinto-deep", accent: "text-rosita-deep" },
-  { bg: "bg-beige", text: "text-tinto-deep", accent: "text-tinto" },
-  { bg: "bg-tinto-deep", text: "text-ivory", accent: "text-rosita" },
+  { bg: "bg-tinto", text: "text-ivory", accent: "text-rosa-vivo" },
+  { bg: "bg-rosa-vivo", text: "text-tinto-deep", accent: "text-tinto" },
+  { bg: "bg-gris", text: "text-ivory", accent: "text-rosa-vivo" },
+  { bg: "bg-ivory-warm", text: "text-tinto-deep", accent: "text-rosa-shock" },
+  { bg: "bg-tinto-deep", text: "text-ivory", accent: "text-rosa-vivo" },
 ];
 
 export default function MasterclassPage() {
@@ -54,11 +64,10 @@ export default function MasterclassPage() {
       <JsonLd data={eventSchema} />
 
       {/* ============================================================
-          HEADER estilo revista — íconos, logo centro, sección derecha
+          HEADER estilo revista
       ============================================================ */}
       <header className="relative z-20 bg-ivory border-b border-tinto-deep/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          {/* Left: social */}
           <div className="flex items-center gap-4 text-tinto-deep/70">
             <a
               href="https://www.instagram.com/sarahiharooficial"
@@ -80,7 +89,6 @@ export default function MasterclassPage() {
             </a>
           </div>
 
-          {/* Center: logo brand */}
           <Link
             href="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -93,11 +101,10 @@ export default function MasterclassPage() {
               className="h-7 w-7 md:h-8 md:w-8 object-contain"
             />
             <span className="font-display text-lg md:text-xl tracking-[0.15em] uppercase text-tinto-deep">
-              MVMA · Sara Haro
+              MVMA · Sarahi Haro
             </span>
           </Link>
 
-          {/* Right: masterclass label */}
           <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-tinto">
             <span className="hidden sm:inline">MASTERCLASS · </span>GRATIS
           </div>
@@ -105,17 +112,23 @@ export default function MasterclassPage() {
       </header>
 
       {/* ============================================================
-          HERO — split con foto y tipografía mixta
+          HERO — split con foto + panel gris atrás + tipografía mixta
       ============================================================ */}
       <section className="relative overflow-hidden bg-ivory">
-        <SparkleDecoration className="absolute top-24 right-20 hidden lg:block text-tinto" />
-        <SparkleDecoration className="absolute bottom-16 left-24 hidden lg:block text-rosita-deep" />
+        {/* Panel gris grande decorativo detrás del hero */}
+        <div
+          className="absolute top-0 right-0 w-1/2 h-full bg-gris-claro/60 hidden md:block"
+          aria-hidden
+        />
 
-        <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <SparkleDecoration className="absolute top-24 right-1/3 hidden lg:block text-rosa-vivo" />
+        <SparkleDecoration className="absolute bottom-16 left-24 hidden lg:block text-tinto" />
+
+        <div className="relative max-w-7xl mx-auto px-6 py-12 md:py-20 grid md:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Left: texto */}
           <div className="md:col-span-7 relative">
-            <p className="editorial-eyebrow mb-8 text-tinto">
-              <span className="inline-block h-[1px] w-8 bg-tinto align-middle mr-3" />
+            <p className="editorial-eyebrow mb-8 text-rosa-shock">
+              <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle mr-3" />
               {MASTERCLASS.eyebrow}
             </p>
 
@@ -127,7 +140,7 @@ export default function MasterclassPage() {
                 mujer que
               </span>
               <span
-                className="block text-[3.6rem] sm:text-7xl md:text-[6rem] lg:text-[8rem] italic text-rosita-deep -mt-1"
+                className="block text-[3.6rem] sm:text-7xl md:text-[6rem] lg:text-[8rem] italic text-rosa-vivo -mt-1"
                 style={{ letterSpacing: "-0.03em", fontWeight: 400 }}
               >
                 se cumple
@@ -143,7 +156,7 @@ export default function MasterclassPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-10">
-              <a href="#registro" className={ctaPillClasses}>
+              <a href="#registro" className={ctaPinkClasses}>
                 {MASTERCLASS.ctaHero}
               </a>
               <div className="text-sm text-tinto-deep/70 space-y-0.5">
@@ -156,15 +169,14 @@ export default function MasterclassPage() {
           {/* Right: foto + círculo rotativo */}
           <div className="md:col-span-5 relative">
             <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
-              {/* Frame decorativo detrás */}
               <div
-                className="absolute -inset-3 md:-inset-4 bg-rosita-deep/30 -rotate-3"
+                className="absolute -inset-3 md:-inset-4 bg-rosa-vivo -rotate-3"
                 aria-hidden
               />
               <div className="relative w-full h-full overflow-hidden">
                 <Image
                   src="/images/sarahi/sarahi-tablet.jpg"
-                  alt="Sara Haro"
+                  alt="Sarahi Haro"
                   fill
                   sizes="(max-width: 768px) 90vw, 400px"
                   className="object-cover"
@@ -172,7 +184,6 @@ export default function MasterclassPage() {
                 />
               </div>
 
-              {/* Círculo rotativo con texto */}
               <RotatingSeal className="absolute -bottom-8 -right-6 md:-bottom-12 md:-right-12 w-24 md:w-32" />
             </div>
           </div>
@@ -183,60 +194,56 @@ export default function MasterclassPage() {
           BLOQUE TINTO — statement con polaroids
       ============================================================ */}
       <section className="relative overflow-hidden bg-tinto py-24 md:py-32">
-        <SparkleDecoration className="absolute top-12 left-1/4 text-rosita" />
-        <SparkleDecoration className="absolute bottom-16 right-1/4 text-rosita" />
+        <SparkleDecoration className="absolute top-12 left-1/4 text-rosa-vivo" />
+        <SparkleDecoration className="absolute bottom-16 right-1/4 text-rosa-vivo" />
 
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-12 gap-8 items-center">
-            {/* Polaroid izquierda */}
             <div className="md:col-span-3 hidden md:flex justify-center">
               <PolaroidPhoto
                 src="/images/sarahi/sarahi-parada.jpg"
-                alt="Sara Haro"
+                alt="Sarahi Haro"
                 rotate="-rotate-6"
               />
             </div>
 
-            {/* Texto centro */}
             <div className="md:col-span-6 text-center">
-              <p className="editorial-eyebrow mb-6 text-rosita">
+              <p className="editorial-eyebrow mb-6 text-rosa-vivo">
                 Deja de empezar de cero.
               </p>
               <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.1] text-ivory mb-8">
-                <em className="italic text-rosita">Cumplirte</em> no es
+                <em className="italic text-rosa-vivo">Cumplirte</em> no es
                 <br />
                 cuestión de motivación
                 <br />
                 <span className="italic">— es cuestión de método.</span>
               </h2>
               <p className="text-ivory/85 text-lg leading-relaxed max-w-xl mx-auto">
-                Una hora que reorganiza cómo te tratas, cómo te sostienes, y cómo
-                vuelves a tu palabra. Sin discursos motivacionales. Con lo que sí
-                funciona.
+                Una hora que reorganiza cómo te tratas, cómo te sostienes, y
+                cómo vuelves a tu palabra. Sin discursos motivacionales. Con lo
+                que sí funciona.
               </p>
             </div>
 
-            {/* Polaroid derecha */}
             <div className="md:col-span-3 hidden md:flex justify-center">
               <PolaroidPhoto
                 src="/images/sarahi/sarahi-extra-laptop-rosa.jpg"
-                alt="Sara Haro trabajando"
+                alt="Sarahi Haro trabajando"
                 rotate="rotate-6"
               />
             </div>
           </div>
 
-          {/* Polaroids mobile */}
           <div className="md:hidden flex justify-center gap-6 mt-12">
             <PolaroidPhoto
               src="/images/sarahi/sarahi-parada.jpg"
-              alt="Sara Haro"
+              alt="Sarahi Haro"
               rotate="-rotate-6"
               size="small"
             />
             <PolaroidPhoto
               src="/images/sarahi/sarahi-extra-laptop-rosa.jpg"
-              alt="Sara Haro trabajando"
+              alt="Sarahi Haro trabajando"
               rotate="rotate-6"
               size="small"
             />
@@ -245,25 +252,28 @@ export default function MasterclassPage() {
       </section>
 
       {/* ============================================================
-          SECRETOS — tabs con colores
+          SECRETOS — tabs estilo CARPETA
       ============================================================ */}
-      <section className="relative overflow-hidden bg-rosita/40 py-24 md:py-32">
+      <section className="relative overflow-hidden bg-rosa-suave/60 py-24 md:py-32">
+        <SparkleDecoration className="absolute top-16 left-12 text-rosa-shock" />
+        <SparkleDecoration className="absolute bottom-24 right-12 text-tinto" />
+
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
-            <p className="editorial-eyebrow mb-4 text-rosita-deep">
+            <p className="editorial-eyebrow mb-4 text-rosa-shock">
               En esta masterclass
             </p>
             <h2 className="font-display text-4xl md:text-6xl leading-[1] text-tinto-deep mb-4">
               Te voy a revelar
               <br />
-              <span className="italic text-rosita-deep">3 secretos</span>
+              <span className="italic text-rosa-shock">3 secretos</span>
             </h2>
           </div>
 
           <SecretosTabs />
 
           <div className="text-center mt-14 md:mt-16">
-            <a href="#registro" className={ctaPillClasses}>
+            <a href="#registro" className={ctaPinkClasses}>
               {MASTERCLASS.ctaSecretos}
             </a>
           </div>
@@ -271,75 +281,84 @@ export default function MasterclassPage() {
       </section>
 
       {/* ============================================================
-          PARA QUIÉN ES
+          PARA QUIÉN ES — GRID de cuadros de colores
       ============================================================ */}
       <section className="relative overflow-hidden bg-ivory py-24 md:py-32">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-12 gap-12 md:gap-16 items-start">
-          {/* Título + intro */}
-          <div className="md:col-span-5 md:sticky md:top-24">
-            <p className="editorial-eyebrow mb-4 text-tinto">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+            <p className="editorial-eyebrow mb-4 text-rosa-shock">
               Esta masterclass es para ti si…
             </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[0.98] text-tinto-deep mb-6">
-              <span className="italic">T</span>e reconoces
+            <h2 className="font-display text-4xl md:text-6xl leading-[0.98] text-tinto-deep mb-4">
+              <span className="italic">T</span>e reconoces en
               <br />
-              en <em className="italic text-rosita-deep">al menos</em>
-              <br />
-              una frase.
+              <em className="italic text-rosa-vivo">al menos</em> una frase
             </h2>
-            <div className="hidden md:block">
-              <SparkleDecoration className="text-rosita-deep mb-6" />
-            </div>
-            <a href="#registro" className={ctaPillClassesAlt}>
-              {MASTERCLASS.ctaPara}
-            </a>
           </div>
 
-          {/* Lista bullets numerados */}
-          <div className="md:col-span-7">
-            <ul className="divide-y divide-tinto-deep/15 border-t border-b border-tinto-deep/15">
-              {PARA_QUIEN.map((linea, i) => (
-                <li key={i} className="py-6 md:py-7 flex gap-5 md:gap-7 items-start group">
-                  <span className="font-display italic text-3xl md:text-4xl text-rosita-deep leading-none pt-1 shrink-0 min-w-[3rem] group-hover:text-tinto transition-colors">
+          {/* Grid de cuadros */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+            {PARA_QUIEN.map((linea, i) => {
+              const c = PARA_QUIEN_COLORS[i % PARA_QUIEN_COLORS.length];
+              return (
+                <div
+                  key={i}
+                  className={`
+                    ${c.bg} ${c.text} relative
+                    p-8 md:p-10 aspect-square md:aspect-[4/3]
+                    flex flex-col justify-between
+                    transition-transform hover:-translate-y-1 duration-300
+                    shadow-lg
+                  `}
+                >
+                  <p
+                    className={`font-display italic text-6xl md:text-7xl leading-none ${c.num} opacity-90`}
+                    aria-hidden
+                  >
                     0{i + 1}
-                  </span>
-                  <p className="text-lg md:text-xl text-tinto-deep/90 leading-relaxed">
+                  </p>
+                  <p className="font-display text-lg md:text-xl leading-snug">
                     {linea}
                   </p>
-                </li>
-              ))}
-            </ul>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-14 md:mt-16">
+            <a href="#registro" className={ctaPinkClasses}>
+              {MASTERCLASS.ctaPara}
+            </a>
           </div>
         </div>
       </section>
 
       {/* ============================================================
-          TU HOST
+          TU HOST — sobre fondo gris cálido
       ============================================================ */}
-      <section className="relative overflow-hidden bg-ivory-warm py-24 md:py-32">
-        <SparkleDecoration className="absolute top-16 right-16 hidden md:block text-tinto" />
-        <SparkleDecoration className="absolute bottom-20 left-20 hidden md:block text-rosita-deep" />
+      <section className="relative overflow-hidden bg-gris-claro/70 py-24 md:py-32">
+        <SparkleDecoration className="absolute top-16 right-16 hidden md:block text-rosa-shock" />
+        <SparkleDecoration className="absolute bottom-20 left-20 hidden md:block text-tinto" />
 
         <div className="max-w-6xl mx-auto px-6">
-          <p className="editorial-eyebrow text-center mb-4 text-tinto">
+          <p className="editorial-eyebrow text-center mb-4 text-rosa-shock">
             Tu host
           </p>
-          <h2 className="font-display text-center text-6xl md:text-8xl lg:text-[10rem] leading-[0.9] text-tinto-deep mb-12 md:mb-16">
-            <span className="italic">S</span>ara <span className="italic">H</span>aro
+          <h2 className="font-display text-center text-6xl md:text-8xl lg:text-[9rem] leading-[0.9] text-tinto-deep mb-12 md:mb-16">
+            <span className="italic">S</span>arahi <span className="italic">H</span>aro
           </h2>
 
           <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
-            {/* Foto grande */}
             <div className="md:col-span-5">
               <div className="relative aspect-[3/4] max-w-md mx-auto w-full">
                 <div
-                  className="absolute -inset-4 border border-tinto-deep/30 rotate-2"
+                  className="absolute -inset-4 bg-rosa-vivo rotate-2"
                   aria-hidden
                 />
                 <div className="relative w-full h-full overflow-hidden">
                   <Image
                     src="/images/sarahi/sarahi-hero.jpg"
-                    alt="Sara Haro"
+                    alt="Sarahi Haro"
                     fill
                     sizes="(max-width: 768px) 80vw, 400px"
                     className="object-cover"
@@ -348,12 +367,11 @@ export default function MasterclassPage() {
               </div>
             </div>
 
-            {/* Bio */}
             <div className="md:col-span-7">
               <p className="text-tinto italic mb-2 text-xl font-display">
                 {HOST.role}
               </p>
-              <p className="text-sm text-tinto-deep/70 mb-8 tracking-[0.15em] uppercase">
+              <p className="text-sm text-gris-oscuro mb-8 tracking-[0.15em] uppercase">
                 {HOST.credentials}
               </p>
               <div className="space-y-5 text-lg md:text-xl text-tinto-deep/85 leading-relaxed">
@@ -361,8 +379,8 @@ export default function MasterclassPage() {
                   <p key={i}>{p}</p>
                 ))}
               </div>
-              <p className="editorial-eyebrow mt-10 text-rosita-deep">
-                <span className="inline-block h-[1px] w-8 bg-rosita-deep align-middle mr-3" />
+              <p className="editorial-eyebrow mt-10 text-rosa-shock">
+                <span className="inline-block h-[1px] w-8 bg-rosa-shock align-middle mr-3" />
                 Nos vemos en la clase
               </p>
             </div>
@@ -371,17 +389,18 @@ export default function MasterclassPage() {
       </section>
 
       {/* ============================================================
-          TESTIMONIOS (colored cards) — solo si hay
+          TESTIMONIOS
       ============================================================ */}
       {TESTIMONIOS.length > 0 && (
         <section className="relative overflow-hidden bg-ivory py-24 md:py-28">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-14 md:mb-16">
-              <p className="editorial-eyebrow mb-4 text-rosita-deep">
+              <p className="editorial-eyebrow mb-4 text-rosa-shock">
                 Lo que dicen mujeres que ya lo vivieron
               </p>
               <h2 className="font-display text-4xl md:text-6xl leading-[1] text-tinto-deep">
-                <span className="italic">C</span>lient <em className="italic">Love</em>
+                <span className="italic">C</span>lient{" "}
+                <em className="italic text-rosa-vivo">Love</em>
               </h2>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
@@ -424,27 +443,26 @@ export default function MasterclassPage() {
         id="registro"
         className="relative overflow-hidden bg-tinto-deep py-24 md:py-32"
       >
-        {/* Glow blobs */}
         <div
           className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-tinto rounded-full blur-3xl opacity-40"
           aria-hidden
         />
         <div
-          className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-rosita-deep rounded-full blur-3xl opacity-25"
+          className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-rosa-vivo rounded-full blur-3xl opacity-30"
           aria-hidden
         />
-        <SparkleDecoration className="absolute top-16 right-1/4 text-rosita" />
-        <SparkleDecoration className="absolute bottom-24 left-1/4 text-rosita" />
+        <SparkleDecoration className="absolute top-16 right-1/4 text-rosa-vivo" />
+        <SparkleDecoration className="absolute bottom-24 left-1/4 text-rosa-vivo" />
 
         <div className="relative max-w-2xl mx-auto px-6">
           <div className="text-center mb-10 md:mb-12">
-            <p className="editorial-eyebrow text-rosita mb-4">
+            <p className="editorial-eyebrow text-rosa-vivo mb-4">
               Reserva tu lugar
             </p>
             <h2 className="font-display text-5xl md:text-7xl lg:text-8xl text-ivory leading-[0.95] mb-6">
               <span className="italic">V</span>engo a
               <br />
-              <span className="italic text-rosita">cumplirme</span>
+              <span className="italic text-rosa-vivo">cumplirme</span>
             </h2>
 
             <div className="inline-flex flex-col gap-2 text-ivory/85 text-base md:text-lg">
@@ -455,8 +473,8 @@ export default function MasterclassPage() {
             </div>
           </div>
 
-          <div className="bg-ivory p-8 md:p-12 border border-rosita-deep/30 shadow-2xl shadow-tinto-deep/50">
-            <p className="editorial-eyebrow mb-2 text-rosita-deep">
+          <div className="bg-ivory p-8 md:p-12 border border-rosa-vivo shadow-2xl shadow-tinto-deep/50">
+            <p className="editorial-eyebrow mb-2 text-rosa-shock">
               Comienza en
             </p>
             <div className="mb-6">
@@ -473,14 +491,15 @@ export default function MasterclassPage() {
       <footer className="bg-ivory border-t border-tinto-deep/10">
         <div className="max-w-7xl mx-auto px-6 py-14 md:py-20 text-center">
           <p className="font-display text-5xl md:text-7xl text-tinto-deep/80 tracking-tight">
-            <span className="italic">M</span>VMA <em className="italic">Academy</em>
+            <span className="italic">M</span>VMA{" "}
+            <em className="italic text-rosa-vivo">Academy</em>
           </p>
-          <p className="editorial-eyebrow mt-4 text-tinto">
-            Sara Haro · MVMA Academy®
+          <p className="editorial-eyebrow mt-4 text-rosa-shock">
+            Sarahi Haro · MVMA Academy®
           </p>
 
           <div className="mt-10 pt-6 border-t border-tinto-deep/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-tinto-deep/60">
-            <p>© {new Date().getFullYear()} Sara Haro · MVMA Academy</p>
+            <p>© {new Date().getFullYear()} Sarahi Haro · MVMA Academy</p>
             <div className="flex gap-6">
               <Link href="/" className="hover:text-tinto">
                 Ir al sitio
@@ -500,11 +519,8 @@ export default function MasterclassPage() {
    ESTILOS DE CTA
 ============================================================ */
 
-const ctaPillClasses =
-  "inline-block px-8 md:px-10 py-3.5 md:py-4 bg-tinto text-ivory hover:bg-tinto-deep transition-all duration-300 text-sm md:text-base font-medium tracking-wide rounded-full shadow-lg shadow-tinto/20 hover:shadow-xl hover:shadow-tinto/30 hover:-translate-y-0.5";
-
-const ctaPillClassesAlt =
-  "inline-block px-8 md:px-10 py-3.5 md:py-4 bg-rosita-deep text-ivory hover:bg-tinto transition-all duration-300 text-sm md:text-base font-medium tracking-wide rounded-full shadow-lg shadow-rosita-deep/30 hover:shadow-xl hover:-translate-y-0.5";
+const ctaPinkClasses =
+  "inline-block px-8 md:px-10 py-3.5 md:py-4 bg-rosa-vivo text-tinto-deep hover:bg-rosa-shock hover:text-ivory transition-all duration-300 text-sm md:text-base font-semibold tracking-wide rounded-full shadow-lg shadow-rosa-vivo/30 hover:shadow-xl hover:shadow-rosa-shock/40 hover:-translate-y-0.5";
 
 /* ============================================================
    COMPONENTES DECORATIVOS
@@ -527,13 +543,7 @@ function PolaroidPhoto({
       className={`${rotate} ${dims} bg-ivory p-2 md:p-3 pb-6 md:pb-8 shadow-2xl shadow-tinto-deep/40`}
     >
       <div className="relative aspect-[4/5] w-full overflow-hidden">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="200px"
-          className="object-cover"
-        />
+        <Image src={src} alt={alt} fill sizes="200px" className="object-cover" />
       </div>
     </div>
   );
@@ -552,7 +562,7 @@ function SparkleDecoration({ className }: { className?: string }) {
       <path
         d="M20 4 L22 18 L36 20 L22 22 L20 36 L18 22 L4 20 L18 18 Z"
         fill="currentColor"
-        opacity="0.7"
+        opacity="0.8"
       />
     </svg>
   );
@@ -590,7 +600,6 @@ function RotatingSeal({ className }: { className?: string }) {
             JUEVES ·
           </textPath>
         </text>
-        {/* Centro con logo texto */}
         <text
           x="100"
           y="105"

@@ -78,7 +78,7 @@ export const PARA_QUIEN = [
  * Bio de la host — copy escrito por Sarahi (firma como "Sara Haro" aquí).
  */
 export const HOST = {
-  name: "Sara Haro",
+  name: "Sarahi Haro",
   role: "Personal Branding Expert",
   credentials: "Creadora de MVMA ACADEMY® y The Glow Club",
   bio: [

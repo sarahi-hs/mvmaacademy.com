@@ -40,7 +40,7 @@ export default function GraciasPage() {
               className="h-9 w-9 object-contain"
             />
             <span className="font-display text-lg tracking-tight text-tinto-deep">
-              <span className="italic">S</span>ara <span className="italic">H</span>aro
+              <span className="italic">S</span>arahi <span className="italic">H</span>aro
             </span>
           </Link>
         </div>
