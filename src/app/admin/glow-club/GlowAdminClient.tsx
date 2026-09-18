@@ -154,6 +154,31 @@ export default function GlowAdminClient({
     startTransition(() => router.refresh());
   }
 
+  async function editMemberName(m: MemberRow) {
+    const nuevo = prompt(
+      `Corregir el nombre de ${m.full_name}:`,
+      m.full_name
+    );
+    if (nuevo === null) return; // canceló
+    const cleanNuevo = nuevo.trim();
+    if (cleanNuevo === m.full_name) return; // no cambió
+    if (cleanNuevo.length < 2) {
+      alert("El nombre debe tener al menos 2 letras");
+      return;
+    }
+    const res = await fetch("/api/admin/glow-club/members", {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ memberId: m.id, fullName: cleanNuevo }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      alert(data.error || "No se pudo actualizar el nombre");
+      return;
+    }
+    startTransition(() => router.refresh());
+  }
+
   const activeCount = members.filter((m) => m.status === "active").length;
 
   return (
@@ -376,7 +401,15 @@ export default function GlowAdminClient({
                       </span>
                     </td>
                     <td className="py-2 text-right">
-                      <div className="flex items-center justify-end gap-3">
+                      <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1">
+                        <button
+                          onClick={() => editMemberName(m)}
+                          disabled={pending}
+                          className="text-xs text-[#722F37] underline underline-offset-2 hover:no-underline"
+                          title="Corregir el nombre"
+                        >
+                          ✏️ nombre
+                        </button>
                         <button
                           onClick={() => resetMemberPassword(m)}
                           disabled={pending}

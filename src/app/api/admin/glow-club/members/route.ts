@@ -102,7 +102,12 @@ export async function POST(req: Request) {
   }
 }
 
-/** PATCH → cambiar status (activar / pausar). */
+/**
+ * PATCH → editar una chica.
+ * Body admite cualquier combinación de:
+ *   { memberId, status?, fullName? }
+ * Al cambiar fullName recalculamos también las initials.
+ */
 export async function PATCH(req: Request) {
   const session = await getSession();
   if (!session) {
@@ -110,18 +115,53 @@ export async function PATCH(req: Request) {
   }
 
   try {
-    const { memberId, status } = await req.json();
-    if (
-      typeof memberId !== "string" ||
-      (status !== "active" && status !== "paused")
-    ) {
+    const body = await req.json();
+    const memberId = body.memberId;
+    if (typeof memberId !== "string") {
       return NextResponse.json({ error: "Datos inválidos" }, { status: 400 });
+    }
+
+    const updates: Record<string, unknown> = {
+      updated_at: new Date().toISOString(),
+    };
+
+    // status es opcional; si viene, validar
+    if (body.status !== undefined) {
+      if (body.status !== "active" && body.status !== "paused") {
+        return NextResponse.json(
+          { error: "Status inválido" },
+          { status: 400 }
+        );
+      }
+      updates.status = body.status;
+    }
+
+    // fullName también opcional; si viene, recalcular iniciales
+    if (body.fullName !== undefined) {
+      const cleanName =
+        typeof body.fullName === "string" ? body.fullName.trim() : "";
+      if (cleanName.length < 2) {
+        return NextResponse.json(
+          { error: "El nombre debe tener al menos 2 letras" },
+          { status: 400 }
+        );
+      }
+      updates.full_name = cleanName;
+      updates.initials = initialsFromName(cleanName);
+    }
+
+    // Si no vino ningún campo editable, devolver error para no hacer un no-op
+    if (updates.status === undefined && updates.full_name === undefined) {
+      return NextResponse.json(
+        { error: "Nada que actualizar" },
+        { status: 400 }
+      );
     }
 
     const supa = glowSupabase();
     const { error } = await supa
       .from("glow_members")
-      .update({ status, updated_at: new Date().toISOString() })
+      .update(updates)
       .eq("id", memberId);
 
     if (error) {
