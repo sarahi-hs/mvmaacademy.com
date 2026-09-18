@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/comunidad" },
 };
 
-const VIMEO_ID = "1228207665";
+const VIMEO_ID = "1228212050";
 
 const INCLUYE = [
   {
