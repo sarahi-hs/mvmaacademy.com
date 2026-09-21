@@ -4,11 +4,6 @@ import { SITE } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 import { Reveal } from "@/components/Reveal";
-import { CountdownBanner } from "@/components/CountdownBanner";
-
-// Fecha exacta en que termina el precio de apertura. Después de esta fecha
-// el timer se oculta solo. Sarahi: cámbiala si quieres extender la promo.
-const PROMO_ENDS_AT = "2026-08-04T23:59:59-06:00";
 
 export const metadata: Metadata = {
   title: "The Glow Club by MVMA — Membresía mensual de Sarahi Haro",
@@ -21,35 +16,39 @@ const VIMEO_ID = "1228212050";
 
 const INCLUYE = [
   {
-    icon: "✨",
     titulo: "Un espacio para dejar de empezar y volver a empezar",
     desc: "Deja atrás esa sensación de avanzar unos días y después regresar al mismo lugar.",
   },
   {
-    icon: "🌱",
     titulo: "Acompañamiento semanal",
-    desc: "Contenido y encuentros cada semana para que te mantengas constante en tu proceso de crecimiento.",
+    desc: "Contenido y encuentros cada semana para mantenerte constante en tu proceso de crecimiento.",
   },
   {
-    icon: "💛",
     titulo: "Mujeres que te inspiran y celebran contigo",
     desc: "Una comunidad de mujeres reales que te impulsan, te acompañan y celebran cada paso que das.",
   },
   {
-    icon: "🎯",
     titulo: "Retos que se convierten en resultados",
     desc: "Retos prácticos que transforman lo que aprendes en resultados visibles en tu día a día.",
   },
   {
-    icon: "🗣️",
     titulo: "Conversaciones que se aplican desde el día uno",
-    desc: "Charlas sobre imagen, autoestima, hábitos, comunicación y desarrollo personal, listas para aplicar.",
+    desc: "Charlas sobre imagen, autoestima, hábitos, comunicación y desarrollo personal listas para aplicar.",
   },
   {
-    icon: "🌟",
     titulo: "Un recordatorio semanal de tu decisión",
     desc: "Un lugar para volver, cada semana, a la mujer en la que decidiste convertirte.",
   },
+];
+
+// Paleta rotativa estilo editorial (inspirada en la landing del webinar)
+const CARD_COLORS = [
+  { bg: "bg-tinto", text: "text-ivory", num: "text-rosa-vivo", subtext: "text-ivory/85" },
+  { bg: "bg-rosa-vivo", text: "text-tinto-deep", num: "text-tinto-deep", subtext: "text-tinto-deep/80" },
+  { bg: "bg-ivory-warm", text: "text-tinto-deep", num: "text-tinto", subtext: "text-tinto-deep/75" },
+  { bg: "bg-tinto-deep", text: "text-ivory", num: "text-rosa-vivo", subtext: "text-ivory/80" },
+  { bg: "bg-rosa-suave", text: "text-tinto-deep", num: "text-tinto", subtext: "text-tinto-deep/75" },
+  { bg: "bg-gris", text: "text-ivory", num: "text-rosa-vivo", subtext: "text-ivory/85" },
 ];
 
 function CourseSchema() {
@@ -106,14 +105,14 @@ export default function GlowClubPage() {
         </div>
       </section>
 
-      {/* COUNTDOWN — precio de apertura (arriba del video) */}
-      <CountdownBanner endAt={PROMO_ENDS_AT} />
-
       {/* VIDEO */}
-      <section className="bg-ivory pt-12 pb-12 md:pt-16 md:pb-16">
+      <section className="bg-ivory pt-4 pb-12 md:pt-8 md:pb-16">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
-            <div className="relative w-full overflow-hidden shadow-[0_20px_60px_rgba(45,11,17,0.25)] bg-tinto-deep" style={{ aspectRatio: "16 / 9" }}>
+            <div
+              className="relative w-full overflow-hidden shadow-[0_20px_60px_rgba(45,11,17,0.25)] bg-tinto-deep"
+              style={{ aspectRatio: "16 / 9" }}
+            >
               <iframe
                 src={`https://player.vimeo.com/video/${VIMEO_ID}?title=0&byline=0&portrait=0`}
                 className="absolute inset-0 w-full h-full"
@@ -165,30 +164,47 @@ export default function GlowClubPage() {
         </Reveal>
       </section>
 
-      {/* QUÉ ENCONTRARÁS DENTRO */}
+      {/* QUÉ ENCONTRARÁS DENTRO — Grid editorial */}
       <section className="bg-ivory py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
-            <div className="text-center mb-16">
-              <p className="mono-label text-tinto mb-4">— QUÉ ENCONTRARÁS DENTRO —</p>
-              <h2 className="font-display text-4xl md:text-6xl text-tinto-deep leading-[1.05]">
-                Un lugar para <span className="italic text-tinto">reencontrarte.</span>
+            <div className="text-center mb-14 md:mb-16 max-w-3xl mx-auto">
+              <p className="mono-label text-rosa-shock mb-4">
+                — QUÉ ENCONTRARÁS DENTRO —
+              </p>
+              <h2 className="font-display text-4xl md:text-6xl text-tinto-deep leading-[0.98]">
+                Un lugar para<br />
+                <em className="italic text-rosa-vivo">reencontrarte.</em>
               </h2>
             </div>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {INCLUYE.map((item, i) => (
-              <Reveal key={item.titulo} delay={(i % 2) * 100}>
-                <article className="p-8 bg-ivory-warm/40 border border-beige h-full">
-                  <p className="text-3xl mb-4">{item.icon}</p>
-                  <h3 className="font-display text-xl text-tinto-deep mb-2 leading-tight">
-                    {item.titulo}
-                  </h3>
-                  <p className="text-tinto-deep/75 leading-relaxed">{item.desc}</p>
-                </article>
-              </Reveal>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+            {INCLUYE.map((item, i) => {
+              const c = CARD_COLORS[i % CARD_COLORS.length];
+              return (
+                <Reveal key={item.titulo} delay={(i % 3) * 100}>
+                  <article
+                    className={`${c.bg} ${c.text} relative p-6 md:p-8 aspect-square md:aspect-[4/5] flex flex-col justify-between transition-transform hover:-translate-y-1 duration-300 shadow-lg`}
+                  >
+                    <p
+                      className={`font-display italic text-6xl md:text-7xl leading-none ${c.num} opacity-90`}
+                      aria-hidden
+                    >
+                      0{i + 1}
+                    </p>
+                    <div>
+                      <h3 className="font-display text-lg md:text-2xl leading-tight mb-2 md:mb-3">
+                        {item.titulo}
+                      </h3>
+                      <p className={`${c.subtext} text-sm md:text-base leading-relaxed`}>
+                        {item.desc}
+                      </p>
+                    </div>
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -201,10 +217,10 @@ export default function GlowClubPage() {
             className="text-4xl md:text-6xl mb-8 leading-[1.0] italic"
             style={{ fontFamily: "var(--font-script)", color: "#D6C7AE" }}
           >
-            Menos que un<br />café a la semana.
+            Menos que dos<br />cafés a la semana.
           </h2>
           <p className="text-lg md:text-xl text-ivory/85 max-w-2xl mx-auto mb-12 leading-relaxed">
-            The Glow Club vale lo mismo que <strong className="text-beige">dos cafés de Starbucks
+            The Glow Club vale <strong className="text-beige">menos que dos cafés de Starbucks
             a la semana.</strong> La diferencia es que un café dura 20 minutos y esto te
             acompaña <em>los 30 días del mes</em>.
           </p>
@@ -214,12 +230,9 @@ export default function GlowClubPage() {
             {/* PLAN MENSUAL */}
             <div className="border border-beige/30 p-8 flex flex-col">
               <p className="mono-label text-beige/80 mb-4" style={{ color: "rgba(214,199,174,0.8)" }}>
-                MENSUAL · PRECIO DE APERTURA
+                MENSUAL
               </p>
               <div className="flex items-baseline gap-3 justify-center mb-2">
-                <p className="font-display text-3xl text-ivory/40 line-through decoration-ivory/60">
-                  $900
-                </p>
                 <p className="font-display text-6xl md:text-7xl text-beige">$499</p>
               </div>
               <p className="mono-label text-ivory/70 mb-6">MXN / MES</p>
