@@ -41,14 +41,23 @@ const INCLUYE = [
   },
 ];
 
-// Paleta rotativa estilo editorial (inspirada en la landing del webinar)
-const CARD_COLORS = [
-  { bg: "bg-tinto", text: "text-ivory", num: "text-rosa-vivo", subtext: "text-ivory/85" },
-  { bg: "bg-rosa-vivo", text: "text-tinto-deep", num: "text-tinto-deep", subtext: "text-tinto-deep/80" },
-  { bg: "bg-ivory-warm", text: "text-tinto-deep", num: "text-tinto", subtext: "text-tinto-deep/75" },
-  { bg: "bg-tinto-deep", text: "text-ivory", num: "text-rosa-vivo", subtext: "text-ivory/80" },
-  { bg: "bg-rosa-suave", text: "text-tinto-deep", num: "text-tinto", subtext: "text-tinto-deep/75" },
-  { bg: "bg-gris", text: "text-ivory", num: "text-rosa-vivo", subtext: "text-ivory/85" },
+// Post-its en corcho — colores cálidos + rotaciones sutiles para look orgánico
+const POSTIT_COLORS = [
+  { bg: "bg-amber-100", tape: "bg-amber-300/60" },
+  { bg: "bg-rosa-suave", tape: "bg-rosa-vivo/50" },
+  { bg: "bg-yellow-100", tape: "bg-yellow-300/60" },
+  { bg: "bg-orange-100", tape: "bg-orange-300/50" },
+  { bg: "bg-lime-100", tape: "bg-lime-300/50" },
+  { bg: "bg-rosita", tape: "bg-rosa-shock/40" },
+];
+
+const POSTIT_ROTATIONS = [
+  "md:-rotate-3",
+  "md:rotate-2",
+  "md:-rotate-1",
+  "md:rotate-3",
+  "md:-rotate-2",
+  "md:rotate-1",
 ];
 
 function CourseSchema() {
@@ -164,40 +173,67 @@ export default function GlowClubPage() {
         </Reveal>
       </section>
 
-      {/* QUÉ ENCONTRARÁS DENTRO — Grid editorial */}
-      <section className="bg-ivory py-24 md:py-32">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* QUÉ ENCONTRARÁS DENTRO — Post-its pegados en pizarrón de corcho */}
+      <section
+        className="relative py-24 md:py-32 overflow-hidden"
+        style={{
+          backgroundColor: "#B08B5A",
+          backgroundImage: [
+            // Textura de corcho — puntos irregulares en varios tamaños
+            "radial-gradient(circle at 25% 30%, rgba(88, 60, 30, 0.28) 1.2px, transparent 1.6px)",
+            "radial-gradient(circle at 70% 65%, rgba(60, 40, 20, 0.22) 1px, transparent 1.4px)",
+            "radial-gradient(circle at 45% 80%, rgba(100, 70, 35, 0.20) 0.8px, transparent 1.2px)",
+            "radial-gradient(circle at 85% 20%, rgba(70, 45, 22, 0.24) 1.4px, transparent 1.8px)",
+            // Sombreado lateral para dar profundidad
+            "linear-gradient(135deg, rgba(80, 55, 28, 0.15) 0%, transparent 40%, rgba(60, 40, 20, 0.12) 100%)",
+          ].join(", "),
+          backgroundSize: "18px 18px, 14px 14px, 22px 22px, 16px 16px, 100% 100%",
+        }}
+      >
+        {/* Sombras decorativas de "marco" del pizarrón */}
+        <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_rgba(0,0,0,0.35)]" />
+
+        <div className="relative max-w-6xl mx-auto px-6">
           <Reveal>
-            <div className="text-center mb-14 md:mb-16 max-w-3xl mx-auto">
-              <p className="mono-label text-rosa-shock mb-4">
+            <div className="text-center mb-14 md:mb-20 max-w-3xl mx-auto">
+              <p className="mono-label text-amber-100 mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
                 — QUÉ ENCONTRARÁS DENTRO —
               </p>
-              <h2 className="font-display text-4xl md:text-6xl text-tinto-deep leading-[0.98]">
+              <h2 className="font-display text-4xl md:text-6xl text-ivory leading-[0.98] drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]">
                 Un lugar para<br />
-                <em className="italic text-rosa-vivo">reencontrarte.</em>
+                <em className="italic text-rosa-suave">reencontrarte.</em>
               </h2>
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
             {INCLUYE.map((item, i) => {
-              const c = CARD_COLORS[i % CARD_COLORS.length];
+              const c = POSTIT_COLORS[i % POSTIT_COLORS.length];
+              const r = POSTIT_ROTATIONS[i % POSTIT_ROTATIONS.length];
               return (
                 <Reveal key={item.titulo} delay={(i % 3) * 100}>
                   <article
-                    className={`${c.bg} ${c.text} relative p-6 md:p-8 aspect-square md:aspect-[4/5] flex flex-col justify-between transition-transform hover:-translate-y-1 duration-300 shadow-lg`}
+                    className={`${c.bg} ${r} relative p-6 md:p-7 min-h-[240px] md:min-h-[260px] flex flex-col justify-between transition-transform duration-300 hover:rotate-0 hover:scale-[1.03] shadow-[0_10px_22px_rgba(0,0,0,0.28),0_2px_4px_rgba(0,0,0,0.18)]`}
                   >
+                    {/* Cinta adhesiva arriba */}
+                    <span
+                      className={`${c.tape} absolute -top-3 left-1/2 -translate-x-1/2 w-20 md:w-24 h-5 md:h-6 border-x border-white/30 shadow-sm`}
+                      aria-hidden
+                    />
+
                     <p
-                      className={`font-display italic text-6xl md:text-7xl leading-none ${c.num} opacity-90`}
+                      className="font-display italic text-5xl md:text-6xl leading-none text-tinto-deep/70"
+                      style={{ fontFamily: "var(--font-script)" }}
                       aria-hidden
                     >
                       0{i + 1}
                     </p>
+
                     <div>
-                      <h3 className="font-display text-lg md:text-2xl leading-tight mb-2 md:mb-3">
+                      <h3 className="font-display text-lg md:text-xl leading-tight mb-2 text-tinto-deep">
                         {item.titulo}
                       </h3>
-                      <p className={`${c.subtext} text-sm md:text-base leading-relaxed`}>
+                      <p className="text-tinto-deep/75 text-sm md:text-[15px] leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
