@@ -183,14 +183,22 @@ export default function GlowAdminClient({
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-medium text-[#3D1A1F]">
-          Admin · Glow Club
-        </h1>
-        <p className="text-sm text-[#3D1A1F]/60">
-          {activeCount} chica{activeCount === 1 ? "" : "s"} activa
-          {activeCount === 1 ? "" : "s"} · {members.length} total
-        </p>
+      <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-medium text-[#3D1A1F]">
+            Admin · Glow Club
+          </h1>
+          <p className="text-sm text-[#3D1A1F]/60">
+            {activeCount} chica{activeCount === 1 ? "" : "s"} activa
+            {activeCount === 1 ? "" : "s"} · {members.length} total
+          </p>
+        </div>
+        <a
+          href="/admin/glow-club/clases"
+          className="rounded-lg border border-[#722F37] px-3 py-2 text-xs font-medium text-[#722F37] hover:bg-[#F4D4D4]/40"
+        >
+          🎥 Clases grabadas
+        </a>
       </div>
 
       {/* Notificaciones */}

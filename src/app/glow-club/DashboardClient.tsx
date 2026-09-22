@@ -12,6 +12,7 @@ import {
 } from "@/lib/glow/supabase";
 import type { GlowSession } from "@/lib/glow/auth";
 import EnablePushBanner from "./EnablePushBanner";
+import GlowNav from "./GlowNav";
 
 type DayCell = {
   day: number;
@@ -91,41 +92,9 @@ export default function DashboardClient({
     startTransition(() => router.refresh());
   }
 
-  async function doLogout() {
-    await fetch("/api/glow-club/logout", { method: "POST" });
-    router.push("/glow-club/login");
-    router.refresh();
-  }
-
   return (
     <main className="mx-auto max-w-2xl px-4 py-6">
-      {/* Header */}
-      <header className="mb-5 flex items-center justify-between rounded-2xl border border-[#F4D4D4] bg-white px-4 py-3">
-        <div className="flex items-center gap-2">
-          <div className="h-9 w-9 overflow-hidden rounded-full bg-[#FAF7F2]">
-            {/* Logomark: solo la G + estrella, sin el texto "Glow Club" */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/glow-club/icons/logomark-192.png"
-              alt=""
-              aria-hidden
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <span className="text-sm font-medium text-[#3D1A1F]">Glow Club</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-xs text-[#3D1A1F]/60">
-            Hola, {session.fullName.split(" ")[0]} 🌸
-          </span>
-          <button
-            onClick={doLogout}
-            className="text-xs text-[#722F37] underline underline-offset-2 hover:no-underline"
-          >
-            Salir
-          </button>
-        </div>
-      </header>
+      <GlowNav firstName={session.fullName.split(" ")[0] ?? ""} active="reto" />
 
       {/* Banner de "Activar recordatorios" (solo aparece si aplica) */}
       <div className="mb-5 -mt-1">
