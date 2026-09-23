@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { thumbnailUrl, type GlowLesson } from "@/lib/glow/video";
+import type { GlowLesson } from "@/lib/glow/video";
+import LessonThumb from "./LessonThumb";
 
 export default function LessonsGrid({ lessons }: { lessons: GlowLesson[] }) {
   const [topic, setTopic] = useState<string | null>(null);
@@ -37,7 +38,6 @@ export default function LessonsGrid({ lessons }: { lessons: GlowLesson[] }) {
 
       <ul className="mt-4 grid gap-4 sm:grid-cols-2">
         {visible.map((l) => {
-          const thumb = thumbnailUrl(l);
           return (
             <li key={l.id}>
               <Link
@@ -45,12 +45,7 @@ export default function LessonsGrid({ lessons }: { lessons: GlowLesson[] }) {
                 className="group block overflow-hidden rounded-xl border border-[#F4D4D4] bg-[#FAF7F2] transition hover:border-[#722F37]/50"
               >
                 <div className="relative aspect-video bg-[#F4D4D4]/50">
-                  {thumb ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={thumb} alt="" className="h-full w-full object-cover" />
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-3xl">🎬</div>
-                  )}
+                  <LessonThumb lesson={l} className="h-full w-full object-cover" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-lg text-[#722F37] shadow-sm transition group-hover:scale-105">
                       ▶
