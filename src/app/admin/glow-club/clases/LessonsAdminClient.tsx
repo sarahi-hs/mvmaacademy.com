@@ -2,7 +2,8 @@
 
 import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { parseVideoUrl, thumbnailUrl, type GlowLesson } from "@/lib/glow/video";
+import { parseVideoUrl, type GlowLesson } from "@/lib/glow/video";
+import LessonThumb from "@/app/glow-club/clases/LessonThumb";
 
 const inputCls =
   "mt-1 w-full rounded-lg border border-[#F4D4D4] bg-white px-3 py-2 text-sm outline-none focus:border-[#722F37]";
@@ -19,7 +20,6 @@ export default function LessonsAdminClient({ lessons }: { lessons: GlowLesson[] 
   const [msg, setMsg] = useState<string | null>(null);
 
   const parsed = useMemo(() => (videoUrl ? parseVideoUrl(videoUrl) : null), [videoUrl]);
-  const previewThumb = parsed ? thumbnailUrl({ provider: parsed.provider, video_id: parsed.videoId }) : null;
   const topics = useMemo(
     () => Array.from(new Set(lessons.map((l) => l.topic).filter(Boolean))) as string[],
     [lessons]
@@ -124,9 +124,11 @@ export default function LessonsAdminClient({ lessons }: { lessons: GlowLesson[] 
             )}
           </label>
 
-          {previewThumb && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={previewThumb} alt="" className="w-48 rounded-lg border border-[#F4D4D4]" />
+          {parsed?.provider === "youtube" && (
+            <LessonThumb
+              lesson={{ provider: parsed.provider, video_id: parsed.videoId }}
+              className="aspect-video w-48 rounded-lg border border-[#F4D4D4] object-cover"
+            />
           )}
 
           <div className="grid gap-3 sm:grid-cols-2">
@@ -190,16 +192,10 @@ export default function LessonsAdminClient({ lessons }: { lessons: GlowLesson[] 
         ) : (
           <ul className="divide-y divide-[#F4D4D4]/60">
             {lessons.map((l) => {
-              const thumb = thumbnailUrl(l);
               return (
                 <li key={l.id} className="flex flex-wrap items-center gap-3 py-3">
                   <div className="h-14 w-24 flex-none overflow-hidden rounded-md bg-[#F4D4D4]/50">
-                    {thumb ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={thumb} alt="" className="h-full w-full object-cover" />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-lg">🎬</div>
-                    )}
+                    <LessonThumb lesson={l} className="h-full w-full object-cover" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className={`truncate text-sm font-medium ${l.published ? "text-[#3D1A1F]" : "text-[#3D1A1F]/40 line-through"}`}>

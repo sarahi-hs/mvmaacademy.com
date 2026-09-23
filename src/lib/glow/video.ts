@@ -49,7 +49,10 @@ export function embedUrl(l: Pick<GlowLesson, "provider" | "video_id">): string {
   return `https://player.vimeo.com/video/${id}${query ? `?${query}&` : "?"}title=0&byline=0&portrait=0`;
 }
 
-export function thumbnailUrl(l: Pick<GlowLesson, "provider" | "video_id">): string | null {
-  if (l.provider === "youtube") return `https://i.ytimg.com/vi/${l.video_id}/hqdefault.jpg`;
-  return null;
+export function thumbnailUrl(
+  l: Pick<GlowLesson, "provider" | "video_id">,
+  quality: "hd" | "sd" = "hd"
+): string | null {
+  if (l.provider !== "youtube") return null;
+  return `https://i.ytimg.com/vi/${l.video_id}/${quality === "hd" ? "maxresdefault" : "hqdefault"}.jpg`;
 }
