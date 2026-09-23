@@ -122,7 +122,7 @@ export default function MiHistoriaPage() {
 
           <div className="prose-mvma text-tinto-deep/85 leading-relaxed text-lg space-y-6">
             <p>
-              Después de la cirugía estuve aproximadamente <strong className="text-tinto">cuatro
+              Después de la cirugía estuve aproximadamente <strong className="text-tinto">seis
               meses sin poder caminar bien</strong>, bajé más de 10 kilos y entré en una tristeza
               muy profunda.
             </p>
