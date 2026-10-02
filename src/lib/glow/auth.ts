@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { glowSupabase, hasActiveAccess } from "./supabase";
 
 /**
  * Auth del Glow Club. Mismo patrón que src/lib/pr/auth.ts pero con
@@ -61,10 +62,21 @@ export async function getGlowSession(): Promise<GlowSession | null> {
     const token = jar.get(COOKIE_NAME)?.value;
     if (!token) return null;
     const { payload } = await jwtVerify(token, secret());
+    const memberId = payload.memberId as string;
+
+    // El JWT dura 30 días: revisamos el status en cada request para que
+    // pausar a una chica le quite el acceso de inmediato, no al vencer la cookie.
+    const { data: member } = await glowSupabase()
+      .from("glow_members")
+      .select("status, full_name")
+      .eq("id", memberId)
+      .maybeSingle();
+    if (!member || !hasActiveAccess(member)) return null;
+
     return {
-      memberId: payload.memberId as string,
+      memberId,
       email: payload.email as string,
-      fullName: payload.fullName as string,
+      fullName: member.full_name as string,
     };
   } catch {
     return null;
