@@ -5,6 +5,17 @@ import { useRouter } from "next/navigation";
 import { parseVideoUrl, type GlowLesson } from "@/lib/glow/video";
 import LessonThumb from "@/app/glow-club/clases/LessonThumb";
 
+const SESSION_EXPIRED_MSG =
+  "Tu sesión de admin se venció. Vuelve a entrar en /admin/login (no se perdió nada).";
+
+function sessionExpired(res: Response): boolean {
+  if (res.status !== 401) return false;
+  if (confirm("Tu sesión de admin se venció. ¿Ir a iniciar sesión? (no se pierde nada)")) {
+    window.location.href = "/admin/login";
+  }
+  return true;
+}
+
 const inputCls =
   "mt-1 w-full rounded-lg border border-[#F4D4D4] bg-white px-3 py-2 text-sm outline-none focus:border-[#722F37]";
 
@@ -35,6 +46,10 @@ export default function LessonsAdminClient({ lessons }: { lessons: GlowLesson[] 
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ videoUrl, title, topic, description }),
       });
+      if (sessionExpired(res)) {
+        setMsg(`❌ ${SESSION_EXPIRED_MSG}`);
+        return;
+      }
       const data = await res.json();
       if (!res.ok) {
         setMsg(`❌ ${data.error || "No se pudo guardar"}`);
@@ -56,6 +71,7 @@ export default function LessonsAdminClient({ lessons }: { lessons: GlowLesson[] 
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ id, ...updates }),
     });
+    if (sessionExpired(res)) return;
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
       alert(data.error || "No se pudo actualizar");
@@ -79,6 +95,7 @@ export default function LessonsAdminClient({ lessons }: { lessons: GlowLesson[] 
   async function remove(l: GlowLesson) {
     if (!confirm(`¿Borrar "${l.title}" del portal?\n\nEl video sigue en YouTube/Vimeo, solo deja de aparecer aquí.`)) return;
     const res = await fetch(`/api/admin/glow-club/lessons?id=${l.id}`, { method: "DELETE" });
+    if (sessionExpired(res)) return;
     if (!res.ok) {
       alert("No se pudo borrar");
       return;
