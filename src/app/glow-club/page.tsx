@@ -22,7 +22,7 @@ async function getLastMonthWinners(today: string): Promise<LastMonthWinners | nu
   const prev = m === 1 ? `${y - 1}-12-01` : `${y}-${String(m - 1).padStart(2, "0")}-01`;
 
   const [{ data: challenge }, ranking] = await Promise.all([
-    glowSupabase().from("glow_challenges").select("title").eq("month", prev).maybeSingle(),
+    glowSupabase().from("glow_challenges").select("title, prize").eq("month", prev).maybeSingle(),
     getMonthlyRanking(prev),
   ]);
   const winners = ranking.filter((r) => r.total_points > 0).slice(0, 3);
@@ -32,6 +32,7 @@ async function getLastMonthWinners(today: string): Promise<LastMonthWinners | nu
     monthKey: prev,
     monthLabel: new Date(prev + "T12:00:00").toLocaleDateString("es-MX", { month: "long" }),
     challengeTitle: challenge.title,
+    prize: challenge.prize,
     winners: winners.map((w) => ({
       memberId: w.member_id,
       name: w.full_name,
