@@ -13,6 +13,7 @@ import {
 import type { GlowSession } from "@/lib/glow/auth";
 import EnablePushBanner from "./EnablePushBanner";
 import GlowNav from "./GlowNav";
+import WinnersCelebration, { type LastMonthWinners } from "./WinnersCelebration";
 
 type DayCell = {
   day: number;
@@ -33,6 +34,7 @@ type Props = {
   myPosition: number;
   todayReflection: GlowReflection | null;
   reflections: GlowReflectionWithAuthor[];
+  lastMonthWinners: LastMonthWinners | null;
 };
 
 const monthNames = [
@@ -64,6 +66,7 @@ export default function DashboardClient({
   myPosition,
   todayReflection: initialTodayReflection,
   reflections,
+  lastMonthWinners,
 }: Props) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
@@ -95,6 +98,9 @@ export default function DashboardClient({
   return (
     <main className="mx-auto max-w-2xl px-4 py-6">
       <GlowNav firstName={session.fullName.split(" ")[0] ?? ""} active="reto" />
+      {lastMonthWinners && (
+        <WinnersCelebration data={lastMonthWinners} meMemberId={session.memberId} />
+      )}
 
       {/* Banner de "Activar recordatorios" (solo aparece si aplica) */}
       <div className="mb-5 -mt-1">
