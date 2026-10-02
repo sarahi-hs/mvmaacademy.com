@@ -10,7 +10,36 @@ import {
   getRecentReflections,
   todayMx,
 } from "@/lib/glow/data";
+import { glowSupabase } from "@/lib/glow/supabase";
 import DashboardClient from "./DashboardClient";
+import type { LastMonthWinners } from "./WinnersCelebration";
+
+const CELEBRATION_DAYS = 5;
+
+async function getLastMonthWinners(today: string): Promise<LastMonthWinners | null> {
+  if (parseInt(today.slice(8, 10), 10) > CELEBRATION_DAYS) return null;
+  const [y, m] = today.split("-").map(Number) as [number, number];
+  const prev = m === 1 ? `${y - 1}-12-01` : `${y}-${String(m - 1).padStart(2, "0")}-01`;
+
+  const [{ data: challenge }, ranking] = await Promise.all([
+    glowSupabase().from("glow_challenges").select("title").eq("month", prev).maybeSingle(),
+    getMonthlyRanking(prev),
+  ]);
+  const winners = ranking.filter((r) => r.total_points > 0).slice(0, 3);
+  if (!challenge || winners.length === 0) return null;
+
+  return {
+    monthKey: prev,
+    monthLabel: new Date(prev + "T12:00:00").toLocaleDateString("es-MX", { month: "long" }),
+    challengeTitle: challenge.title,
+    winners: winners.map((w) => ({
+      memberId: w.member_id,
+      name: w.full_name,
+      points: w.total_points,
+      days: w.days_completed,
+    })),
+  };
+}
 
 export const dynamic = "force-dynamic";
 
@@ -18,11 +47,12 @@ export default async function GlowClubPage() {
   const session = await getGlowSession();
   if (!session) redirect("/glow-club/login");
 
-  const [challenge, checkins, ranking, todayReflection] = await Promise.all([
+  const [challenge, checkins, ranking, todayReflection, lastMonthWinners] = await Promise.all([
     getCurrentChallenge(),
     getMemberCheckinsThisMonth(session.memberId),
     getMonthlyRanking(),
     getTodayReflection(session.memberId),
+    getLastMonthWinners(todayMx()),
   ]);
 
   // Feed de reflexiones del reto del mes — solo si ya hay reto activo
@@ -76,6 +106,7 @@ export default async function GlowClubPage() {
       myPosition={myPosition}
       todayReflection={todayReflection}
       reflections={reflections}
+      lastMonthWinners={lastMonthWinners}
     />
   );
 }
