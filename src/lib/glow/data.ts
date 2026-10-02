@@ -198,13 +198,17 @@ export async function getRecentReflections(
   return reflections;
 }
 
-/** Ranking del mes actual. */
-export async function getMonthlyRanking(): Promise<GlowRankingRow[]> {
+/** Ranking de un mes ('YYYY-MM-01'); por defecto el mes actual. */
+export async function getMonthlyRanking(
+  month: string = currentMonthStart()
+): Promise<GlowRankingRow[]> {
   const supa = glowSupabase();
   const { data, error } = await supa
     .from("glow_monthly_ranking")
     .select("*")
-    .eq("challenge_month", currentMonthStart());
+    .eq("challenge_month", month)
+    .order("total_points", { ascending: false })
+    .order("days_completed", { ascending: false });
   if (error) {
     console.error("[glow data] getMonthlyRanking", error);
     return [];

@@ -193,12 +193,20 @@ export default function GlowAdminClient({
             {activeCount === 1 ? "" : "s"} · {members.length} total
           </p>
         </div>
-        <a
-          href="/admin/glow-club/clases"
-          className="rounded-lg border border-[#722F37] px-3 py-2 text-xs font-medium text-[#722F37] hover:bg-[#F4D4D4]/40"
-        >
-          🎥 Clases grabadas
-        </a>
+        <div className="flex flex-wrap gap-2">
+          <a
+            href="/admin/glow-club/historial"
+            className="rounded-lg border border-[#722F37] px-3 py-2 text-xs font-medium text-[#722F37] hover:bg-[#F4D4D4]/40"
+          >
+            📖 Historial
+          </a>
+          <a
+            href="/admin/glow-club/clases"
+            className="rounded-lg border border-[#722F37] px-3 py-2 text-xs font-medium text-[#722F37] hover:bg-[#F4D4D4]/40"
+          >
+            🎥 Clases grabadas
+          </a>
+        </div>
       </div>
 
       {/* Notificaciones */}
