@@ -18,8 +18,8 @@ export const MASTERCLASS = {
     "Descubre qué está haciendo que sigas postergando la mujer que sabes que puedes llegar a ser, y aprende a romper el ciclo que te hace empezar una y otra vez desde cero.",
 
   // 👇 Próxima sesión — actualizar cada semana
-  nextSessionIso: "2026-10-20T19:30:00-06:00",
-  nextSessionDisplay: "Martes 20 de octubre · 7:30 pm CDMX",
+  nextSessionIso: "2026-10-29T19:30:00-06:00",
+  nextSessionDisplay: "Jueves 29 de octubre · 7:30 pm CDMX",
 
   cadence: "Cada jueves · 7:30 pm CDMX",
   durationDisplay: "60 minutos exactos",
