@@ -1,7 +1,7 @@
 /**
  * Configuración de la masterclass evergreen "Conviértete en una mujer que se cumple".
  *
- * CADENCIA: cada jueves a las 7:30 pm CDMX.
+ * CADENCIA: cada jueves a las 7:30 pm hora CDMX.
  *
  * 🔁 CÓMO ACTUALIZAR LA FECHA CADA SEMANA (10 segundos):
  * 1. Cambia únicamente `nextSessionIso` (ISO con offset -06:00 de CDMX)
@@ -19,9 +19,9 @@ export const MASTERCLASS = {
 
   // 👇 Próxima sesión — actualizar cada semana
   nextSessionIso: "2026-10-29T19:30:00-06:00",
-  nextSessionDisplay: "Jueves 29 de octubre · 7:30 pm CDMX",
+  nextSessionDisplay: "Jueves 29 de octubre · 7:30 pm hora CDMX",
 
-  cadence: "Cada jueves · 7:30 pm CDMX",
+  cadence: "Cada jueves · 7:30 pm hora CDMX",
   durationDisplay: "60 minutos exactos",
   platform: "En vivo por Zoom",
 
